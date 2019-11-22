@@ -163,4 +163,11 @@ class AppTheme {
     color: darkText,
   );
 
+  static const TextStyle courseSub = TextStyle( // subtitle2 -> subtitle
+    fontFamily: fontName,
+    fontSize: 13,
+    letterSpacing: -0.04,
+    color: darkText,
+  );
+
 }

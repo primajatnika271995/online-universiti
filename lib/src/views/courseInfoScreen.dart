@@ -1,6 +1,8 @@
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
+import 'package:online_university/src/models/courseDetails.dart';
 import 'package:online_university/src/utils/appTheme.dart';
+import 'package:online_university/src/views/component/placeholder.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class CourseInfoScreen extends StatefulWidget {
@@ -16,7 +18,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
 
   InfoTabType infoType = InfoTabType.watch;
 
-  final String videoID = "5bTE5fbxDsc";
+  String videoID = "5bTE5fbxDsc";
 
   bool _isDownload = false;
 
@@ -36,7 +38,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
   }
 
   Future<bool> getData() async {
-    await Future.delayed(const Duration(milliseconds: 200));
+    await Future.delayed(const Duration(milliseconds: 1000));
     return true;
   }
 
@@ -91,91 +93,132 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                           ),
                         ];
                       },
-                      body: Container(
-                        color: AppTheme.nearlyWhite,
-                        child: Column(
-                          children: <Widget>[
-                            Padding(
-                              padding:
-                                  EdgeInsets.only(left: 13, right: 13, top: 10),
-                              child: Text(
-                                  "Strategi Efektif Belajar Gitar Akustik & Elektrik dengan Mudah.",
-                                  style: AppTheme.title),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 13, vertical: 10),
-                              child: Row(
-                                children: <Widget>[
-                                  Container(
-                                    color: Colors.black12,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(3.0),
-                                      child: Text("Premium Course",
-                                          style: AppTheme.badge),
+                      body: SingleChildScrollView(
+                        child: Container(
+                          color: AppTheme.nearlyWhite,
+                          child: Column(
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    left: 13, right: 13, top: 10),
+                                child: Text(
+                                    "Strategi Efektif Belajar Gitar Akustik & Elektrik dengan Mudah.",
+                                    style: AppTheme.title),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 13, vertical: 10),
+                                child: Row(
+                                  children: <Widget>[
+                                    Container(
+                                      color: Colors.black12,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(3.0),
+                                        child: Text("Premium Course",
+                                            style: AppTheme.badge),
+                                      ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 7, right: 2),
-                                    child: Icon(Icons.access_time,
-                                        size: 16, color: AppTheme.dark_grey),
-                                  ),
-                                  Text("5h 60m", style: AppTheme.subtitle),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 4),
-                                    child: Text("•", style: AppTheme.subtitle),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 2),
-                                    child: Icon(Icons.favorite,
-                                        size: 16, color: AppTheme.dark_grey),
-                                  ),
-                                  Text("0%", style: AppTheme.subtitle),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 4),
-                                    child: Text("•", style: AppTheme.subtitle),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 2),
-                                    child: Icon(Icons.person_outline,
-                                        size: 16, color: AppTheme.dark_grey),
-                                  ),
-                                  Text("2.2K", style: AppTheme.subtitle),
-                                ],
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 7, right: 2),
+                                      child: Icon(Icons.access_time,
+                                          size: 16, color: AppTheme.dark_grey),
+                                    ),
+                                    Text("5h 60m", style: AppTheme.subtitle),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 4),
+                                      child:
+                                          Text("•", style: AppTheme.subtitle),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 4),
+                                      child: Icon(Icons.favorite_border,
+                                          size: 16, color: AppTheme.dark_grey),
+                                    ),
+                                    Text("0%", style: AppTheme.subtitle),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 4),
+                                      child:
+                                          Text("•", style: AppTheme.subtitle),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 2),
+                                      child: Icon(Icons.person_outline,
+                                          size: 16, color: AppTheme.dark_grey),
+                                    ),
+                                    Text("2.2K", style: AppTheme.subtitle),
+                                  ],
+                                ),
                               ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 13),
-                              child: Divider(),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 13),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Text("Download", style: AppTheme.download),
-                                  Switch(
-                                    value: _isDownload,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        _isDownload = value;
-                                      });
-                                    },
-                                  ),
-                                ],
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 13),
+                                child: Divider(),
                               ),
-                            ),
-                            Padding(
-                              padding:
-                              const EdgeInsets.symmetric(horizontal: 13),
-                              child: Divider(),
-                            ),
-                          ],
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 13),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text("Download", style: AppTheme.download),
+                                    Switch(
+                                      value: _isDownload,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          _isDownload = value;
+                                        });
+                                      },
+                                      activeColor: AppTheme.blue_stone,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              FutureBuilder(
+                                future: getData(),
+                                builder: (context, snapshot) {
+                                  if (!snapshot.hasData)
+                                    return Padding(
+                                      padding: const EdgeInsets.only(bottom: 10),
+                                      child: ListTile(
+                                        title: Row(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Container(
+                                              height: 70,
+                                              width: 120,
+                                              child: Skeleton(
+                                                height: 70,
+                                                width: 120,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(left: 8),
+                                              child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: <Widget>[
+                                                  Container(
+                                                    width: 250,
+                                                    padding: EdgeInsets.only(bottom: 5),
+                                                    child: Skeleton(width: 250),
+                                                  ),
+                                                  Skeleton(width: 250)
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  else
+                                    return courseList();
+                                },
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -320,55 +363,90 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                     child: Padding(
                       padding:
                           EdgeInsets.only(left: 8, right: 8, top: 5, bottom: 5),
-                      child: Row(
-                        children: <Widget>[
-                          CircleAvatar(
-                            backgroundImage: NetworkImage(
-                                "https://static.skillshare.com/uploads/video/thumbnails/25018f1aada2a9c55ffb98ddf7c86aa0/448-252"),
-                            radius: 25,
-                          ),
-                          SizedBox(
-                            width: 15,
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              RichText(
-                                text: TextSpan(
-                                  children: <TextSpan>[
-                                    TextSpan(
-                                      text: "Ari Moreno ",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 16,
-                                        color: AppTheme.nearlyBlack,
+                      child: FutureBuilder(
+                        future: getData(),
+                        builder: (context, snapshot) {
+                          if (!snapshot.hasData)
+                            return Row(
+                              children: <Widget>[
+                                Skeleton(
+                                  height: 40,
+                                  width: 40,
+                                ),
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Skeleton(
+                                      width: 150,
+                                      height: 10,
+                                    ),
+                                    SizedBox(
+                                      height: 3,
+                                    ),
+                                    Skeleton(
+                                      width: 150,
+                                      height: 10,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            );
+                          else
+                            return Row(
+                              children: <Widget>[
+                                CircleAvatar(
+                                  backgroundImage: NetworkImage(
+                                      "https://static.skillshare.com/uploads/video/thumbnails/25018f1aada2a9c55ffb98ddf7c86aa0/448-252"),
+                                  radius: 25,
+                                ),
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    RichText(
+                                      text: TextSpan(
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: "Ari Moreno ",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 16,
+                                              color: AppTheme.nearlyBlack,
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text: "• Follow",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 16,
+                                              color: AppTheme.blue_stone,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                    TextSpan(
-                                      text: "• Follow",
+                                    SizedBox(
+                                      height: 3,
+                                    ),
+                                    Text(
+                                      "Musician",
                                       style: TextStyle(
-                                        fontWeight: FontWeight.w600,
+                                        fontWeight: FontWeight.w100,
                                         fontSize: 16,
-                                        color: AppTheme.blue_stone,
                                       ),
                                     ),
                                   ],
                                 ),
-                              ),
-                              SizedBox(
-                                height: 3,
-                              ),
-                              Text(
-                                "Musician",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w100,
-                                  fontSize: 16,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            );
+                        },
                       ),
                     ),
                   ),
@@ -480,6 +558,81 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
           ),
         ),
       ),
+    );
+  }
+
+  Widget courseList() {
+    return ListView.builder(
+      itemCount: CourseDetails.courseDetailList.length,
+      shrinkWrap: true,
+      scrollDirection: Axis.vertical,
+      physics: NeverScrollableScrollPhysics(),
+      itemBuilder: (context, int index) {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: ListTile(
+            onTap: () {
+              setState(() {
+                print(CourseDetails.courseDetailList[index].idVideo);
+                youtubePlayerController.load(CourseDetails.courseDetailList[index].idVideo);
+              });
+            },
+            title: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Stack(
+                  children: <Widget>[
+                    Container(
+                      height: 70,
+                      width: 120,
+                      decoration: BoxDecoration(
+                        color: AppTheme.grey,
+                        image: DecorationImage(
+                          image: NetworkImage(CourseDetails
+                              .courseDetailList[index].thumbnailUrl),
+                        ),
+                      ),
+                    ),
+                    CourseDetails.courseDetailList[index].lock
+                        ? Container(
+                            width: 120,
+                            height: 70,
+                            color: Colors.black45,
+                            child: Center(
+                              child: Icon(
+                                Icons.lock,
+                                color: AppTheme.nearlyWhite,
+                              ),
+                            ),
+                          )
+                        : SizedBox(),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        width: 250,
+                        padding: EdgeInsets.only(bottom: 5),
+                        child: Text(
+                          CourseDetails.courseDetailList[index].courseName,
+                          style: AppTheme.title,
+                        ),
+                      ),
+                      Text(
+                        CourseDetails.courseDetailList[index].times,
+                        style: AppTheme.courseSub,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }
