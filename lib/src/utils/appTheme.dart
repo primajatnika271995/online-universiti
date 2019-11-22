@@ -147,4 +147,20 @@ class AppTheme {
     color: nearlyBlack,
   );
 
+  static const TextStyle badge = TextStyle( // subtitle2 -> subtitle
+    fontFamily: fontName,
+    fontWeight: FontWeight.w600,
+    fontSize: 14,
+    letterSpacing: -0.04,
+    color: white,
+  );
+
+  static const TextStyle download = TextStyle( // subtitle2 -> subtitle
+    fontFamily: fontName,
+    fontWeight: FontWeight.w600,
+    fontSize: 14,
+    letterSpacing: -0.04,
+    color: darkText,
+  );
+
 }
