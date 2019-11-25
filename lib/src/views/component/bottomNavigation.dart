@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:online_university/src/utils/appTheme.dart';
 import 'package:online_university/src/views/home.dart';
+import 'package:online_university/src/views/my_classes_page/myclasses.dart';
+import 'package:online_university/src/views/profile_page/profile.dart';
 
 class BottomNavigationDrawer extends StatefulWidget {
   @override
@@ -12,12 +14,8 @@ class _BottomNavigationDrawerState extends State<BottomNavigationDrawer> {
 
   List<Widget> _widgetPages = [
     HomePage(),
-    Center(
-      child: Text('My Classes'),
-    ),
-    Center(
-      child: Text('Sign In'),
-    ),
+    MyClassesPage(),
+    ProfilePage(),
   ];
 
   void _onItemTapped(int index) {

@@ -182,10 +182,12 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                 builder: (context, snapshot) {
                                   if (!snapshot.hasData)
                                     return Padding(
-                                      padding: const EdgeInsets.only(bottom: 10),
+                                      padding:
+                                          const EdgeInsets.only(bottom: 10),
                                       child: ListTile(
                                         title: Row(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: <Widget>[
                                             Container(
                                               height: 70,
@@ -196,13 +198,16 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsets.only(left: 8),
+                                              padding: const EdgeInsets.only(
+                                                  left: 8),
                                               child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
                                                 children: <Widget>[
                                                   Container(
                                                     width: 250,
-                                                    padding: EdgeInsets.only(bottom: 5),
+                                                    padding: EdgeInsets.only(
+                                                        bottom: 5),
                                                     child: Skeleton(width: 250),
                                                   ),
                                                   Skeleton(width: 250)
@@ -367,34 +372,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                         future: getData(),
                         builder: (context, snapshot) {
                           if (!snapshot.hasData)
-                            return Row(
-                              children: <Widget>[
-                                Skeleton(
-                                  height: 40,
-                                  width: 40,
-                                ),
-                                SizedBox(
-                                  width: 15,
-                                ),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Skeleton(
-                                      width: 150,
-                                      height: 10,
-                                    ),
-                                    SizedBox(
-                                      height: 3,
-                                    ),
-                                    Skeleton(
-                                      width: 150,
-                                      height: 10,
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            );
+                            return Container(height: 50);
                           else
                             return Row(
                               children: <Widget>[
@@ -574,7 +552,8 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
             onTap: () {
               setState(() {
                 print(CourseDetails.courseDetailList[index].idVideo);
-                youtubePlayerController.load(CourseDetails.courseDetailList[index].idVideo);
+                youtubePlayerController
+                    .load(CourseDetails.courseDetailList[index].idVideo);
               });
             },
             title: Row(

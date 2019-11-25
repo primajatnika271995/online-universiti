@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:online_university/src/utils/appTheme.dart';
 import 'package:online_university/src/utils/hexConverter.dart';
-import 'package:online_university/src/views/categoryListView.dart';
-import 'package:online_university/src/views/courseInfoScreen.dart';
+import 'package:online_university/src/views/watch_page/categoryListView.dart';
+import 'package:online_university/src/views/watch_page/courseInfoScreen.dart';
 
 class HomePage extends StatefulWidget {
   @override
