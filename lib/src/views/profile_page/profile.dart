@@ -3,6 +3,7 @@ import 'package:online_university/src/config/localStorage.dart';
 import 'package:online_university/src/utils/appTheme.dart';
 import 'package:online_university/src/views/component/log.dart';
 import 'package:online_university/src/views/login_page/login.dart';
+import 'package:online_university/src/views/profile_page/profileList.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -150,7 +151,13 @@ class _ProfilePageState extends State<ProfilePage> {
           child: IconButton(
             color: AppTheme.nearlyWhite,
             icon: Icon(Icons.settings),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => ProfileListPage(),
+                ),
+              );
+            },
           ),
         ),
       ],

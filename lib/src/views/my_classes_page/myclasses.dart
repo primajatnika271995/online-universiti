@@ -41,8 +41,8 @@ class _MyClassesPageState extends State<MyClassesPage> {
       backgroundColor: AppTheme.nearlyWhite,
       body: FutureBuilder(
         future: getData(),
-        builder: (BuildContext context, snaphsot) {
-          if (!snaphsot.hasData)
+        builder: (BuildContext context, snapshot) {
+          if (!snapshot.hasData)
             return SizedBox();
           else
             return Padding(
@@ -56,14 +56,14 @@ class _MyClassesPageState extends State<MyClassesPage> {
                     child: FutureBuilder(
                       future: getData(),
                       builder: (BuildContext context, snapshot) {
-                        if (!snaphsot.hasData)
+                        if (!snapshot.hasData)
                           return SizedBox();
                         else
                           return Container(
                             child: FutureBuilder(
                               future: getData(),
                               builder: (BuildContext context, snapshot) {
-                                if (!snaphsot.hasData)
+                                if (!snapshot.hasData)
                                   return SizedBox();
                                 else
                                   return Container(

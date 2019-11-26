@@ -112,7 +112,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           CircleAvatar(
             radius: 25,
             backgroundColor: AppTheme.nearlyWhite,
-            backgroundImage: NetworkImage(_profileData.imgUrl),
+            backgroundImage: NetworkImage(_profileData.imgUrl != null ? _profileData.imgUrl : ''),
           ),
         ],
       ),
