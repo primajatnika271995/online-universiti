@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:online_university/src/utils/appTheme.dart';
+import 'package:online_university/src/bloc/loginBloc.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -8,9 +9,26 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final usernameCtrl = TextEditingController();
+  final passwordCtrl = TextEditingController();
+
+  bool _loading = false;
+
   Future<bool> getData() async {
     await Future.delayed(const Duration(milliseconds: 0));
     return true;
+  }
+
+  void _onLoginButton() async {
+    _onToggleLoading();
+    await loginBloc.login(context, usernameCtrl.text, passwordCtrl.text);
+    _onToggleLoading();
+  }
+
+  _onToggleLoading() {
+    setState(() {
+      _loading = !_loading;
+    });
   }
 
   @override
@@ -65,7 +83,9 @@ class _LoginPageState extends State<LoginPage> {
                                           ),
                                           emailField(),
                                           passwordField(),
-                                          signInBtn(),
+                                          _loading
+                                              ? loadingReplace()
+                                              : signInBtn(),
                                           forgotBtn(),
                                           Padding(
                                             padding: const EdgeInsets.symmetric(
@@ -107,6 +127,7 @@ class _LoginPageState extends State<LoginPage> {
             borderSide: BorderSide(color: AppTheme.grey),
           ),
         ),
+        controller: usernameCtrl,
       ),
     );
   }
@@ -126,6 +147,7 @@ class _LoginPageState extends State<LoginPage> {
             borderSide: BorderSide(color: AppTheme.grey),
           ),
         ),
+        controller: passwordCtrl,
       ),
     );
   }
@@ -136,7 +158,9 @@ class _LoginPageState extends State<LoginPage> {
       child: Container(
         width: MediaQuery.of(context).size.width,
         child: RaisedButton(
-          onPressed: () {},
+          onPressed: () {
+            _onLoginButton();
+          },
           color: AppTheme.blue_stone,
           child: Text(
             "Sign In",
@@ -231,6 +255,20 @@ class _LoginPageState extends State<LoginPage> {
           color: Colors.transparent,
         ),
         highlightColor: Colors.white,
+      ),
+    );
+  }
+
+  Widget loadingReplace() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: SizedBox(
+        width: 20,
+        height: 20,
+        child: CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation(AppTheme.blue_stone),
+          strokeWidth: 4,
+        ),
       ),
     );
   }

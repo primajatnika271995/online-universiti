@@ -24,6 +24,6 @@ class LoginBloc {
   dispose() async {
     authorizedFetcher.close();
   }
-
-  final loginBloc = LoginBloc();
 }
+
+final loginBloc = LoginBloc();
