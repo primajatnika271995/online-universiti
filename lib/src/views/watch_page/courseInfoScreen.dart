@@ -10,8 +10,7 @@ class CourseInfoScreen extends StatefulWidget {
   _CourseInfoScreenState createState() => _CourseInfoScreenState();
 }
 
-class _CourseInfoScreenState extends State<CourseInfoScreen>
-    with TickerProviderStateMixin {
+class _CourseInfoScreenState extends State<CourseInfoScreen> with TickerProviderStateMixin {
   AnimationController animationController;
   YoutubePlayerController youtubePlayerController;
   ScrollController _scrollController = new ScrollController();
@@ -70,7 +69,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                     child: NestedScrollView(
                       controller: _scrollController,
                       headerSliverBuilder:
-                          (BuildContext context, bool innnerBoxIsScrolled) {
+                          (BuildContext context, bool innerBoxIsScrolled) {
                         return <Widget>[
                           SliverList(
                             delegate: SliverChildBuilderDelegate(

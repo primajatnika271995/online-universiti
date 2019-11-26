@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:online_university/src/config/localStorage.dart';
 import 'package:online_university/src/utils/appTheme.dart';
+import 'package:online_university/src/views/component/log.dart';
 import 'package:online_university/src/views/login_page/login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MyClassesPage extends StatefulWidget {
   @override
@@ -8,18 +11,27 @@ class MyClassesPage extends StatefulWidget {
 }
 
 class _MyClassesPageState extends State<MyClassesPage> {
+  SharedPreferences _preferences;
+
   Future<bool> getData() async {
     await Future.delayed(const Duration(milliseconds: 0));
     return true;
   }
 
-  void checkToken() {
-    signInDialog();
+  void checkToken() async {
+    _preferences = await SharedPreferences.getInstance();
+    var isAuth = _preferences.getString(LocalStorage.ACCESS_TOKEN_KEY);
+
+    if (isAuth != null)
+      log.info("Token { $isAuth }");
+    else
+      signInDialog();
   }
 
   @override
   void initState() {
-    signInDialog();
+//    signInDialog();
+    checkToken();
     super.initState();
   }
 

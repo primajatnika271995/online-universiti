@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:online_university/src/utils/appTheme.dart';
 import 'package:online_university/src/utils/hexConverter.dart';
+import 'package:online_university/src/config/localStorage.dart';
+import 'package:online_university/src/views/profile_page/profile.dart';
 import 'package:online_university/src/views/watch_page/categoryListView.dart';
 import 'package:online_university/src/views/watch_page/courseInfoScreen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -11,18 +14,29 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   AnimationController animationController;
+  SharedPreferences _preferences;
+
   CategoryType categoryType = CategoryType.bisnisKreatif;
+  ProfileData _profileData = new ProfileData();
 
   @override
   void initState() {
     animationController = AnimationController(
         duration: Duration(microseconds: 2000), vsync: this);
+    _onData();
     super.initState();
   }
 
   Future<bool> renderData() async {
     await Future.delayed(const Duration(milliseconds: 0));
     return true;
+  }
+
+  void _onData() async {
+    _preferences = await SharedPreferences.getInstance();
+    setState(() {
+      _profileData.imgUrl = _preferences.getString(LocalStorage.PROFILE_IMG_KEY);
+    });
   }
 
   @override
@@ -95,11 +109,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               ],
             ),
           ),
-          Container(
-            width: 60,
-            height: 60,
-            child: Image.asset('assets/images/userImage.png'),
-          )
+          CircleAvatar(
+            radius: 25,
+            backgroundColor: AppTheme.nearlyWhite,
+            backgroundImage: NetworkImage(_profileData.imgUrl),
+          ),
         ],
       ),
     );
