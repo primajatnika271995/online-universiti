@@ -37,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.nearlyWhite,
+      backgroundColor: Colors.black,
       body: FutureBuilder(
         future: getData(),
         builder: (BuildContext context, snaphsot) {
@@ -72,17 +72,7 @@ class _LoginPageState extends State<LoginPage> {
                                             CrossAxisAlignment.center,
                                         children: <Widget>[
                                           SizedBox(
-                                            height: 30,
-                                          ),
-                                          facebookBtn(),
-                                          googleBtn(),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 20),
-                                            child: Text(
-                                              "Or sign in with account",
-                                              style: AppTheme.subtitle,
-                                            ),
+                                            height: 10,
                                           ),
                                           emailField(),
                                           passwordField(),
@@ -122,15 +112,17 @@ class _LoginPageState extends State<LoginPage> {
       child: TextField(
         decoration: InputDecoration(
           hintText: "Email Address",
+          hintStyle: TextStyle(color: AppTheme.nearlyWhite),
           contentPadding: EdgeInsets.only(left: 20, top: 12, bottom: 12),
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: AppTheme.grey),
+            borderSide: BorderSide(color: AppTheme.nearlyWhite),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: AppTheme.grey),
+            borderSide: BorderSide(color: AppTheme.nearlyWhite),
           ),
         ),
         controller: usernameCtrl,
+        style: TextStyle(color: AppTheme.nearlyWhite),
       ),
     );
   }
@@ -142,15 +134,17 @@ class _LoginPageState extends State<LoginPage> {
         obscureText: true,
         decoration: InputDecoration(
           hintText: "Password",
+          hintStyle: TextStyle(color: AppTheme.nearlyWhite),
           contentPadding: EdgeInsets.only(left: 20, top: 12, bottom: 12),
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: AppTheme.grey),
+            borderSide: BorderSide(color: AppTheme.nearlyWhite),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: AppTheme.grey),
+            borderSide: BorderSide(color: AppTheme.nearlyWhite),
           ),
         ),
         controller: passwordCtrl,
+        style: TextStyle(color: AppTheme.nearlyWhite),
       ),
     );
   }
@@ -174,75 +168,6 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget facebookBtn() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 20),
-      child: OutlineButton(
-        onPressed: () {},
-        highlightColor: Colors.white,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(right: 8),
-              child: Container(
-                width: AppBar().preferredSize.height - 8,
-                height: AppBar().preferredSize.height - 8,
-                child:
-                    Icon(FontAwesomeIcons.facebookF, color: Colors.blueAccent),
-              ),
-            ),
-            Expanded(
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 4),
-                  child: Text(
-                    "Sign In with Facebook",
-                    style: AppTheme.title,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget googleBtn() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 20),
-      child: OutlineButton(
-        onPressed: () {},
-        highlightColor: Colors.white,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(right: 8),
-              child: Container(
-                width: AppBar().preferredSize.height - 8,
-                height: AppBar().preferredSize.height - 8,
-                child: Icon(FontAwesomeIcons.google, color: Colors.redAccent),
-              ),
-            ),
-            Expanded(
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 4),
-                  child: Text(
-                    "Sign In with Google",
-                    style: AppTheme.title,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   Widget forgotBtn() {
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -252,12 +177,13 @@ class _LoginPageState extends State<LoginPage> {
         onPressed: () {},
         child: Text(
           "Forgot Password",
-          style: TextStyle(fontSize: 11),
+          style: TextStyle(fontSize: 11, color: AppTheme.nearlyWhite),
         ),
         borderSide: BorderSide(
           color: Colors.transparent,
         ),
         highlightColor: Colors.white,
+        splashColor: Colors.grey,
       ),
     );
   }
@@ -279,12 +205,13 @@ class _LoginPageState extends State<LoginPage> {
   Widget appBar() {
     return Container(
       decoration: BoxDecoration(
-        color: AppTheme.nearlyWhite,
+        color: Colors.black,
         boxShadow: <BoxShadow>[
           BoxShadow(
-              color: Colors.grey.withOpacity(0.2),
-              offset: Offset(0, 2),
-              blurRadius: 8.0),
+            color: Colors.grey.withOpacity(0.2),
+            offset: Offset(0, 2),
+            blurRadius: 8.0,
+          ),
         ],
       ),
       height: AppBar().preferredSize.height,
@@ -296,7 +223,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Container(
               width: AppBar().preferredSize.height - 8,
               height: AppBar().preferredSize.height - 8,
-              color: Colors.white,
+              color: Colors.black,
               child: Material(
                 color: Colors.transparent,
                 child: InkWell(
@@ -304,7 +231,7 @@ class _LoginPageState extends State<LoginPage> {
                       new BorderRadius.circular(AppBar().preferredSize.height),
                   child: Icon(
                     Icons.arrow_back,
-                    color: AppTheme.dark_grey,
+                    color: AppTheme.nearlyWhite,
                   ),
                   onTap: () {
                     Navigator.of(context).pop();
@@ -317,10 +244,10 @@ class _LoginPageState extends State<LoginPage> {
             child: Padding(
               padding: const EdgeInsets.only(top: 4),
               child: Text(
-                "Sign In",
+                "Log In",
                 style: new TextStyle(
                   fontSize: 22,
-                  color: AppTheme.darkText,
+                  color: AppTheme.nearlyWhite,
                   fontWeight: FontWeight.w700,
                 ),
               ),

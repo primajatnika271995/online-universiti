@@ -159,21 +159,24 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> with TickerProvider
                               Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 13),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    Text("Download", style: AppTheme.download),
-                                    Switch(
-                                      value: _isDownload,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          _isDownload = value;
-                                        });
-                                      },
-                                      activeColor: AppTheme.blue_stone,
-                                    ),
-                                  ],
+                                child: SizedBox(
+                                  height: 15,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      Text("Download", style: AppTheme.download),
+                                      Switch(
+                                        value: _isDownload,
+                                        onChanged: (value) {
+                                          setState(() {
+                                            _isDownload = value;
+                                          });
+                                        },
+                                        activeColor: AppTheme.blue_stone,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                               FutureBuilder(

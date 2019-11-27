@@ -6,6 +6,7 @@ void app() {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(fontFamily: 'Open-Sans'),
       initialRoute: '/',
       routes: {
         '/': (context) => BottomNavigationDrawer(),

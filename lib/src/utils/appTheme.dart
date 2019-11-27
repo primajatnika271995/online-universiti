@@ -27,7 +27,7 @@ class AppTheme {
   static const Color dismissibleBackground = Color(0xFF364A54);
   static const Color chipBackground = Color(0xFFEEF1F3);
   static const Color spacer = Color(0xFFF2F2F2);
-  static const String fontName = 'WorkSans';
+  static const String fontName = 'Open-Sans';
 
   static const TextTheme textTheme = TextTheme(
     display1: display1,
@@ -80,7 +80,7 @@ class AppTheme {
     fontWeight: FontWeight.bold,
     fontSize: 24,
     letterSpacing: 0.27,
-    color: darkerText,
+    color: nearlyWhite,
   );
 
   static const TextStyle title = TextStyle( // h6 -> title
@@ -88,15 +88,15 @@ class AppTheme {
     fontWeight: FontWeight.bold,
     fontSize: 16,
     letterSpacing: 0.18,
-    color: darkerText,
+    color: white,
   );
 
   static const TextStyle subtitle = TextStyle( // subtitle2 -> subtitle
     fontFamily: fontName,
     fontWeight: FontWeight.w400,
-    fontSize: 14,
+    fontSize: 13,
     letterSpacing: -0.04,
-    color: darkText,
+    color: Colors.grey,
   );
 
   static const TextStyle body2 = TextStyle( // body1 -> body2
@@ -144,7 +144,7 @@ class AppTheme {
     fontFamily: fontName,
     fontSize: 20,
     letterSpacing: 0.27,
-    color: nearlyBlack,
+    color: nearlyWhite,
   );
 
   static const TextStyle badge = TextStyle( // subtitle2 -> subtitle

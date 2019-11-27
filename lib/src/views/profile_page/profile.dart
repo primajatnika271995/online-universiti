@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:online_university/src/config/localStorage.dart';
 import 'package:online_university/src/utils/appTheme.dart';
 import 'package:online_university/src/views/component/log.dart';
@@ -32,9 +33,15 @@ class _ProfilePageState extends State<ProfilePage> {
         _profileData.imgUrl =
             _preferences.getString(LocalStorage.PROFILE_IMG_KEY);
       });
-    } else {
-      signInDialog();
-    }
+    } else {}
+  }
+
+  _onNavigationLogin() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => LoginPage(),
+      ),
+    );
   }
 
   @override
@@ -46,11 +53,11 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.nearlyWhite,
+      backgroundColor: Colors.black,
       body: FutureBuilder(
         future: getData(),
-        builder: (BuildContext context, snapshot) {
-          if (!snapshot.hasData)
+        builder: (BuildContext context, snaphsot) {
+          if (!snaphsot.hasData)
             return SizedBox();
           else
             return Padding(
@@ -64,20 +71,67 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: FutureBuilder(
                       future: getData(),
                       builder: (BuildContext context, snapshot) {
-                        if (!snapshot.hasData)
+                        if (!snaphsot.hasData)
                           return SizedBox();
                         else
-                          return SingleChildScrollView(
-                            child: Container(
-                              child: FutureBuilder(
-                                future: getData(),
-                                builder: (BuildContext context, snapshot) {
-                                  if (!snapshot.hasData)
-                                    return SizedBox();
-                                  else
-                                    return Container();
-                                },
-                              ),
+                          return Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text(
+                                  "Sign in to get started",
+                                  style: TextStyle(
+                                    color: AppTheme.nearlyWhite,
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20, vertical: 10),
+                                  child: Text(
+                                    "Sign in to access your enrolled classes and account information.",
+                                    style: TextStyle(
+                                      color: Colors.white70,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 25, vertical: 10),
+                                  child: Text(
+                                    "By creating an account, you agree to our Terms of Service and Privacy Policy.",
+                                    style: TextStyle(
+                                      color: Colors.white70,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 15,
+                                ),
+                                googleBtn(),
+                                facebookBtn(),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 10),
+                                  child: Text(
+                                    "OR",
+                                    style: TextStyle(
+                                      color: Colors.white70,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+                                createAccountBtn(),
+                                signInBtn(),
+                              ],
                             ),
                           );
                       },
@@ -92,157 +146,181 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget appBar() {
-    return Stack(
-      children: <Widget>[
-        Container(
-          decoration: BoxDecoration(
-            color: AppTheme.blue_stone,
-            boxShadow: <BoxShadow>[
-              BoxShadow(
-                  color: Colors.grey.withOpacity(0.2),
-                  offset: Offset(0, 2),
-                  blurRadius: 8.0),
-            ],
-          ),
-          height: 200,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 4),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        CircleAvatar(
-                          backgroundColor: AppTheme.nearlyWhite,
-                          backgroundImage: NetworkImage(_profileData.imgUrl),
-                          radius: 35,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 5),
-                          child: Text(
-                            _profileData.name,
-                            style: TextStyle(
-                                color: AppTheme.nearlyWhite,
-                                fontSize: 17,
-                                fontWeight: FontWeight.w600),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 5),
-                          child: Text(
-                            "FOLLOWING 0 • 0 FOLLOWERS",
-                            style: TextStyle(
-                                color: AppTheme.nearlyWhite, fontSize: 12),
-                          ),
-                        ),
-                      ],
-                    ),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.black,
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+              color: Colors.black.withOpacity(0.2),
+              offset: Offset(0, 2),
+              blurRadius: 8.0),
+        ],
+      ),
+      height: AppBar().preferredSize.height,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(right: 8),
+            child: Container(
+              width: AppBar().preferredSize.height - 8,
+              height: AppBar().preferredSize.height - 8,
+              color: Colors.white,
+              child: Material(
+                color: Colors.black,
+                child: InkWell(
+                  borderRadius:
+                      new BorderRadius.circular(AppBar().preferredSize.height),
+                  child: Icon(
+                    Icons.person_outline,
+                    size: 25,
+                    color: AppTheme.nearlyWhite,
                   ),
+                  onTap: () {},
                 ),
               ),
-            ],
+            ),
           ),
-        ),
-        Align(
-          alignment: Alignment.topRight,
-          child: IconButton(
-            color: AppTheme.nearlyWhite,
-            icon: Icon(Icons.settings),
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => ProfileListPage(),
+          Expanded(
+            child: Text(
+              "Your Profile",
+              style: TextStyle(
+                color: AppTheme.nearlyWhite,
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(right: 8),
+            child: Container(
+              width: AppBar().preferredSize.height - 8,
+              height: AppBar().preferredSize.height - 8,
+              color: Colors.white,
+              child: Material(
+                color: Colors.black,
+                child: InkWell(
+                  borderRadius:
+                      new BorderRadius.circular(AppBar().preferredSize.height),
+                  child: Icon(
+                    Icons.settings,
+                    size: 25,
+                    color: AppTheme.nearlyWhite,
+                  ),
+                  onTap: () {},
                 ),
-              );
-            },
+              ),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
-  signInDialog() {
-    WidgetsBinding.instance.addPostFrameCallback(
-      (_) async {
-        await showDialog(
-//        barrierDismissible: false,
-          context: context,
-          builder: (BuildContext context) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: SimpleDialog(
-                backgroundColor: AppTheme.blue_stone,
-                title: Text(
-                  "Online Universiti",
-                  style: TextStyle(color: Colors.white),
-                ),
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 24, vertical: 15),
-                    child: Text(
-                      "Sign in to access your classes",
-                      style: TextStyle(color: Colors.yellow[600], fontSize: 20),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 24, vertical: 15),
-                    child: Text(
-                      "You\'ll see your saved classes. watch history, and be able setup reminders.",
-                      style: TextStyle(color: Colors.white, fontSize: 15),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 24, vertical: 15),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Expanded(
-                          child: OutlineButton(
-                            onPressed: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => LoginPage(),
-                                ),
-                              );
-                            },
-                            child: Text(
-                              "Sign In",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            borderSide: BorderSide(
-                              color: Colors.white,
-                              width: 2,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: RaisedButton(
-                            onPressed: () {},
-                            color: Colors.white,
-                            child: Text(
-                              "Sign Up",
-                              style: TextStyle(color: AppTheme.blue_stone),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+  Widget facebookBtn() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 20),
+      child: RaisedButton(
+        onPressed: () {},
+        color: Colors.blueAccent,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(right: 8),
+              child: Container(
+                width: AppBar().preferredSize.height - 8,
+                height: AppBar().preferredSize.height - 8,
+                child: Icon(FontAwesomeIcons.facebookSquare,
+                    color: Colors.white, size: 30),
               ),
-            );
-          },
-        );
-      },
+            ),
+            Text(
+              "CONTINUE WITH FACEBOOK",
+              style: TextStyle(
+                // h6 -
+                fontWeight: FontWeight.bold,
+                fontSize: 13,
+                letterSpacing: 0.18,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget googleBtn() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 20),
+      child: RaisedButton(
+        onPressed: () {},
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(right: 8),
+              child: Container(
+                width: AppBar().preferredSize.height - 8,
+                height: AppBar().preferredSize.height - 8,
+                child: Icon(FontAwesomeIcons.google, color: Colors.redAccent),
+              ),
+            ),
+            Text(
+              "CONTINUE WITH GOOGLE",
+              style: TextStyle(
+                // h6 -
+                fontWeight: FontWeight.bold,
+                fontSize: 13,
+                letterSpacing: 0.18,
+                color: Colors.black,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget createAccountBtn() {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      height: AppBar().preferredSize.height,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 20),
+        child: RaisedButton(
+          onPressed: () {},
+          color: Colors.redAccent,
+          child: Text(
+            "CREATE AN ACCOUNT",
+            style: TextStyle(
+              // h6 -
+              fontWeight: FontWeight.bold,
+              fontSize: 13,
+              letterSpacing: 0.18,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget signInBtn() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 20),
+      child: OutlineButton(
+        splashColor: Colors.white70,
+        onPressed: () {
+          _onNavigationLogin();
+        },
+        child: Text(
+          "LOG IN",
+          style: TextStyle(color: AppTheme.nearlyWhite),
+        ),
+      ),
     );
   }
 }

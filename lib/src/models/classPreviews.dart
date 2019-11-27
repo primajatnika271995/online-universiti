@@ -1,4 +1,4 @@
-class Category {
+class ClassPreviews {
   String mentor;
   String job;
   String title;
@@ -7,7 +7,7 @@ class Category {
   double rating;
   String imagePath;
 
-  Category({
+  ClassPreviews({
     this.mentor = '',
     this.job = '',
     this.title = '',
@@ -17,8 +17,8 @@ class Category {
     this.rating = 0.0,
   });
 
-  static List<Category> categoryList = [
-    Category(
+  static List<ClassPreviews> categoryList = [
+    ClassPreviews(
       imagePath: 'https://static.skillshare.com/uploads/video/thumbnails/3621ffeb6285ff9abbf440064fe6a670/448-252',
       title: 'Strategi Efektif Belajar Gitar Akustik & Elektrik',
       mentor: 'Ari Moreno',
@@ -27,7 +27,7 @@ class Category {
       money: 999.999,
       rating: 4.3,
     ),
-    Category(
+    ClassPreviews(
       imagePath: 'https://static.skillshare.com/uploads/video/thumbnails/25018f1aada2a9c55ffb98ddf7c86aa0/448-252',
       title: 'Strategi Efektif Belajar Gitar Akustik & Elektrik',
       mentor: 'Ari Moreno',
@@ -36,7 +36,7 @@ class Category {
       money: 999.999,
       rating: 4.6,
     ),
-    Category(
+    ClassPreviews(
       imagePath: 'https://static.skillshare.com/uploads/video/thumbnails/52c2721527717ca5373d2f6dacc205c2/448-252',
       title: 'Strategi Efektif Belajar Gitar Akustik & Elektrik',
       mentor: 'Ari Moreno',
@@ -45,7 +45,7 @@ class Category {
       money: 999.999,
       rating: 4.3,
     ),
-    Category(
+    ClassPreviews(
       imagePath: 'https://static.skillshare.com/uploads/video/thumbnails/d8eb017e39b0b6045ffa38ef3620086a/448-252',
       title: 'Strategi Efektif Belajar Gitar Akustik & Elektrik',
       mentor: 'Ari Moreno',
@@ -56,29 +56,29 @@ class Category {
     ),
   ];
 
-  static List<Category> popularCourseList = [
-    Category(
+  static List<ClassPreviews> popularCourseList = [
+    ClassPreviews(
       imagePath: 'https://static.skillshare.com/uploads/video/thumbnails/25018f1aada2a9c55ffb98ddf7c86aa0/448-252',
       title: 'App Design Course',
       lessonCount: 12,
       money: 25,
       rating: 4.8,
     ),
-    Category(
+    ClassPreviews(
       imagePath: 'https://static.skillshare.com/uploads/video/thumbnails/25018f1aada2a9c55ffb98ddf7c86aa0/448-252',
       title: 'Web Design Course',
       lessonCount: 28,
       money: 208,
       rating: 4.9,
     ),
-    Category(
+    ClassPreviews(
       imagePath: 'https://static.skillshare.com/uploads/video/thumbnails/25018f1aada2a9c55ffb98ddf7c86aa0/448-252',
       title: 'App Design Course',
       lessonCount: 12,
       money: 25,
       rating: 4.8,
     ),
-    Category(
+    ClassPreviews(
       imagePath: 'https://static.skillshare.com/uploads/video/thumbnails/25018f1aada2a9c55ffb98ddf7c86aa0/448-252',
       title: 'Web Design Course',
       lessonCount: 28,

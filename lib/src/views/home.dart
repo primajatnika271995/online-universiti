@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:online_university/src/utils/appTheme.dart';
 import 'package:online_university/src/utils/hexConverter.dart';
 import 'package:online_university/src/config/localStorage.dart';
+import 'package:online_university/src/views/login_page/login.dart';
 import 'package:online_university/src/views/profile_page/profile.dart';
-import 'package:online_university/src/views/watch_page/categoryListView.dart';
+import 'package:online_university/src/views/watch_page/classPreviewListView.dart';
+import 'package:online_university/src/views/watch_page/mentorListView.dart';
 import 'package:online_university/src/views/watch_page/courseInfoScreen.dart';
+import 'package:online_university/src/views/watch_page/popularClassListView.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
@@ -35,8 +38,17 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   void _onData() async {
     _preferences = await SharedPreferences.getInstance();
     setState(() {
-      _profileData.imgUrl = _preferences.getString(LocalStorage.PROFILE_IMG_KEY);
+      _profileData.imgUrl =
+          _preferences.getString(LocalStorage.PROFILE_IMG_KEY);
     });
+  }
+
+  _onNavigationLogin() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => LoginPage(),
+      ),
+    );
   }
 
   @override
@@ -48,7 +60,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppTheme.nearlyWhite,
+      color: Colors.black,
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Column(
@@ -64,7 +76,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     children: <Widget>[
                       searchBar(),
                       categoryUI(),
-                      freeClass(),
+                      classPreviews(),
+                      popularClasses(),
                     ],
                   ),
                 ),
@@ -78,41 +91,28 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   Widget appBar() {
     return Padding(
-      padding: const EdgeInsets.only(top: 8.0, left: 18, right: 18),
+      padding: const EdgeInsets.only(top: 8.0, left: 90),
       child: Row(
         children: <Widget>[
           Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  "Online Universiti",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 14,
-                    letterSpacing: 0.2,
-                    color: AppTheme.grey,
-                  ),
-                ),
-                Text(
-                  "Learning on the Go",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 22,
-                    letterSpacing: 0.27,
-                    color: AppTheme.darkerText,
-                  ),
-                ),
-              ],
+            child: Center(
+              child: Container(
+                height: 40,
+                width: 200,
+                child: Image.asset("assets/images/logo.png"),
+              ),
             ),
           ),
-          CircleAvatar(
-            radius: 25,
-            backgroundColor: AppTheme.nearlyWhite,
-            backgroundImage: NetworkImage(_profileData.imgUrl != null ? _profileData.imgUrl : ''),
+          OutlineButton(
+            onPressed: () {
+              _onNavigationLogin();
+            },
+            highlightColor: Colors.grey,
+            splashColor: Colors.grey,
+            child: Text(
+              "LOG IN",
+              style: TextStyle(color: AppTheme.nearlyWhite),
+            ),
           ),
         ],
       ),
@@ -208,18 +208,25 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(
             children: <Widget>[
-              buttonCategory(CategoryType.bisnisKreatif, categoryType == CategoryType.bisnisKreatif),
+              buttonCategory(CategoryType.bisnisKreatif,
+                  categoryType == CategoryType.bisnisKreatif),
               SizedBox(
                 width: 16,
               ),
-              buttonCategory(CategoryType.keterampilanKreatif, categoryType == CategoryType.keterampilanKreatif),
+              buttonCategory(CategoryType.keterampilanKreatif,
+                  categoryType == CategoryType.keterampilanKreatif),
             ],
           ),
         ),
         SizedBox(
           height: 16,
         ),
-        CategoryListView(
+        Padding(
+          padding: const EdgeInsets.only(top: 8, left: 18, right: 16),
+          child: Text('CLASS MENTOR',
+              textAlign: TextAlign.left, style: AppTheme.title),
+        ),
+        MentorListView(
           callback: () {
             moveTo();
           },
@@ -228,22 +235,38 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     );
   }
 
-  Widget freeClass() {
+  Widget classPreviews() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(top: 8, left: 18, right: 16),
-          child: Text('Try a free class',
-              textAlign: TextAlign.left, style: AppTheme.headline),
+          child: Text('CLASS PREVIEWS',
+              textAlign: TextAlign.left, style: AppTheme.title),
         ),
-        SizedBox(
-          height: 5,
-        ),
-        CategoryListView(
+        ClassPreviewListView(
           callback: () {
             moveTo();
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget popularClasses() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.only(top: 8, left: 18, right: 16),
+          child: Text('POPULAR CLASSES',
+              textAlign: TextAlign.left, style: AppTheme.title),
+        ),
+        PopularClassListView(
+          callback: () {
+//            moveTo();
           },
         ),
       ],
