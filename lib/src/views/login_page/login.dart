@@ -258,3 +258,9 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
+
+class Auth {
+  String token;
+
+  Auth({this.token});
+}

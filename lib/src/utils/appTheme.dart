@@ -99,6 +99,14 @@ class AppTheme {
     color: Colors.grey,
   );
 
+  static const TextStyle profileSetting = TextStyle( // subtitle2 -> subtitle
+    fontFamily: fontName,
+    fontWeight: FontWeight.w400,
+    fontSize: 13,
+    letterSpacing: -0.04,
+    color: Colors.white,
+  );
+
   static const TextStyle body2 = TextStyle( // body1 -> body2
     fontFamily: fontName,
     fontWeight: FontWeight.w400,

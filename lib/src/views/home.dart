@@ -21,6 +21,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   CategoryType categoryType = CategoryType.bisnisKreatif;
   ProfileData _profileData = new ProfileData();
+  Auth _auth = new Auth();
 
   @override
   void initState() {
@@ -38,8 +39,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   void _onData() async {
     _preferences = await SharedPreferences.getInstance();
     setState(() {
-      _profileData.imgUrl =
-          _preferences.getString(LocalStorage.PROFILE_IMG_KEY);
+      _profileData.imgUrl = _preferences.getString(LocalStorage.PROFILE_IMG_KEY);
+      _auth.token = _preferences.getString(LocalStorage.ACCESS_TOKEN_KEY);
     });
   }
 
@@ -91,7 +92,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   Widget appBar() {
     return Padding(
-      padding: const EdgeInsets.only(top: 8.0, left: 90),
+      padding: EdgeInsets.only(top: 8.0, left: _auth.token == null ? 80 : 0),
       child: Row(
         children: <Widget>[
           Expanded(
@@ -103,7 +104,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               ),
             ),
           ),
-          OutlineButton(
+          (_auth.token == null) ? OutlineButton(
             onPressed: () {
               _onNavigationLogin();
             },
@@ -113,7 +114,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               "LOG IN",
               style: TextStyle(color: AppTheme.nearlyWhite),
             ),
-          ),
+          ) : SizedBox(),
         ],
       ),
     );

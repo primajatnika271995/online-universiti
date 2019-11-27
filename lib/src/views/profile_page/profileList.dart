@@ -27,7 +27,7 @@ class _ProfileListPageState extends State<ProfileListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.nearlyWhite,
+      backgroundColor: Colors.black,
       body: FutureBuilder(
         future: getData(),
         builder: (BuildContext context, snapshot) {
@@ -62,61 +62,11 @@ class _ProfileListPageState extends State<ProfileListPage> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: <Widget>[
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                              horizontal: 15,
-                                              vertical: 15,
-                                            ),
-                                            child: Text(
-                                              "Notifications",
-                                              style: AppTheme.download,
-                                            ),
-                                          ),
                                           Container(
                                             width: MediaQuery.of(context)
                                                 .size
                                                 .width,
-                                            color: AppTheme.nearlyWhite,
-                                            child: InkWell(
-                                              onTap: () {},
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                  horizontal: 15,
-                                                  vertical: 20,
-                                                ),
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: <Widget>[
-                                                    Text(
-                                                      "Personalized Notifications",
-                                                      style: AppTheme.title,
-                                                    ),
-                                                    Text(
-                                                      "You\'re all set to get personalized updated and alerts.",
-                                                      style: AppTheme.subtitle,
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                              horizontal: 15,
-                                              vertical: 15,
-                                            ),
-                                            child: Text(
-                                              "Playback",
-                                              style: AppTheme.download,
-                                            ),
-                                          ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            color: AppTheme.nearlyWhite,
+                                            color: Colors.black,
                                             child: InkWell(
                                               onTap: () {},
                                               child: Padding(
@@ -130,7 +80,7 @@ class _ProfileListPageState extends State<ProfileListPage> {
                                                   children: <Widget>[
                                                     Text(
                                                       "Continue Video in Background",
-                                                      style: AppTheme.subtitle,
+                                                      style: AppTheme.profileSetting,
                                                     ),
                                                     SizedBox(
                                                       height: 10,
@@ -149,21 +99,11 @@ class _ProfileListPageState extends State<ProfileListPage> {
                                               ),
                                             ),
                                           ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                              horizontal: 15,
-                                              vertical: 15,
-                                            ),
-                                            child: Text(
-                                              "Get In Touch",
-                                              style: AppTheme.download,
-                                            ),
-                                          ),
                                           Container(
                                             width: MediaQuery.of(context)
                                                 .size
                                                 .width,
-                                            color: AppTheme.nearlyWhite,
+                                            color: Colors.black,
                                             child: InkWell(
                                               onTap: () {},
                                               child: Padding(
@@ -176,7 +116,7 @@ class _ProfileListPageState extends State<ProfileListPage> {
                                                   children: <Widget>[
                                                     Text(
                                                       "Rate Online Universiti",
-                                                      style: AppTheme.subtitle,
+                                                      style: AppTheme.profileSetting,
                                                     ),
                                                   ],
                                                 ),
@@ -187,7 +127,7 @@ class _ProfileListPageState extends State<ProfileListPage> {
                                             width: MediaQuery.of(context)
                                                 .size
                                                 .width,
-                                            color: AppTheme.nearlyWhite,
+                                            color: Colors.black,
                                             child: InkWell(
                                               onTap: () {},
                                               child: Padding(
@@ -200,7 +140,7 @@ class _ProfileListPageState extends State<ProfileListPage> {
                                                   children: <Widget>[
                                                     Text(
                                                       "Contact Support",
-                                                      style: AppTheme.subtitle,
+                                                      style: AppTheme.profileSetting,
                                                     ),
                                                   ],
                                                 ),
@@ -211,7 +151,7 @@ class _ProfileListPageState extends State<ProfileListPage> {
                                             width: MediaQuery.of(context)
                                                 .size
                                                 .width,
-                                            color: AppTheme.nearlyWhite,
+                                            color: Colors.black,
                                             child: InkWell(
                                               onTap: () {},
                                               child: Padding(
@@ -224,7 +164,7 @@ class _ProfileListPageState extends State<ProfileListPage> {
                                                   children: <Widget>[
                                                     Text(
                                                       "Share Feedback",
-                                                      style: AppTheme.subtitle,
+                                                      style: AppTheme.profileSetting,
                                                     ),
                                                   ],
                                                 ),
@@ -235,7 +175,7 @@ class _ProfileListPageState extends State<ProfileListPage> {
                                             width: MediaQuery.of(context)
                                                 .size
                                                 .width,
-                                            color: AppTheme.nearlyWhite,
+                                            color: Colors.black,
                                             child: InkWell(
                                               onTap: () {},
                                               child: Padding(
@@ -248,7 +188,7 @@ class _ProfileListPageState extends State<ProfileListPage> {
                                                   children: <Widget>[
                                                     Text(
                                                       "Term of Service",
-                                                      style: AppTheme.subtitle,
+                                                      style: AppTheme.profileSetting,
                                                     ),
                                                   ],
                                                 ),
@@ -259,7 +199,7 @@ class _ProfileListPageState extends State<ProfileListPage> {
                                             width: MediaQuery.of(context)
                                                 .size
                                                 .width,
-                                            color: AppTheme.nearlyWhite,
+                                            color: Colors.black,
                                             child: InkWell(
                                               onTap: () {},
                                               child: Padding(
@@ -272,7 +212,7 @@ class _ProfileListPageState extends State<ProfileListPage> {
                                                   children: <Widget>[
                                                     Text(
                                                       "Privacy",
-                                                      style: AppTheme.subtitle,
+                                                      style: AppTheme.profileSetting,
                                                     ),
                                                   ],
                                                 ),
@@ -283,12 +223,13 @@ class _ProfileListPageState extends State<ProfileListPage> {
                                             width: MediaQuery.of(context)
                                                 .size
                                                 .width,
-                                            color: AppTheme.nearlyWhite,
+                                            color: Colors.black,
                                             child: InkWell(
                                               onTap: () {
                                                 _onSignOut();
                                               },
-                                              splashColor: AppTheme.grey,
+                                              splashColor: Colors.grey,
+                                              highlightColor: Colors.white,
                                               child: Padding(
                                                 padding:
                                                     const EdgeInsets.symmetric(
@@ -302,10 +243,10 @@ class _ProfileListPageState extends State<ProfileListPage> {
                                                       MainAxisAlignment.center,
                                                   children: <Widget>[
                                                     Text(
-                                                      "Sign Out",
+                                                      "Logout",
                                                       style: TextStyle(
                                                         color:
-                                                            AppTheme.blue_stone,
+                                                            Colors.white,
                                                         fontWeight:
                                                             FontWeight.w600
                                                       ),
@@ -319,7 +260,7 @@ class _ProfileListPageState extends State<ProfileListPage> {
                                             width: MediaQuery.of(context)
                                                 .size
                                                 .width,
-                                            color: AppTheme.nearlyWhite,
+                                            color: Colors.black,
                                             child: InkWell(
                                               onTap: () {},
                                               splashColor: AppTheme.grey,
@@ -333,14 +274,14 @@ class _ProfileListPageState extends State<ProfileListPage> {
                                                   children: <Widget>[
                                                     Text(
                                                       "Version 1.0.0.0",
-                                                      style: AppTheme.subtitle,
+                                                      style: AppTheme.profileSetting,
                                                     ),
                                                     SizedBox(
                                                       height: 5,
                                                     ),
                                                     Text(
                                                       "ID: 3b810192b1-9an1219-12d1f1066",
-                                                      style: AppTheme.subtitle,
+                                                      style: AppTheme.profileSetting,
                                                     ),
                                                   ],
                                                 ),
@@ -368,7 +309,7 @@ class _ProfileListPageState extends State<ProfileListPage> {
   Widget appBar() {
     return Container(
       decoration: BoxDecoration(
-        color: AppTheme.nearlyWhite,
+        color: Colors.black,
         boxShadow: <BoxShadow>[
           BoxShadow(
               color: Colors.grey.withOpacity(0.2),
@@ -385,7 +326,7 @@ class _ProfileListPageState extends State<ProfileListPage> {
             child: Container(
               width: AppBar().preferredSize.height - 8,
               height: AppBar().preferredSize.height - 8,
-              color: Colors.white,
+              color: Colors.black,
               child: Material(
                 color: Colors.transparent,
                 child: InkWell(
@@ -393,7 +334,7 @@ class _ProfileListPageState extends State<ProfileListPage> {
                       new BorderRadius.circular(AppBar().preferredSize.height),
                   child: Icon(
                     Icons.arrow_back,
-                    color: AppTheme.dark_grey,
+                    color: AppTheme.nearlyWhite,
                   ),
                   onTap: () {
                     Navigator.of(context).pop();
@@ -403,15 +344,12 @@ class _ProfileListPageState extends State<ProfileListPage> {
             ),
           ),
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 4),
-              child: Text(
-                "Settings",
-                style: new TextStyle(
-                  fontSize: 22,
-                  color: AppTheme.darkText,
-                  fontWeight: FontWeight.w700,
-                ),
+            child: Text(
+              "Settings",
+              style: TextStyle(
+                color: AppTheme.nearlyWhite,
+                fontSize: 18,
+                fontWeight: FontWeight.w700,
               ),
             ),
           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:online_university/src/config/localStorage.dart';
 import 'package:online_university/src/utils/appTheme.dart';
 import 'package:online_university/src/views/component/log.dart';
@@ -17,23 +18,12 @@ class _ProfilePageState extends State<ProfilePage> {
   ProfileData _profileData = new ProfileData();
 
   Future<bool> getData() async {
-    await Future.delayed(const Duration(milliseconds: 0));
-    return true;
-  }
-
-  void checkToken() async {
     _preferences = await SharedPreferences.getInstance();
     var isAuth = _preferences.getString(LocalStorage.ACCESS_TOKEN_KEY);
 
-    if (isAuth != null) {
-      log.info("Token { $isAuth }");
-      setState(() {
-        _profileData.name = _preferences.getString(LocalStorage.NAME_KEY);
-        _profileData.email = _preferences.getString(LocalStorage.EMAIL_KEY);
-        _profileData.imgUrl =
-            _preferences.getString(LocalStorage.PROFILE_IMG_KEY);
-      });
-    } else {}
+    if (isAuth != null) return true;
+
+    return false;
   }
 
   _onNavigationLogin() {
@@ -44,9 +34,16 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
+  _onNavigationSetting() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => ProfileListPage(),
+      ),
+    );
+  }
+
   @override
   void initState() {
-    checkToken();
     super.initState();
   }
 
@@ -54,93 +51,32 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: FutureBuilder(
-        future: getData(),
-        builder: (BuildContext context, snaphsot) {
-          if (!snaphsot.hasData)
-            return SizedBox();
-          else
-            return Padding(
-              padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  appBar(),
-                  Expanded(
-                    child: FutureBuilder(
-                      future: getData(),
-                      builder: (BuildContext context, snapshot) {
-                        if (!snaphsot.hasData)
-                          return SizedBox();
-                        else
-                          return Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Text(
-                                  "Sign in to get started",
-                                  style: TextStyle(
-                                    color: AppTheme.nearlyWhite,
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 10),
-                                  child: Text(
-                                    "Sign in to access your enrolled classes and account information.",
-                                    style: TextStyle(
-                                      color: Colors.white70,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 25, vertical: 10),
-                                  child: Text(
-                                    "By creating an account, you agree to our Terms of Service and Privacy Policy.",
-                                    style: TextStyle(
-                                      color: Colors.white70,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 15,
-                                ),
-                                googleBtn(),
-                                facebookBtn(),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 10),
-                                  child: Text(
-                                    "OR",
-                                    style: TextStyle(
-                                      color: Colors.white70,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ),
-                                createAccountBtn(),
-                                signInBtn(),
-                              ],
-                            ),
-                          );
-                      },
-                    ),
-                  ),
-                ],
+      body: Padding(
+        padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            appBar(),
+            Expanded(
+              child: FutureBuilder(
+                future: getData(),
+                builder: (BuildContext context, snapshot) {
+                  switch (snapshot.connectionState) {
+                    case ConnectionState.waiting:
+                      return Center(child: CircularProgressIndicator());
+                      break;
+                    default:
+                      if (snapshot.data)
+                        return SizedBox();
+                      else
+                        return formLogin();
+                  }
+                },
               ),
-            );
-        },
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -186,8 +122,8 @@ class _ProfilePageState extends State<ProfilePage> {
               "Your Profile",
               style: TextStyle(
                 color: AppTheme.nearlyWhite,
-                fontSize: 20,
-                fontWeight: FontWeight.w500,
+                fontSize: 18,
+                fontWeight: FontWeight.w700,
               ),
             ),
           ),
@@ -207,7 +143,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     size: 25,
                     color: AppTheme.nearlyWhite,
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    _onNavigationSetting();
+                  },
                 ),
               ),
             ),
@@ -320,6 +258,66 @@ class _ProfilePageState extends State<ProfilePage> {
           "LOG IN",
           style: TextStyle(color: AppTheme.nearlyWhite),
         ),
+      ),
+    );
+  }
+
+  Widget formLogin() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            "Sign in to get started",
+            style: TextStyle(
+              color: AppTheme.nearlyWhite,
+              fontSize: 22,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Text(
+              "Sign in to access your enrolled classes and account information.",
+              style: TextStyle(
+                color: Colors.white70,
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+            child: Text(
+              "By creating an account, you agree to our Terms of Service and Privacy Policy.",
+              style: TextStyle(
+                color: Colors.white70,
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          googleBtn(),
+          facebookBtn(),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: Text(
+              "OR",
+              style: TextStyle(
+                color: Colors.white70,
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+          createAccountBtn(),
+          signInBtn(),
+        ],
       ),
     );
   }
