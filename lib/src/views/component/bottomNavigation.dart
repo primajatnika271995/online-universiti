@@ -16,8 +16,8 @@ class _BottomNavigationDrawerState extends State<BottomNavigationDrawer> {
   List<Widget> _widgetPages = [
     HomePage(),
     MentorPage(),
-    Center(
-      child: Text("Text"),
+    Container(
+      color: Colors.black,
     ),
     ProfilePage(),
   ];
@@ -35,6 +35,7 @@ class _BottomNavigationDrawerState extends State<BottomNavigationDrawer> {
       bottomNavigationBar: Theme(
         data: Theme.of(context).copyWith(canvasColor: Colors.black),
         child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.explore),

@@ -275,12 +275,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   }
 
   void moveTo() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => CourseInfoScreen(),
-      ),
-    );
+//    Navigator.push(
+//      context,
+//      MaterialPageRoute(
+//        builder: (context) => CourseInfoScreen(),
+//      ),
+//    );
   }
 
   Widget buttonCategory(CategoryType categoryTypeData, bool isSelected) {
