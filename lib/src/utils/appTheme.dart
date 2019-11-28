@@ -128,7 +128,7 @@ class AppTheme {
     fontWeight: FontWeight.w400,
     fontSize: 12,
     letterSpacing: 0.2,
-    color: lightText, // was lightText
+    color: nearlyWhite, // was lightText
   );
 
   static const TextStyle button = TextStyle( // Caption -> caption

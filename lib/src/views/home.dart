@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   ProfileData _profileData = new ProfileData();
   Auth _auth = new Auth();
 
-  final int _tabLenght = 2;
+  final int _tabLength = 2;
 
   @override
   void initState() {
@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: _tabLenght,
+      length: _tabLength,
       child: Container(
         color: Colors.black,
         child: Scaffold(

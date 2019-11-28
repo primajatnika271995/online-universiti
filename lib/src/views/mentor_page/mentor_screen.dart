@@ -4,6 +4,7 @@ import 'package:online_university/src/bloc/mentor_bloc/mentorBloc.dart';
 import 'package:online_university/src/services/mentorService.dart';
 import 'package:online_university/src/utils/appTheme.dart';
 import 'package:online_university/src/views/mentor_page/mentorListView.dart';
+import 'package:online_university/src/views/mentor_page/mentor_details.dart';
 import 'package:online_university/src/views/watch_page/mentorListView.dart';
 
 class MentorPage extends StatefulWidget {
@@ -12,6 +13,15 @@ class MentorPage extends StatefulWidget {
 }
 
 class _MentorPageState extends State<MentorPage> {
+
+  _onDetailsMentor() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => MentorDetails(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -49,7 +59,9 @@ class _MentorPageState extends State<MentorPage> {
               textAlign: TextAlign.left, style: AppTheme.title),
         ),
         MentorClassListView(
-          callback: () {},
+          callback: () {
+            _onDetailsMentor();
+          },
         ),
       ],
     );
