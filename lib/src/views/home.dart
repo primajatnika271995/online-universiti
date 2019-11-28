@@ -19,9 +19,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   AnimationController animationController;
   SharedPreferences _preferences;
 
+  ScrollController _scrollController = new ScrollController();
+
   CategoryType categoryType = CategoryType.bisnisKreatif;
   ProfileData _profileData = new ProfileData();
   Auth _auth = new Auth();
+
+  final int _tabLenght = 2;
 
   @override
   void initState() {
@@ -39,7 +43,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   void _onData() async {
     _preferences = await SharedPreferences.getInstance();
     setState(() {
-      _profileData.imgUrl = _preferences.getString(LocalStorage.PROFILE_IMG_KEY);
+      _profileData.imgUrl =
+          _preferences.getString(LocalStorage.PROFILE_IMG_KEY);
       _auth.token = _preferences.getString(LocalStorage.ACCESS_TOKEN_KEY);
     });
   }
@@ -60,31 +65,59 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.black,
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Column(
-          children: <Widget>[
-            SizedBox(
-              height: MediaQuery.of(context).padding.top,
-            ),
-            appBar(),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Container(
-                  child: Column(
-                    children: <Widget>[
-                      searchBar(),
-                      categoryUI(),
-                      classPreviews(),
-                      popularClasses(),
-                    ],
-                  ),
+    return DefaultTabController(
+      length: _tabLenght,
+      child: Container(
+        color: Colors.black,
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: Column(
+            children: <Widget>[
+              SizedBox(
+                height: MediaQuery.of(context).padding.top,
+              ),
+              appBar(),
+              Expanded(
+                child: NestedScrollView(
+                  controller: _scrollController,
+                  headerSliverBuilder:
+                      (BuildContext context, bool innerBoxIsScrolled) {
+                    return <Widget>[
+                      SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                          (BuildContext context, int index) {
+                            return Column(
+                              children: <Widget>[
+                                searchBar(),
+                                listMentor(),
+                                classPreviews(),
+                              ],
+                            );
+                          },
+                          childCount: 1,
+                        ),
+                      ),
+                      SliverPersistentHeader(
+                        pinned: true,
+                        floating: true,
+                        delegate: ContestTabHeader(
+                          TabBar(
+                            tabs: <Tab>[
+                              Tab(text: "Bisnis Kreatif"),
+                              Tab(text: 'Keterampilan Kreatif'),
+                            ],
+                            indicatorColor: AppTheme.nearlyWhite,
+                            labelStyle: AppTheme.title,
+                          ),
+                        ),
+                      ),
+                    ];
+                  },
+                  body: Container(),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -104,17 +137,19 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               ),
             ),
           ),
-          (_auth.token == null) ? OutlineButton(
-            onPressed: () {
-              _onNavigationLogin();
-            },
-            highlightColor: Colors.grey,
-            splashColor: Colors.grey,
-            child: Text(
-              "LOG IN",
-              style: TextStyle(color: AppTheme.nearlyWhite),
-            ),
-          ) : SizedBox(),
+          (_auth.token == null)
+              ? OutlineButton(
+                  onPressed: () {
+                    _onNavigationLogin();
+                  },
+                  highlightColor: Colors.grey,
+                  splashColor: Colors.grey,
+                  child: Text(
+                    "LOG IN",
+                    style: TextStyle(color: AppTheme.nearlyWhite),
+                  ),
+                )
+              : SizedBox(),
         ],
       ),
     );
@@ -192,39 +227,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     );
   }
 
-  Widget categoryUI() {
+  Widget listMentor() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(top: 8, left: 18, right: 16),
-          child: Text('Kamu mau jadi Ahli apa?',
-              textAlign: TextAlign.left, style: AppTheme.headline),
-        ),
-        SizedBox(
-          height: 16,
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Row(
-            children: <Widget>[
-              buttonCategory(CategoryType.bisnisKreatif,
-                  categoryType == CategoryType.bisnisKreatif),
-              SizedBox(
-                width: 16,
-              ),
-              buttonCategory(CategoryType.keterampilanKreatif,
-                  categoryType == CategoryType.keterampilanKreatif),
-            ],
-          ),
-        ),
-        SizedBox(
-          height: 16,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 8, left: 18, right: 16),
-          child: Text('CLASS MENTOR',
+          padding: const EdgeInsets.only(top: 15, left: 18, right: 16),
+          child: Text('COURSE MENTOR',
               textAlign: TextAlign.left, style: AppTheme.title),
         ),
         MentorListView(
@@ -243,7 +253,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(top: 8, left: 18, right: 16),
-          child: Text('CLASS PREVIEWS',
+          child: Text('LATEST CLASS',
               textAlign: TextAlign.left, style: AppTheme.title),
         ),
         ClassPreviewListView(
@@ -327,6 +337,29 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         ),
       ),
     );
+  }
+}
+
+class ContestTabHeader extends SliverPersistentHeaderDelegate {
+  final Widget searchUI;
+  ContestTabHeader(
+    this.searchUI,
+  );
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return searchUI;
+  }
+
+  @override
+  double get maxExtent => 52.0;
+
+  @override
+  double get minExtent => 52.0;
+
+  @override
+  bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) {
+    return false;
   }
 }
 
