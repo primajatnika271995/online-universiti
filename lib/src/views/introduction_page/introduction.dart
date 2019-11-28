@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:online_university/src/utils/appTheme.dart';
 import 'package:online_university/src/views/introduction_page/pageViewIntro.dart';
+import 'package:online_university/src/views/login_page/login.dart';
 
 class IntroductionPage extends StatefulWidget {
   @override
@@ -11,6 +12,14 @@ class _IntroductionPageState extends State<IntroductionPage> {
 
   _onNavigationHome() {
     Navigator.of(context).pushReplacementNamed('/');
+  }
+
+  _onNavigationLogin() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => LoginPage(),
+      ),
+    );
   }
 
   @override
@@ -30,7 +39,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Container(
-                    height: 400,
+                    height: 430,
                     child: PageViewIntro(),
                   ),
                   Column(
@@ -57,7 +66,9 @@ class _IntroductionPageState extends State<IntroductionPage> {
       child: Container(
         width: MediaQuery.of(context).size.width,
         child: RaisedButton(
-          onPressed: () {},
+          onPressed: () {
+            _onNavigationLogin();
+          },
           color: Colors.red,
           child: Text(
             "GET ALL-ACCESS",

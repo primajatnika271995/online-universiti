@@ -48,251 +48,22 @@ class _ProfileListPageState extends State<ProfileListPage> {
                         if (!snapshot.hasData)
                           return SizedBox();
                         else
-                          return Container(
-                            child: FutureBuilder(
-                              future: getData(),
-                              builder: (BuildContext context, snapshot) {
-                                if (!snapshot.hasData)
-                                  return SizedBox();
-                                else
-                                  return SingleChildScrollView(
-                                    child: Container(
-                                      color: Colors.grey[200],
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            color: Colors.black,
-                                            child: InkWell(
-                                              onTap: () {},
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                  horizontal: 15,
-                                                  vertical: 20,
-                                                ),
-                                                child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                  children: <Widget>[
-                                                    Text(
-                                                      "Continue Video in Background",
-                                                      style: AppTheme.profileSetting,
-                                                    ),
-                                                    SizedBox(
-                                                      height: 10,
-                                                      child: Switch(
-                                                        activeColor: AppTheme.blue_stone,
-                                                        value: _playBackground,
-                                                        onChanged: (value) {
-                                                          setState(() {
-                                                            _playBackground = value;
-                                                          });
-                                                        },
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            color: Colors.black,
-                                            child: InkWell(
-                                              onTap: () {},
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                  horizontal: 15,
-                                                  vertical: 20,
-                                                ),
-                                                child: Row(
-                                                  children: <Widget>[
-                                                    Text(
-                                                      "Rate Online Universiti",
-                                                      style: AppTheme.profileSetting,
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            color: Colors.black,
-                                            child: InkWell(
-                                              onTap: () {},
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                  horizontal: 15,
-                                                  vertical: 20,
-                                                ),
-                                                child: Row(
-                                                  children: <Widget>[
-                                                    Text(
-                                                      "Contact Support",
-                                                      style: AppTheme.profileSetting,
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            color: Colors.black,
-                                            child: InkWell(
-                                              onTap: () {},
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                  horizontal: 15,
-                                                  vertical: 20,
-                                                ),
-                                                child: Row(
-                                                  children: <Widget>[
-                                                    Text(
-                                                      "Share Feedback",
-                                                      style: AppTheme.profileSetting,
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            color: Colors.black,
-                                            child: InkWell(
-                                              onTap: () {},
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                  horizontal: 15,
-                                                  vertical: 20,
-                                                ),
-                                                child: Row(
-                                                  children: <Widget>[
-                                                    Text(
-                                                      "Term of Service",
-                                                      style: AppTheme.profileSetting,
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            color: Colors.black,
-                                            child: InkWell(
-                                              onTap: () {},
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                  horizontal: 15,
-                                                  vertical: 20,
-                                                ),
-                                                child: Row(
-                                                  children: <Widget>[
-                                                    Text(
-                                                      "Privacy",
-                                                      style: AppTheme.profileSetting,
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            color: Colors.black,
-                                            child: InkWell(
-                                              onTap: () {
-                                                _onSignOut();
-                                              },
-                                              splashColor: Colors.grey,
-                                              highlightColor: Colors.white,
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                  horizontal: 15,
-                                                  vertical: 20,
-                                                ),
-                                                child: Row(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: <Widget>[
-                                                    Text(
-                                                      "Logout",
-                                                      style: TextStyle(
-                                                        color:
-                                                            Colors.white,
-                                                        fontWeight:
-                                                            FontWeight.w600
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            color: Colors.black,
-                                            child: InkWell(
-                                              onTap: () {},
-                                              splashColor: AppTheme.grey,
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                  horizontal: 15,
-                                                  vertical: 20,
-                                                ),
-                                                child: Column(
-                                                  children: <Widget>[
-                                                    Text(
-                                                      "Version 1.0.0.0",
-                                                      style: AppTheme.profileSetting,
-                                                    ),
-                                                    SizedBox(
-                                                      height: 5,
-                                                    ),
-                                                    Text(
-                                                      "ID: 3b810192b1-9an1219-12d1f1066",
-                                                      style: AppTheme.profileSetting,
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                              },
+                          return SingleChildScrollView(
+                            child: Container(
+                              color: Colors.grey[200],
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  continueInBackground(),
+                                  rateOnlineUniversity(),
+                                  contactSupport(),
+                                  shareFeedback(),
+                                  termOfService(),
+                                  privacy(),
+                                  logoutBtn(),
+                                  versionApp(),
+                                ],
+                              ),
                             ),
                           );
                       },
@@ -354,6 +125,228 @@ class _ProfileListPageState extends State<ProfileListPage> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget continueInBackground() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      color: Colors.black,
+      child: InkWell(
+        onTap: () {},
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 15,
+            vertical: 20,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                "Continue Video in Background",
+                style: AppTheme.profileSetting,
+              ),
+              SizedBox(
+                height: 10,
+                child: Switch(
+                  activeColor: AppTheme.screamin_green,
+                  inactiveThumbColor: AppTheme.screamin_green,
+                  inactiveTrackColor: AppTheme.nearlyWhite,
+                  value: _playBackground,
+                  onChanged: (value) {
+                    setState(() {
+                      _playBackground = value;
+                    });
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget rateOnlineUniversity() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      color: Colors.black,
+      child: InkWell(
+        onTap: () {},
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 15,
+            vertical: 20,
+          ),
+          child: Row(
+            children: <Widget>[
+              Text(
+                "Rate Online Universiti",
+                style: AppTheme.profileSetting,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget contactSupport() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      color: Colors.black,
+      child: InkWell(
+        onTap: () {},
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 15,
+            vertical: 20,
+          ),
+          child: Row(
+            children: <Widget>[
+              Text(
+                "Contact Support",
+                style: AppTheme.profileSetting,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget shareFeedback() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      color: Colors.black,
+      child: InkWell(
+        onTap: () {},
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 15,
+            vertical: 20,
+          ),
+          child: Row(
+            children: <Widget>[
+              Text(
+                "Share Feedback",
+                style: AppTheme.profileSetting,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget termOfService() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      color: Colors.black,
+      child: InkWell(
+        onTap: () {},
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 15,
+            vertical: 20,
+          ),
+          child: Row(
+            children: <Widget>[
+              Text(
+                "Term of Service",
+                style: AppTheme.profileSetting,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget privacy() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      color: Colors.black,
+      child: InkWell(
+        onTap: () {},
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 15,
+            vertical: 20,
+          ),
+          child: Row(
+            children: <Widget>[
+              Text(
+                "Privacy",
+                style: AppTheme.profileSetting,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget logoutBtn() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      color: Colors.black,
+      child: InkWell(
+        onTap: () {
+          _onSignOut();
+        },
+        splashColor: Colors.grey,
+        highlightColor: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 15,
+            vertical: 20,
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                "Logout",
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget versionApp() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      color: Colors.black,
+      child: InkWell(
+        onTap: () {},
+        splashColor: AppTheme.grey,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 15,
+            vertical: 20,
+          ),
+          child: Column(
+            children: <Widget>[
+              Text(
+                "Version 1.0.0.0",
+                style: AppTheme.profileSetting,
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Text(
+                "ID: 3b810192b1-9an1219-12d1f1066",
+                style: AppTheme.profileSetting,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
