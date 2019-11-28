@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_university/src/bloc/mentor_bloc/mentorEvent.dart';
+import 'package:online_university/src/bloc/mentor_bloc/mentorBloc.dart';
+import 'package:online_university/src/bloc/mentor_bloc/mentorState.dart';
 import 'package:online_university/src/models/classPreviews.dart';
 import 'package:online_university/src/models/mentor.dart';
+import 'package:online_university/src/models/mentorModel.dart';
 import 'package:online_university/src/utils/appTheme.dart';
-import 'package:online_university/src/utils/hexConverter.dart';
 
 class MentorListView extends StatefulWidget {
   final Function callback;
@@ -23,11 +27,6 @@ class _MentorListViewState extends State<MentorListView>
     super.initState();
   }
 
-  Future<bool> getData() async {
-    await Future.delayed(const Duration(milliseconds: 50));
-    return true;
-  }
-
   @override
   void dispose() {
     animationController?.dispose();
@@ -36,23 +35,29 @@ class _MentorListViewState extends State<MentorListView>
 
   @override
   Widget build(BuildContext context) {
+    // ignore: close_sinks
+    final mentorBloc = BlocProvider.of<MentorBloc>(context);
+    mentorBloc.add(FetchMentor());
+
     return Padding(
       padding: const EdgeInsets.only(top: 5, bottom: 16),
       child: Container(
         height: 260,
         width: double.infinity,
-        child: FutureBuilder(
-          future: getData(),
-          builder: (context, snapshot) {
-            if (!snapshot.hasData) {
+        child: BlocBuilder<MentorBloc, MentorState>(
+          builder: (context, state) {
+            if (state is MentorIsNotLoaded)
               return SizedBox();
-            } else {
+            else if (state is MentorIsLoading)
+              return SizedBox();
+            else if (state is MentorIsLoaded)
               return ListView.builder(
                 padding: const EdgeInsets.only(
                     top: 0, bottom: 0, right: 16, left: 16),
-                itemCount: ClassPreviews.categoryList.length,
+                itemCount: state.getListMentor.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
+                  var value = state.getListMentor[index];
                   var count = ClassPreviews.categoryList.length > 10
                       ? 10
                       : ClassPreviews.categoryList.length;
@@ -64,7 +69,7 @@ class _MentorListViewState extends State<MentorListView>
                   animationController.forward();
 
                   return CategoryView(
-                    category: Mentor.categoryList[index],
+                    category: value,
                     animation: animation,
                     animationController: animationController,
                     callback: () {
@@ -73,7 +78,7 @@ class _MentorListViewState extends State<MentorListView>
                   );
                 },
               );
-            }
+            return Text("s", style: AppTheme.title);
           },
         ),
       ),
@@ -83,7 +88,7 @@ class _MentorListViewState extends State<MentorListView>
 
 class CategoryView extends StatelessWidget {
   final VoidCallback callback;
-  final Mentor category;
+  final MentorModel category;
   final AnimationController animationController;
   final Animation animation;
 
@@ -123,19 +128,19 @@ class CategoryView extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           image: DecorationImage(
-                            image: NetworkImage(category.imagePath),
-                            fit: BoxFit.fill,
+                            image: NetworkImage(category.mentorProfileUrl),
+                            fit: BoxFit.fitHeight,
                           ),
                         ),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
-                      child: Container(width: 160, child: Text(category.mentor, style: AppTheme.title)),
+                      child: Container(width: 158, child: Text(category.mentorName, style: AppTheme.title, overflow: TextOverflow.ellipsis,)),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 3),
-                      child: Container(width: 160, child: Text(category.job, style: AppTheme.subtitle)),
+                      child: Container(width: 160, child: Text(category.mentorTitle, style: AppTheme.subtitle)),
                     )
                   ],
                 ),

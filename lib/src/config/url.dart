@@ -3,6 +3,9 @@ class UriApi {
 
   static const String _authUri = "http://116.206.196.170/online-university-auth-server";
 
+  // Login Api
   static const String loginUri = _authUri + "/oauth/token";
 
+  // Get List Mentor
+  static const String getListMentorUri = _authUri + "/api/public/courses/list";
 }

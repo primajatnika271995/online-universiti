@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_university/src/bloc/mentor_bloc/mentorBloc.dart';
+import 'package:online_university/src/services/mentorService.dart';
 import 'package:online_university/src/utils/appTheme.dart';
-import 'package:online_university/src/views/watch_page/popularClassListView.dart';
+import 'package:online_university/src/views/mentor_page/mentorListView.dart';
+import 'package:online_university/src/views/watch_page/mentorListView.dart';
 
 class MentorPage extends StatefulWidget {
   @override
@@ -14,26 +18,27 @@ class _MentorPageState extends State<MentorPage> {
       color: Colors.black,
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: Column(
-          children: <Widget>[
-            Expanded(
-              child: SingleChildScrollView(
+        body: BlocProvider(
+          builder: (context) => MentorBloc(MentorService()),
+          child: Column(
+            children: <Widget>[
+              Expanded(
                 child: Container(
                   child: Column(
                     children: <Widget>[
-                      popularClasses(),
+                      mentorList(),
                     ],
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget popularClasses() {
+  Widget mentorList() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,10 +48,8 @@ class _MentorPageState extends State<MentorPage> {
           child: Text('ALL MENTOR',
               textAlign: TextAlign.left, style: AppTheme.title),
         ),
-        PopularClassListView(
-          callback: () {
-//            moveTo();
-          },
+        MentorClassListView(
+          callback: () {},
         ),
       ],
     );

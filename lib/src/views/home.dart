@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_university/src/bloc/mentor_bloc/mentorBloc.dart';
+import 'package:online_university/src/services/mentorService.dart';
 import 'package:online_university/src/utils/appTheme.dart';
 import 'package:online_university/src/utils/hexConverter.dart';
 import 'package:online_university/src/config/localStorage.dart';
@@ -89,7 +92,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             return Column(
                               children: <Widget>[
                                 searchBar(),
-                                listMentor(),
+                                BlocProvider(
+                                  builder: (context) => MentorBloc(MentorService()),
+                                  child: listMentor(),
+                                ),
                                 classPreviews(),
                               ],
                             );
