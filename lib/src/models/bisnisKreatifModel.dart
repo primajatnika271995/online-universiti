@@ -1,17 +1,17 @@
 // To parse this JSON data, do
 //
-//     final mentorModel = mentorModelFromJson(jsonString);
+//     final bisnisKreatifModel = bisnisKreatifModelFromJson(jsonString);
 
 import 'dart:convert';
 
-List<CourseModel> courseModelFromJson(String str) => List<CourseModel>.from(json.decode(str).map((x) => CourseModel.fromJson(x)));
+List<BisnisKreatifModel> bisnisKreatifModelFromJson(String str) => List<BisnisKreatifModel>.from(json.decode(str).map((x) => BisnisKreatifModel.fromJson(x)));
 
-String courseModelToJson(List<CourseModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String bisnisKreatifModelToJson(List<BisnisKreatifModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class CourseModel {
+class BisnisKreatifModel {
   String idCourse;
   String courseTitle;
-  dynamic coursePrice;
+  int coursePrice;
   String mentorName;
   String mentorTitle;
   String mentorProfileUrl;
@@ -21,7 +21,7 @@ class CourseModel {
   String idCategoryCourse;
   String categoryCourseTitle;
 
-  CourseModel({
+  BisnisKreatifModel({
     this.idCourse,
     this.courseTitle,
     this.coursePrice,
@@ -35,7 +35,7 @@ class CourseModel {
     this.categoryCourseTitle,
   });
 
-  factory CourseModel.fromJson(Map<String, dynamic> json) => CourseModel(
+  factory BisnisKreatifModel.fromJson(Map<String, dynamic> json) => BisnisKreatifModel(
     idCourse: json["idCourse"] == null ? null : json["idCourse"],
     courseTitle: json["courseTitle"] == null ? null : json["courseTitle"],
     coursePrice: json["coursePrice"] == null ? null : json["coursePrice"],

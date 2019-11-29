@@ -6,6 +6,7 @@ import 'package:online_university/src/bloc/mentor_bloc/mentorState.dart';
 import 'package:online_university/src/models/classPreviews.dart';
 import 'package:online_university/src/models/mentor.dart';
 import 'package:online_university/src/models/courseModel.dart';
+import 'package:online_university/src/models/mentorModel.dart';
 import 'package:online_university/src/utils/appTheme.dart';
 
 class MentorListView extends StatefulWidget {
@@ -88,7 +89,7 @@ class _MentorListViewState extends State<MentorListView>
 
 class CategoryView extends StatelessWidget {
   final VoidCallback callback;
-  final CourseModel category;
+  final MentorModel category;
   final AnimationController animationController;
   final Animation animation;
 
@@ -128,7 +129,7 @@ class CategoryView extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           image: DecorationImage(
-                            image: NetworkImage(category.mentorProfileUrl),
+                            image: NetworkImage(category.imageUrl),
                             fit: BoxFit.fitHeight,
                           ),
                         ),
@@ -136,11 +137,11 @@ class CategoryView extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
-                      child: Container(width: 158, child: Text(category.mentorName, style: AppTheme.title, overflow: TextOverflow.ellipsis,)),
+                      child: Container(width: 150, child: Text(category.name, style: AppTheme.title, overflow: TextOverflow.ellipsis,)),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 3),
-                      child: Container(width: 160, child: Text(category.mentorTitle, style: AppTheme.subtitle)),
+                      child: Container(width: 150, child: Text(category.coachTitle, style: AppTheme.subtitle)),
                     )
                   ],
                 ),

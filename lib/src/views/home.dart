@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_university/src/bloc/bisnis_kreatif_bloc/bisnis_kreatif_bloc.dart';
 import 'package:online_university/src/bloc/mentor_bloc/mentorBloc.dart';
+import 'package:online_university/src/services/bisnisKreatifService.dart';
 import 'package:online_university/src/services/mentorService.dart';
 import 'package:online_university/src/utils/appTheme.dart';
 import 'package:online_university/src/utils/hexConverter.dart';
 import 'package:online_university/src/config/localStorage.dart';
 import 'package:online_university/src/views/login_page/login.dart';
 import 'package:online_university/src/views/profile_page/profile.dart';
+import 'package:online_university/src/views/watch_page/bisnisKreatifListView.dart';
 import 'package:online_university/src/views/watch_page/classPreviewListView.dart';
+import 'package:online_university/src/views/watch_page/keterampilanKreatifListView.dart';
 import 'package:online_university/src/views/watch_page/mentorListView.dart';
 import 'package:online_university/src/views/watch_page/courseInfoScreen.dart';
 import 'package:online_university/src/views/watch_page/popularClassListView.dart';
@@ -73,7 +77,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       child: Container(
         color: Colors.black,
         child: Scaffold(
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.black,
           body: Column(
             children: <Widget>[
               SizedBox(
@@ -93,7 +97,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               children: <Widget>[
                                 searchBar(),
                                 BlocProvider(
-                                  builder: (context) => MentorBloc(MentorService()),
+                                  builder: (context) =>
+                                      MentorBloc(MentorService()),
                                   child: listMentor(),
                                 ),
                                 classPreviews(),
@@ -107,19 +112,33 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         pinned: true,
                         floating: true,
                         delegate: ContestTabHeader(
-                          TabBar(
-                            tabs: <Tab>[
-                              Tab(text: "Bisnis Kreatif"),
-                              Tab(text: 'Keterampilan Kreatif'),
-                            ],
-                            indicatorColor: AppTheme.nearlyWhite,
-                            labelStyle: AppTheme.title,
+                          Container(
+                            color: Colors.black,
+                            child: TabBar(
+                              tabs: <Tab>[
+                                Tab(text: "Bisnis Kreatif"),
+                                Tab(text: 'Keterampilan Kreatif'),
+                              ],
+                              indicatorColor: Colors.redAccent,
+                              labelStyle: AppTheme.title,
+                            ),
                           ),
                         ),
                       ),
                     ];
                   },
-                  body: Container(),
+                  body: TabBarView(
+                    children: [
+                      BlocProvider(
+                        builder: (context) => BisnisKreatifBloc(BisnisKreatifService()),
+                        child: BisnisKreatifListView(),
+                      ),
+                      BlocProvider(
+                        builder: (context) => BisnisKreatifBloc(BisnisKreatifService()),
+                        child: KeterampilanKreatifListView(),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -145,9 +164,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           ),
           (_auth.token == null)
               ? OutlineButton(
-                  onPressed: () {
-                    _onNavigationLogin();
-                  },
+                  onPressed: _onNavigationLogin,
                   highlightColor: Colors.grey,
                   splashColor: Colors.grey,
                   child: Text(
@@ -169,7 +186,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            width: MediaQuery.of(context).size.width * 0.75,
+            width: MediaQuery.of(context).size.width * 0.91,
             height: 64,
             child: Padding(
               padding: const EdgeInsets.only(top: 8, bottom: 8),

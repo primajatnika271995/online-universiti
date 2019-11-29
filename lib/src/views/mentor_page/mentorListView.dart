@@ -4,6 +4,7 @@ import 'package:online_university/src/bloc/mentor_bloc/mentorBloc.dart';
 import 'package:online_university/src/bloc/mentor_bloc/mentorEvent.dart';
 import 'package:online_university/src/bloc/mentor_bloc/mentorState.dart';
 import 'package:online_university/src/models/courseModel.dart';
+import 'package:online_university/src/models/mentorModel.dart';
 import 'package:online_university/src/models/popularClass.dart';
 import 'package:online_university/src/utils/appTheme.dart';
 
@@ -90,7 +91,7 @@ class _MentorClassListViewState extends State<MentorClassListView>
 
 class CategoryView extends StatelessWidget {
   final VoidCallback callback;
-  final CourseModel category;
+  final MentorModel category;
   final AnimationController animationController;
   final Animation animation;
 
@@ -128,7 +129,7 @@ class CategoryView extends StatelessWidget {
                         color: Colors.grey,
                         borderRadius: BorderRadius.circular(5),
                         image: DecorationImage(
-                          image: NetworkImage(category.mentorProfileUrl),
+                          image: NetworkImage(category.imageUrl),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -141,12 +142,12 @@ class CategoryView extends StatelessWidget {
                             padding: const EdgeInsets.only(top: 10, left: 10),
                             child: Container(
                                 width: 160,
-                                child: Text(category.mentorName,
+                                child: Text(category.name,
                                     style: AppTheme.title)),
                           ),
                           Padding(
                               padding: const EdgeInsets.only(top: 3, left: 10),
-                              child: Text(category.mentorTitle,
+                              child: Text(category.coachTitle,
                                   style: AppTheme.subtitle))
                         ],
                       ),

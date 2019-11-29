@@ -7,5 +7,8 @@ class UriApi {
   static const String loginUri = _authUri + "/oauth/token";
 
   // Get List Mentor
-  static const String getListMentorUri = _authUri + "/api/public/courses/list";
+  static const String getListMentorUri = _authUri + "/api/public/profile/mentor/list";
+
+  // Get Data Tabs Bisnis Kreatif / Keterampilan Kreatif
+  static const String getListDataTabs = _authUri + "/api/public/courses/list";
 }
