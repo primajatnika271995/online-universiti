@@ -9,57 +9,73 @@ List<MentorModel> mentorModelFromJson(String str) => List<MentorModel>.from(json
 String mentorModelToJson(List<MentorModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class MentorModel {
-  String idCourse;
-  String courseTitle;
-  dynamic coursePrice;
-  String mentorName;
-  String mentorTitle;
-  String mentorProfileUrl;
-  String rating;
-  String bannerCourseUrl;
-  String bannerTypeFile;
-  String idCategoryCourse;
-  String categoryCourseTitle;
+  dynamic idUserDetails;
+  String idUserProfile;
+  String name;
+  String username;
+  String email;
+  String contact;
+  String address;
+  String userType;
+  String coachTitle;
+  String profession;
+  String mottoTagline;
+  String aboutMe;
+  String imageUrl;
+  dynamic gender;
+  dynamic dateOfBirth;
 
   MentorModel({
-    this.idCourse,
-    this.courseTitle,
-    this.coursePrice,
-    this.mentorName,
-    this.mentorTitle,
-    this.mentorProfileUrl,
-    this.rating,
-    this.bannerCourseUrl,
-    this.bannerTypeFile,
-    this.idCategoryCourse,
-    this.categoryCourseTitle,
+    this.idUserDetails,
+    this.idUserProfile,
+    this.name,
+    this.username,
+    this.email,
+    this.contact,
+    this.address,
+    this.userType,
+    this.coachTitle,
+    this.profession,
+    this.mottoTagline,
+    this.aboutMe,
+    this.imageUrl,
+    this.gender,
+    this.dateOfBirth,
   });
 
   factory MentorModel.fromJson(Map<String, dynamic> json) => MentorModel(
-    idCourse: json["idCourse"] == null ? null : json["idCourse"],
-    courseTitle: json["courseTitle"] == null ? null : json["courseTitle"],
-    coursePrice: json["coursePrice"] == null ? null : json["coursePrice"],
-    mentorName: json["mentorName"] == null ? null : json["mentorName"],
-    mentorTitle: json["mentorTitle"] == null ? null : json["mentorTitle"],
-    mentorProfileUrl: json["mentorProfileUrl"] == null ? null : json["mentorProfileUrl"],
-    rating: json["rating"] == null ? null : json["rating"],
-    bannerCourseUrl: json["bannerCourseUrl"] == null ? null : json["bannerCourseUrl"],
-    bannerTypeFile: json["bannerTypeFile"] == null ? null : json["bannerTypeFile"],
-    idCategoryCourse: json["idCategoryCourse"] == null ? null : json["idCategoryCourse"],
-    categoryCourseTitle: json["categoryCourseTitle"] == null ? null : json["categoryCourseTitle"],
+    idUserDetails: json["idUserDetails"],
+    idUserProfile: json["idUserProfile"] == null ? null : json["idUserProfile"],
+    name: json["name"] == null ? null : json["name"],
+    username: json["username"] == null ? null : json["username"],
+    email: json["email"] == null ? null : json["email"],
+    contact: json["contact"] == null ? null : json["contact"],
+    address: json["address"] == null ? null : json["address"],
+    userType: json["userType"] == null ? null : json["userType"],
+    coachTitle: json["coachTitle"] == null ? null : json["coachTitle"],
+    profession: json["profession"] == null ? null : json["profession"],
+    mottoTagline: json["mottoTagline"] == null ? null : json["mottoTagline"],
+    aboutMe: json["aboutMe"] == null ? null : json["aboutMe"],
+    imageUrl: json["imageUrl"] == null ? null : json["imageUrl"],
+    gender: json["gender"],
+    dateOfBirth: json["dateOfBirth"],
   );
 
   Map<String, dynamic> toJson() => {
-    "idCourse": idCourse == null ? null : idCourse,
-    "courseTitle": courseTitle == null ? null : courseTitle,
-    "coursePrice": coursePrice == null ? null : coursePrice,
-    "mentorName": mentorName == null ? null : mentorName,
-    "mentorTitle": mentorTitle == null ? null : mentorTitle,
-    "mentorProfileUrl": mentorProfileUrl == null ? null : mentorProfileUrl,
-    "rating": rating == null ? null : rating,
-    "bannerCourseUrl": bannerCourseUrl == null ? null : bannerCourseUrl,
-    "bannerTypeFile": bannerTypeFile == null ? null : bannerTypeFile,
-    "idCategoryCourse": idCategoryCourse == null ? null : idCategoryCourse,
-    "categoryCourseTitle": categoryCourseTitle == null ? null : categoryCourseTitle,
+    "idUserDetails": idUserDetails,
+    "idUserProfile": idUserProfile == null ? null : idUserProfile,
+    "name": name == null ? null : name,
+    "username": username == null ? null : username,
+    "email": email == null ? null : email,
+    "contact": contact == null ? null : contact,
+    "address": address == null ? null : address,
+    "userType": userType == null ? null : userType,
+    "coachTitle": coachTitle == null ? null : coachTitle,
+    "profession": profession == null ? null : profession,
+    "mottoTagline": mottoTagline == null ? null : mottoTagline,
+    "aboutMe": aboutMe == null ? null : aboutMe,
+    "imageUrl": imageUrl == null ? null : imageUrl,
+    "gender": gender,
+    "dateOfBirth": dateOfBirth,
   };
 }

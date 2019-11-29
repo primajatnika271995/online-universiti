@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' show Client;
 import 'package:online_university/src/config/url.dart';
-import 'package:online_university/src/models/mentorModel.dart';
+import 'package:online_university/src/models/courseModel.dart';
 import 'package:simple_logger/simple_logger.dart';
 
 class MentorService {
@@ -13,7 +13,7 @@ class MentorService {
   Client client = new Client();
   final log = SimpleLogger();
 
-  Future<List<MentorModel>> getListMentor() async {
+  Future<List<CourseModel>> getListMentor() async {
     try {
       final response = await client.get(UriApi.getListMentorUri);
       log.info("List Mentor { status: ${response.statusCode} }");

@@ -5,7 +5,7 @@ import 'package:online_university/src/bloc/mentor_bloc/mentorBloc.dart';
 import 'package:online_university/src/bloc/mentor_bloc/mentorState.dart';
 import 'package:online_university/src/models/classPreviews.dart';
 import 'package:online_university/src/models/mentor.dart';
-import 'package:online_university/src/models/mentorModel.dart';
+import 'package:online_university/src/models/courseModel.dart';
 import 'package:online_university/src/utils/appTheme.dart';
 
 class MentorListView extends StatefulWidget {
@@ -88,7 +88,7 @@ class _MentorListViewState extends State<MentorListView>
 
 class CategoryView extends StatelessWidget {
   final VoidCallback callback;
-  final MentorModel category;
+  final CourseModel category;
   final AnimationController animationController;
   final Animation animation;
 
