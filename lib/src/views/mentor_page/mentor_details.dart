@@ -9,7 +9,7 @@ import 'package:online_university/src/views/mentor_page/mentor_details_overview.
 
 class MentorDetails extends StatefulWidget {
   final String idUser;
-  MentorDetails({Key key, this.idUser}): super(key: key);
+  MentorDetails({Key key, this.idUser}) : super(key: key);
 
   @override
   _MentorDetailsState createState() => _MentorDetailsState();
@@ -32,7 +32,8 @@ class _MentorDetailsState extends State<MentorDetails> {
           if (state is MentorIsNotLoaded)
             return SizedBox();
           else if (state is MentorIsLoading)
-            return Center(child: CircularProgressIndicator(
+            return Center(
+                child: CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation(AppTheme.nearlyWhite),
               strokeWidth: 4,
             ));
@@ -65,7 +66,7 @@ class _MentorDetailsState extends State<MentorDetails> {
                             return <Widget>[
                               SliverList(
                                 delegate: SliverChildBuilderDelegate(
-                                      (BuildContext context, int index) {
+                                  (BuildContext context, int index) {
                                     return Stack(
                                       children: <Widget>[
                                         Container(
@@ -87,8 +88,8 @@ class _MentorDetailsState extends State<MentorDetails> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding:
-                                                const EdgeInsets.only(bottom: 20),
+                                                padding: const EdgeInsets.only(
+                                                    bottom: 20),
                                                 child: Text(
                                                   state.getMentor.coachTitle,
                                                   style: AppTheme.courseTitle,
@@ -129,12 +130,12 @@ class _MentorDetailsState extends State<MentorDetails> {
                           },
                           body: Container(
                             color: Colors.black,
-                            child: TabBarView(children: [
-                              MentorDetailsOverview(
-                                value: ,
-                              ),
-                              Container(),
-                            ],),
+                            child: TabBarView(
+                              children: [
+                                MentorDetailsOverview(),
+                                Container(),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -183,4 +184,3 @@ class _MentorDetailsState extends State<MentorDetails> {
     );
   }
 }
-
