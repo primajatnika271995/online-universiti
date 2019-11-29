@@ -77,7 +77,7 @@ class _MentorClassListViewState extends State<MentorClassListView>
                   animation: animation,
                   animationController: animationController,
                   callback: () {
-                    widget.callback();
+                    widget.callback(value.idUserProfile);
                   },
                 );
               },
@@ -141,14 +141,20 @@ class CategoryView extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(top: 10, left: 10),
                             child: Container(
-                                width: 160,
-                                child: Text(category.name,
-                                    style: AppTheme.title)),
+                              width: 160,
+                              child: Text(
+                                category.name,
+                                style: AppTheme.title,
+                              ),
+                            ),
                           ),
                           Padding(
-                              padding: const EdgeInsets.only(top: 3, left: 10),
-                              child: Text(category.coachTitle,
-                                  style: AppTheme.subtitle))
+                            padding: const EdgeInsets.only(top: 3, left: 10),
+                            child: Text(
+                              category.coachTitle,
+                              style: AppTheme.subtitle,
+                            ),
+                          ),
                         ],
                       ),
                     ),

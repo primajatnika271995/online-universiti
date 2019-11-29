@@ -5,6 +5,7 @@
 import 'dart:convert';
 
 List<MentorModel> mentorModelFromJson(String str) => List<MentorModel>.from(json.decode(str).map((x) => MentorModel.fromJson(x)));
+MentorModel mentorObjectModelFromJson(String str) => MentorModel.fromJson(json.decode(str));
 
 String mentorModelToJson(List<MentorModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 

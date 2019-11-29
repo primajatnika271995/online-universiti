@@ -8,6 +8,8 @@ class UriApi {
 
   // Get List Mentor
   static const String getListMentorUri = _authUri + "/api/public/profile/mentor/list";
+  // Get Mentor by ID User Profile
+  static const String getMentorByID = _authUri + "/api/public/profile/mentor/by-id-profile";
 
   // Get Data Tabs Bisnis Kreatif / Keterampilan Kreatif
   static const String getListDataTabs = _authUri + "/api/public/courses/list";

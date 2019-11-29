@@ -27,6 +27,17 @@ class MentorIsLoaded extends MentorState {
   List<Object> get props => [_mentor];
 }
 
+class MentorByIDIsLoaded extends MentorState {
+  final _mentor;
+
+  MentorByIDIsLoaded(this._mentor);
+  MentorModel get getMentor => _mentor;
+
+  @override
+  // TODO: implement props
+  List<Object> get props => [_mentor];
+}
+
 class MentorIsNotLoaded extends MentorState {
 
 }

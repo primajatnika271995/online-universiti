@@ -1,3 +1,5 @@
+import 'dart:core';
+
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' show Client;
 import 'package:online_university/src/config/url.dart';
@@ -12,6 +14,26 @@ class MentorService {
 
   Client client = new Client();
   final log = SimpleLogger();
+
+  Future<MentorModel> getMentorByID(String idUser) async {
+    var params = {
+      "idUserProfile": idUser
+    };
+
+    try {
+      Uri uri = Uri.parse(UriApi.getMentorByID);
+      final uriParams = uri.replace(queryParameters: params);
+      final response = await client.get(uriParams);
+      log.info("Mentor by ID { status: ${response.statusCode} }");
+
+      if (response.statusCode == 200)
+        return compute(mentorObjectModelFromJson, response.body);
+
+    }catch(err) {
+      log.warning(err.toString());
+    }
+    return null;
+  }
 
   Future<List<MentorModel>> getListMentor() async {
     try {

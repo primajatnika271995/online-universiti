@@ -32,5 +32,18 @@ class MentorBloc extends Bloc<MentorEvent, MentorState> {
         yield MentorIsNotLoaded();
       }
     }
+
+    if (event is FetchMentorByID) {
+      yield MentorIsLoading();
+
+      try {
+        MentorModel mentor = await mentorService.getMentorByID(event.userId);
+        log.info(mentor.name);
+        yield MentorByIDIsLoaded(mentor);
+      } catch(err) {
+        log.warning(err.toString());
+        yield MentorIsNotLoaded();
+      }
+    }
   }
 }

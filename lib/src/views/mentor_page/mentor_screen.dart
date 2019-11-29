@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_university/src/bloc/mentor_bloc/mentorBloc.dart';
 import 'package:online_university/src/services/mentorService.dart';
 import 'package:online_university/src/utils/appTheme.dart';
+import 'package:online_university/src/views/component/log.dart';
 import 'package:online_university/src/views/mentor_page/mentorListView.dart';
 import 'package:online_university/src/views/mentor_page/mentor_details.dart';
 import 'package:online_university/src/views/watch_page/mentorListView.dart';
@@ -14,10 +15,17 @@ class MentorPage extends StatefulWidget {
 
 class _MentorPageState extends State<MentorPage> {
 
-  _onDetailsMentor() {
+  _onDetailsMentor(String idUser) {
+    log.info(idUser);
+
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => MentorDetails(),
+        builder: (context) => BlocProvider(
+          builder: (context) => MentorBloc(MentorService()),
+          child: MentorDetails(
+            idUser: idUser,
+          ),
+        ),
       ),
     );
   }
@@ -59,8 +67,8 @@ class _MentorPageState extends State<MentorPage> {
               textAlign: TextAlign.left, style: AppTheme.title),
         ),
         MentorClassListView(
-          callback: () {
-            _onDetailsMentor();
+          callback: (String idUser) {
+            _onDetailsMentor(idUser);
           },
         ),
       ],
