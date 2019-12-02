@@ -13,4 +13,7 @@ class UriApi {
 
   // Get Data Tabs Bisnis Kreatif / Keterampilan Kreatif
   static const String getListDataTabs = _authUri + "/api/public/courses/list";
+
+  // Get Data Course by ID Mentor
+  static const String getListCourseByIDMentor = _authUri + "/api/public/courses/list/by-mentor-profile";
 }

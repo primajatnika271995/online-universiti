@@ -132,7 +132,9 @@ class _MentorDetailsState extends State<MentorDetails> {
                             color: Colors.black,
                             child: TabBarView(
                               children: [
-                                MentorDetailsOverview(),
+                                MentorDetailsOverview(
+                                  value: state.getMentor,
+                                ),
                                 Container(),
                               ],
                             ),

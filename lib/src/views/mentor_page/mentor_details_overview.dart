@@ -4,6 +4,7 @@ import 'package:online_university/src/utils/appTheme.dart';
 
 class MentorDetailsOverview extends StatelessWidget {
   MentorModel value;
+  MentorDetailsOverview({this.value});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class MentorDetailsOverview extends StatelessWidget {
                 child: Text("MEET YOUR NEW MENTOR", style: AppTheme.subtitle),
               ),
               Text(
-                "Mengawali dunia fotografi secara otodidak di tahun 1979, kini Darwis Triadi telah menjadi maestro fotografi di Indonesia. Melalui perjalanan panjang, titik balik di dunia fotografi bagi Darwis adalah ketika ia mendapatkan penghargaan Hasselblad di Jerman hingga memotret untuk majalah Vogue Prancis di tahun 1990. Hingga saat ini fotografi telah menjadi jalan hidup yang dipilihnya. Di kelas online pertamanya ini, Darwis Triadi akan mengajarkan memotret dengan berbagai teknik pencahayaan seperti lighting character dan bagaimana berimprovisasi dengan cahaya hingga menentukan angle dan komposisi yang menarik pada foto. Selain itu, Darwis juga akan bercerita bagaimana ia menciptakan suatu kualitas cahaya dalam fotonya agar selalu terlihat natural dan hidup.",
+                value.aboutMe,
                 style: AppTheme.caption,
               ),
               SizedBox(
@@ -98,6 +99,51 @@ class MentorDetailsOverview extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+        ),
+        Container(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(
+                  height: 15,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Text("HOW TO ENROLL", style: AppTheme.subtitle),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Text(
+                  "ALL-ACCESS PASS",
+                  style: AppTheme.title,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  child: Text("Get unlimited access to all 60+ instruction - including ${value.name} - for IDR 2,628,450.00 / year.", style: AppTheme.subtitle),
+                ),
+              ],
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text("IDR 2,628,450.00", style: AppTheme.title),
+              RaisedButton(
+                onPressed: () {},
+                color: Colors.red,
+                child: Text("CHOOSE", style: AppTheme.chooseBtn),
+              ),
+            ],
           ),
         ),
       ],

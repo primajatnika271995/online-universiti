@@ -99,6 +99,14 @@ class AppTheme {
     color: Colors.grey,
   );
 
+  static const TextStyle chooseBtn = TextStyle( // subtitle2 -> subtitle
+    fontFamily: fontName,
+    fontWeight: FontWeight.w700,
+    fontSize: 13,
+    letterSpacing: -0.04,
+    color: nearlyWhite,
+  );
+
   static const TextStyle profileSetting = TextStyle( // subtitle2 -> subtitle
     fontFamily: fontName,
     fontWeight: FontWeight.w400,
