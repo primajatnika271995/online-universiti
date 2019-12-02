@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_university/src/bloc/course_bloc/course_bloc.dart';
 import 'package:online_university/src/bloc/mentor_bloc/mentorBloc.dart';
 import 'package:online_university/src/bloc/mentor_bloc/mentorEvent.dart';
 import 'package:online_university/src/bloc/mentor_bloc/mentorState.dart';
+import 'package:online_university/src/services/courseService.dart';
 import 'package:online_university/src/utils/appTheme.dart';
 import 'package:online_university/src/views/home.dart';
 import 'package:online_university/src/views/mentor_page/mentor_details_overview.dart';
+import 'package:online_university/src/views/mentor_page/mentor_lesson_list_view.dart';
 
 class MentorDetails extends StatefulWidget {
   final String idUser;
@@ -135,7 +138,13 @@ class _MentorDetailsState extends State<MentorDetails> {
                                 MentorDetailsOverview(
                                   value: state.getMentor,
                                 ),
-                                Container(),
+                                BlocProvider(
+                                  builder: (context) =>
+                                      CourseBloc(CourseService()),
+                                  child: MentorLessonListView(
+                                    idMentor: state.getMentor.idUserProfile,
+                                  ),
+                                ),
                               ],
                             ),
                           ),
