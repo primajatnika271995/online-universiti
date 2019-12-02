@@ -16,6 +16,16 @@ class FetchCourseByIdMentor extends CourseEvent {
   List<Object> get props => [idMentor];
 }
 
+class FetchCourseDetails extends CourseEvent {
+  final idCourse;
+
+  FetchCourseDetails(this.idCourse);
+
+  @override
+  // TODO: implement props
+  List<Object> get props => [idCourse];
+}
+
 class ResetCourse extends CourseEvent {
 
 }

@@ -7,13 +7,13 @@ import 'package:online_university/src/services/mentorService.dart';
 import 'package:online_university/src/utils/appTheme.dart';
 import 'package:online_university/src/utils/hexConverter.dart';
 import 'package:online_university/src/config/localStorage.dart';
+import 'package:online_university/src/views/bisnis_kreatif_page/bisnis_kreatif_details.dart';
 import 'package:online_university/src/views/login_page/login.dart';
 import 'package:online_university/src/views/profile_page/profile.dart';
 import 'package:online_university/src/views/watch_page/bisnisKreatifListView.dart';
 import 'package:online_university/src/views/watch_page/classPreviewListView.dart';
 import 'package:online_university/src/views/watch_page/keterampilanKreatifListView.dart';
 import 'package:online_university/src/views/watch_page/mentorListView.dart';
-import 'package:online_university/src/views/watch_page/courseInfoScreen.dart';
 import 'package:online_university/src/views/watch_page/popularClassListView.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -131,7 +131,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     children: [
                       BlocProvider(
                         builder: (context) => BisnisKreatifBloc(BisnisKreatifService()),
-                        child: BisnisKreatifListView(),
+                        child: BisnisKreatifListView(
+                          callback: () {
+
+                          },
+                        ),
                       ),
                       BlocProvider(
                         builder: (context) => BisnisKreatifBloc(BisnisKreatifService()),
@@ -281,25 +285,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         ),
         ClassPreviewListView(
           callback: () {
-            moveTo();
-          },
-        ),
-      ],
-    );
-  }
-
-  Widget popularClasses() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(top: 8, left: 18, right: 16),
-          child: Text('POPULAR CLASSES',
-              textAlign: TextAlign.left, style: AppTheme.title),
-        ),
-        PopularClassListView(
-          callback: () {
 //            moveTo();
           },
         ),
@@ -308,12 +293,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   }
 
   void moveTo() {
-//    Navigator.push(
-//      context,
-//      MaterialPageRoute(
-//        builder: (context) => CourseInfoScreen(),
-//      ),
-//    );
+
   }
 
   Widget buttonCategory(CategoryType categoryTypeData, bool isSelected) {

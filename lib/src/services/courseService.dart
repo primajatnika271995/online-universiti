@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
 import 'package:online_university/src/config/url.dart';
+import 'package:online_university/src/models/courseDetailsModel.dart';
 import 'package:online_university/src/models/courseModel.dart';
 import 'package:online_university/src/models/mentorModel.dart';
 import 'package:simple_logger/simple_logger.dart';
@@ -23,7 +24,7 @@ class CourseService {
       Uri uri = Uri.parse(UriApi.getListCourseByIDMentor);
       final uriParams = uri.replace(queryParameters: params);
       final response = await client.get(uriParams);
-      log.info("Mentor by ID { status : ${response.statusCode} }");
+      log.info("Course by ID Mentor { status : ${response.statusCode} }");
 
       if (response.statusCode == 200) {
         return compute(courseModelFromJson, response.body);
@@ -33,4 +34,19 @@ class CourseService {
     }
     return null;
   }
+
+  Future<CourseDetailsModel> getCourseDetailTabs(String idCourse) async {
+    try {
+      final response = await client.get(UriApi.getDetailsCourseTabs + idCourse);
+      log.info("Course Details { status : ${response.statusCode} } ");
+
+      if (response.statusCode == 200) {
+        return compute(courseDetailsModelFromJson, response.body);
+      }
+    } catch(err) {
+      log.warning(err.toString());
+    }
+    return null;
+  }
+
 }

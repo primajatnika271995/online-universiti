@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:online_university/src/models/mentorModel.dart';
+import 'package:online_university/src/models/courseDetailsModel.dart';
 import 'package:online_university/src/utils/appTheme.dart';
 
-class MentorDetailsOverview extends StatelessWidget {
-  MentorModel value;
-  MentorDetailsOverview({this.value});
+class BisnisKreatifOverview extends StatelessWidget {
+  CourseDetailsModel value;
+  BisnisKreatifOverview({this.value});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class MentorDetailsOverview extends StatelessWidget {
                 child: Text("MEET YOUR NEW MENTOR", style: AppTheme.subtitle),
               ),
               Text(
-                value.aboutMe,
+                value.courseDescription,
                 style: AppTheme.caption,
               ),
               SizedBox(
@@ -53,7 +53,7 @@ class MentorDetailsOverview extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "32 Lessons",
+                        "${value.totalMateri} Chapter",
                         style: AppTheme.caption,
                       ),
                     ],
@@ -72,7 +72,7 @@ class MentorDetailsOverview extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "Exclusive learning materials",
+                        "${value.rating}",
                         style: AppTheme.caption,
                       ),
                     ],
@@ -123,7 +123,7 @@ class MentorDetailsOverview extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5),
-                  child: Text("Get unlimited access to all 60+ instruction - including ${value.name} - for IDR 2,628,450.00 / year.", style: AppTheme.subtitle),
+                  child: Text("Get unlimited access to all 60+ instruction - including ${value.mentorName} - for IDR ${value.coursePrice} / year.", style: AppTheme.subtitle),
                 ),
               ],
             ),
@@ -137,7 +137,7 @@ class MentorDetailsOverview extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text("IDR 2,628,450.00", style: AppTheme.title),
+              Text("IDR ${value.coursePrice}, -", style: AppTheme.title),
               RaisedButton(
                 onPressed: () {},
                 color: Colors.red,

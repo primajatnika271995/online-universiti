@@ -4,9 +4,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:online_university/src/bloc/bisnis_kreatif_bloc/bisnis_kreatif_bloc.dart';
 import 'package:online_university/src/bloc/bisnis_kreatif_bloc/bisnis_kreatif_event.dart';
 import 'package:online_university/src/bloc/bisnis_kreatif_bloc/bisnis_kreatif_state.dart';
+import 'package:online_university/src/bloc/course_bloc/course_bloc.dart';
 import 'package:online_university/src/models/bisnisKreatifModel.dart';
 import 'package:online_university/src/models/classPreviews.dart';
+import 'package:online_university/src/services/courseService.dart';
 import 'package:online_university/src/utils/appTheme.dart';
+import 'package:online_university/src/views/bisnis_kreatif_page/bisnis_kreatif_details.dart';
 
 class BisnisKreatifListView extends StatefulWidget {
   final Function callback;
@@ -74,7 +77,7 @@ class _BisnisKreatifListViewState extends State<BisnisKreatifListView>
                     data: value,
                     animationController: animationController,
                     callback: () {
-                      widget.callback();
+                      widget.callback(value.idCourse);
                     },
                   );
                 },
@@ -119,7 +122,16 @@ class CategoryView extends StatelessWidget {
               child: InkWell(
                 splashColor: Colors.transparent,
                 onTap: () {
-                  callback();
+//                  callback();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => BlocProvider(
+                        builder: (context) => CourseBloc(CourseService()),
+                        child: BisnisKreatifDetails(idCourse: data.idCourse),
+                      ),
+                    ),
+                  );
                 },
                 child: Container(
                   decoration: BoxDecoration(

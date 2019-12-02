@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:online_university/src/models/courseDetailsModel.dart';
 import 'package:online_university/src/models/courseModel.dart';
 
 class CourseState extends Equatable {
@@ -20,6 +21,17 @@ class CourseIsLoaded extends CourseState {
 
   CourseIsLoaded(this._data);
   List<CourseModel> get getListCourse => _data;
+
+  @override
+  // TODO: implement props
+  List<Object> get props => [_data];
+}
+
+class CourseDetailsIsLoaded extends CourseState {
+  final _data;
+
+  CourseDetailsIsLoaded(this._data);
+  CourseDetailsModel get getDetailsCourse => _data;
 
   @override
   // TODO: implement props
