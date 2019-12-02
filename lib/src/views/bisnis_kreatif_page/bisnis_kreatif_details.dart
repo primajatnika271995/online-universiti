@@ -3,7 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_university/src/bloc/course_bloc/course_bloc.dart';
 import 'package:online_university/src/bloc/course_bloc/course_event.dart';
 import 'package:online_university/src/bloc/course_bloc/course_state.dart';
+import 'package:online_university/src/bloc/materi_bloc/materi_bloc.dart';
+import 'package:online_university/src/services/materiService.dart';
 import 'package:online_university/src/utils/appTheme.dart';
+import 'package:online_university/src/views/bisnis_kreatif_page/bisnis_kreatif_lesson_list_view.dart';
 import 'package:online_university/src/views/bisnis_kreatif_page/bisnis_kreatif_overview.dart';
 import 'package:online_university/src/views/home.dart';
 
@@ -138,14 +141,13 @@ class _BisnisKreatifDetailsState extends State<BisnisKreatifDetails> {
                               children: [
                                 BisnisKreatifOverview(
                                     value: state.getDetailsCourse),
-                                Container(),
-//                                BlocProvider(
-//                                  builder: (context) =>
-//                                      CourseBloc(CourseService()),
-//                                  child: MentorLessonListView(
-//                                    idMentor: state.getMentor.idUserProfile,
-//                                  ),
-//                                ),
+                                BlocProvider(
+                                  builder: (context) =>
+                                      MateriBloc(MateriService()),
+                                  child: BisnisKreatifLessonListView(
+                                    idCourse: state.getDetailsCourse.idCourse,
+                                  ),
+                                ),
                               ],
                             ),
                           ),

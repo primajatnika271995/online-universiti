@@ -21,7 +21,14 @@ class _ProfilePageState extends State<ProfilePage> {
     _preferences = await SharedPreferences.getInstance();
     var isAuth = _preferences.getString(LocalStorage.ACCESS_TOKEN_KEY);
 
-    if (isAuth != null) return true;
+    if (isAuth != null) {
+      _profileData.name = _preferences.getString(LocalStorage.NAME_KEY);
+      _profileData.email = _preferences.getString(LocalStorage.EMAIL_KEY);
+      _profileData.imgUrl =
+          _preferences.getString(LocalStorage.PROFILE_IMG_KEY);
+
+      return true;
+    }
 
     return false;
   }
@@ -68,7 +75,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       break;
                     default:
                       if (snapshot.data)
-                        return SizedBox();
+                        return profileData();
                       else
                         return formLogin();
                   }
@@ -317,6 +324,61 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           createAccountBtn(),
           signInBtn(),
+        ],
+      ),
+    );
+  }
+
+  Widget profileData() {
+    return Center(
+      child: Column(
+        children: <Widget>[
+          SizedBox(
+            height: 20,
+          ),
+          CircleAvatar(
+            backgroundImage: NetworkImage(_profileData.imgUrl),
+            backgroundColor: AppTheme.nearlyWhite,
+            radius: 35,
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Text(_profileData.name, style: AppTheme.title),
+          Text("${_profileData.email} • Premium Account",
+              style: AppTheme.subtitle),
+          SizedBox(
+            height: 30,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                color: AppTheme.dark_grey,
+              ),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                child: ListTile(
+                  title: Text("Course Tersimpan", style: AppTheme.title),
+                  subtitle: Text(
+                    "Beberapa course milik anda tersimpan disini. Silahkan pelajari course milik anda.",
+                    style: AppTheme.subtitle,
+                  ),
+                  leading: Icon(
+                    Icons.bookmark,
+                    color: AppTheme.nearlyWhite,
+                  ),
+                  trailing: IconButton(
+                    icon: Icon(Icons.navigate_next),
+                    onPressed: () {},
+                    color: AppTheme.nearlyWhite,
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
