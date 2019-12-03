@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:online_university/src/models/courseDetailsModel.dart';
 import 'package:online_university/src/utils/appTheme.dart';
+import 'package:online_university/src/views/component/currencyFormatted.dart';
 
 class BisnisKreatifOverview extends StatelessWidget {
   CourseDetailsModel value;
@@ -137,7 +138,7 @@ class BisnisKreatifOverview extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text("IDR ${value.coursePrice}, -", style: AppTheme.title),
+              Text(formattedCoursePrice(value.coursePrice), style: AppTheme.title),
               RaisedButton(
                 onPressed: () {},
                 color: Colors.red,

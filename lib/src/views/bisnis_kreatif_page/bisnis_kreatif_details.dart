@@ -8,6 +8,8 @@ import 'package:online_university/src/services/materiService.dart';
 import 'package:online_university/src/utils/appTheme.dart';
 import 'package:online_university/src/views/bisnis_kreatif_page/bisnis_kreatif_lesson_list_view.dart';
 import 'package:online_university/src/views/bisnis_kreatif_page/bisnis_kreatif_overview.dart';
+import 'package:online_university/src/views/bisnis_kreatif_page/video_player.dart';
+import 'package:online_university/src/views/component/log.dart';
 import 'package:online_university/src/views/home.dart';
 
 class BisnisKreatifDetails extends StatefulWidget {
@@ -21,6 +23,15 @@ class BisnisKreatifDetails extends StatefulWidget {
 class _BisnisKreatifDetailsState extends State<BisnisKreatifDetails> {
   ScrollController _scrollController = new ScrollController();
   final int _tabLength = 2;
+
+  _onViewVideo(String url) {
+    log.info(url);
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => VideoPlayerScreen(url: url),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -146,6 +157,9 @@ class _BisnisKreatifDetailsState extends State<BisnisKreatifDetails> {
                                       MateriBloc(MateriService()),
                                   child: BisnisKreatifLessonListView(
                                     idCourse: state.getDetailsCourse.idCourse,
+                                    callback: (String url) {
+                                      _onViewVideo(url);
+                                    },
                                   ),
                                 ),
                               ],

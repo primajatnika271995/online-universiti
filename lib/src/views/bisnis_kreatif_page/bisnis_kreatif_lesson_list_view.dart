@@ -74,7 +74,7 @@ class _BisnisKreatifLessonListViewState extends State<BisnisKreatifLessonListVie
                     data: value,
                     animationController: animationController,
                     callback: () {
-                      widget.callback();
+                      widget.callback(value.listContentMateri[0].url);
                     },
                   );
                 },

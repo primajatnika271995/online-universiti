@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:online_university/src/config/localStorage.dart';
 import 'package:online_university/src/utils/appTheme.dart';
+import 'package:online_university/src/views/component/log.dart';
 import 'package:online_university/src/views/introduction_page/pageViewIntro.dart';
 import 'package:online_university/src/views/login_page/login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class IntroductionPage extends StatefulWidget {
   @override
@@ -10,7 +13,20 @@ class IntroductionPage extends StatefulWidget {
 
 class _IntroductionPageState extends State<IntroductionPage> {
 
-  _onNavigationHome() {
+  void _checkAuth() async {
+    SharedPreferences _pref = await SharedPreferences.getInstance();
+    bool _isAuth = _pref.getBool(LocalStorage.SKIP_INTRO);
+
+    log.info(_isAuth);
+
+    if (_isAuth)
+      Navigator.of(context).pushReplacementNamed('/');
+  }
+
+  _onNavigationHome() async {
+    SharedPreferences _pref = await SharedPreferences.getInstance();
+    _pref.setBool(LocalStorage.SKIP_INTRO, true);
+
     Navigator.of(context).pushReplacementNamed('/');
   }
 
@@ -23,7 +39,13 @@ class _IntroductionPageState extends State<IntroductionPage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    _checkAuth();
     return Container(
       color: Colors.black,
       child: Scaffold(
@@ -44,7 +66,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
                   ),
                   Column(
                     children: <Widget>[
-                      signInBtn(),
+//                      signInBtn(),
                       exploreBtn(),
                       SizedBox(
                         height: 30,

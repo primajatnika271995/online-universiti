@@ -5,6 +5,7 @@ import 'package:online_university/src/bloc/course_bloc/course_event.dart';
 import 'package:online_university/src/bloc/course_bloc/course_state.dart';
 import 'package:online_university/src/models/courseModel.dart';
 import 'package:online_university/src/utils/appTheme.dart';
+import 'package:online_university/src/views/component/currencyFormatted.dart';
 
 class MentorLessonListView extends StatefulWidget {
   final String idMentor;
@@ -188,7 +189,7 @@ class CategoryView extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Text("Rp ${data.coursePrice}", style: AppTheme.title),
+            Text(formattedCoursePrice(data.coursePrice), style: AppTheme.title),
             RaisedButton(
               onPressed: () {},
               color: Colors.red,

@@ -7,7 +7,6 @@ import 'package:online_university/src/services/mentorService.dart';
 import 'package:online_university/src/utils/appTheme.dart';
 import 'package:online_university/src/utils/hexConverter.dart';
 import 'package:online_university/src/config/localStorage.dart';
-import 'package:online_university/src/views/bisnis_kreatif_page/bisnis_kreatif_details.dart';
 import 'package:online_university/src/views/component/log.dart';
 import 'package:online_university/src/views/login_page/login.dart';
 import 'package:online_university/src/views/mentor_page/mentor_details.dart';
@@ -16,7 +15,6 @@ import 'package:online_university/src/views/watch_page/bisnisKreatifListView.dar
 import 'package:online_university/src/views/watch_page/classPreviewListView.dart';
 import 'package:online_university/src/views/watch_page/keterampilanKreatifListView.dart';
 import 'package:online_university/src/views/watch_page/mentorListView.dart';
-import 'package:online_university/src/views/watch_page/popularClassListView.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
@@ -57,6 +55,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       _auth.token = _preferences.getString(LocalStorage.ACCESS_TOKEN_KEY);
     });
   }
+
+  void moveTo() {}
 
   _onNavigationLogin() {
     Navigator.of(context).push(
@@ -118,7 +118,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                       MentorBloc(MentorService()),
                                   child: listMentor(),
                                 ),
-                                classPreviews(),
+                                BlocProvider(
+                                  builder: (context) =>
+                                      BisnisKreatifBloc(BisnisKreatifService()),
+                                  child: classPreviews(),
+                                ),
                               ],
                             );
                           },
@@ -308,8 +312,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       ],
     );
   }
-
-  void moveTo() {}
 
   Widget buttonCategory(CategoryType categoryTypeData, bool isSelected) {
     var txt = '';

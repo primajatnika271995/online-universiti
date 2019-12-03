@@ -8,6 +8,7 @@ import 'package:online_university/src/models/bisnisKreatifModel.dart';
 import 'package:online_university/src/services/courseService.dart';
 import 'package:online_university/src/utils/appTheme.dart';
 import 'package:online_university/src/views/bisnis_kreatif_page/bisnis_kreatif_details.dart';
+import 'package:online_university/src/views/component/currencyFormatted.dart';
 
 class KeterampilanKreatifListView extends StatefulWidget {
   final Function callback;
@@ -228,8 +229,7 @@ class CategoryView extends StatelessWidget {
                           ],
                         ),
                         Expanded(
-                          child: Text(
-                            "Rp ${data.coursePrice}",
+                          child: Text(formattedCoursePrice(data.coursePrice),
                             style: AppTheme.title,
                             textAlign: TextAlign.right,
                           ),

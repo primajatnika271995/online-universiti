@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_university/src/bloc/bisnis_kreatif_bloc/bisnis_kreatif_bloc.dart';
+import 'package:online_university/src/bloc/bisnis_kreatif_bloc/bisnis_kreatif_event.dart';
+import 'package:online_university/src/bloc/bisnis_kreatif_bloc/bisnis_kreatif_state.dart';
+import 'package:online_university/src/models/bisnisKreatifModel.dart';
 import 'package:online_university/src/models/classPreviews.dart';
+import 'package:online_university/src/services/bisnisKreatifService.dart';
 import 'package:online_university/src/utils/appTheme.dart';
 import 'package:online_university/src/utils/hexConverter.dart';
 
@@ -35,26 +41,32 @@ class _ClassPreviewListViewState extends State<ClassPreviewListView>
 
   @override
   Widget build(BuildContext context) {
+    // ignore: close_sinks
+    final keterampilanKreatifBloc = BlocProvider.of<BisnisKreatifBloc>(context);
+    keterampilanKreatifBloc.add(FetchBisnisKreatif("keterampilan-kreatif"));
+
     return Padding(
       padding: const EdgeInsets.only(top: 5, bottom: 16),
       child: Container(
         height: 220,
         width: double.infinity,
-        child: FutureBuilder(
-          future: getData(),
-          builder: (context, snapshot) {
-            if (!snapshot.hasData) {
+        child: BlocBuilder<BisnisKreatifBloc, BisnisKreatifState>(
+          builder: (context, state) {
+            if (state is BisnisKreatifIsNotLoaded) {
               return SizedBox();
-            } else {
+            } else if (state is BisnisKreatifIsLoading) {
+              return SizedBox();
+            } else if (state is BisnisKreatifIsLoaded) {
               return ListView.builder(
                 padding: const EdgeInsets.only(
                     top: 0, bottom: 0, right: 16, left: 16),
-                itemCount: ClassPreviews.categoryList.length,
+                itemCount: state.getListBisnisKreatif.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  var count = ClassPreviews.categoryList.length > 10
+                  var value = state.getListBisnisKreatif[index];
+                  var count = state.getListBisnisKreatif.length > 10
                       ? 10
-                      : ClassPreviews.categoryList.length;
+                      : state.getListBisnisKreatif.length;
                   var animation = Tween(begin: 0.0, end: 1.0).animate(
                       CurvedAnimation(
                           parent: animationController,
@@ -63,7 +75,7 @@ class _ClassPreviewListViewState extends State<ClassPreviewListView>
                   animationController.forward();
 
                   return CategoryView(
-                    category: ClassPreviews.categoryList[index],
+                    data: value,
                     animation: animation,
                     animationController: animationController,
                     callback: () {
@@ -72,6 +84,8 @@ class _ClassPreviewListViewState extends State<ClassPreviewListView>
                   );
                 },
               );
+            } else {
+              return Text("s");
             }
           },
         ),
@@ -82,13 +96,13 @@ class _ClassPreviewListViewState extends State<ClassPreviewListView>
 
 class CategoryView extends StatelessWidget {
   final VoidCallback callback;
-  final ClassPreviews category;
+  final BisnisKreatifModel data;
   final AnimationController animationController;
   final Animation animation;
 
   const CategoryView(
       {Key key,
-        this.category,
+        this.data,
         this.animationController,
         this.animation,
         this.callback})
@@ -122,7 +136,7 @@ class CategoryView extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           image: DecorationImage(
-                            image: NetworkImage(category.imagePath),
+                            image: NetworkImage(data.bannerCourseUrl),
                             fit: BoxFit.fill,
                           ),
                         ),
@@ -130,11 +144,11 @@ class CategoryView extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
-                      child: Container(width: 160, child: Text(category.title, style: AppTheme.title)),
+                      child: Container(width: 160, child: Text(data.courseTitle, style: AppTheme.title, overflow: TextOverflow.ellipsis,)),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 3),
-                      child: Container(width: 160, child: Text(category.mentor, style: AppTheme.subtitle)),
+                      child: Container(width: 160, child: Text(data.mentorName, style: AppTheme.subtitle)),
                     )
                   ],
                 ),
