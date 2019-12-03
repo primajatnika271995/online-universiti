@@ -74,7 +74,7 @@ class _MentorListViewState extends State<MentorListView>
                     animation: animation,
                     animationController: animationController,
                     callback: () {
-                      widget.callback();
+                      widget.callback(value.idUserProfile);
                     },
                   );
                 },

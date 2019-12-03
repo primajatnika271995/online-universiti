@@ -8,7 +8,9 @@ import 'package:online_university/src/utils/appTheme.dart';
 import 'package:online_university/src/utils/hexConverter.dart';
 import 'package:online_university/src/config/localStorage.dart';
 import 'package:online_university/src/views/bisnis_kreatif_page/bisnis_kreatif_details.dart';
+import 'package:online_university/src/views/component/log.dart';
 import 'package:online_university/src/views/login_page/login.dart';
+import 'package:online_university/src/views/mentor_page/mentor_details.dart';
 import 'package:online_university/src/views/profile_page/profile.dart';
 import 'package:online_university/src/views/watch_page/bisnisKreatifListView.dart';
 import 'package:online_university/src/views/watch_page/classPreviewListView.dart';
@@ -60,6 +62,21 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => LoginPage(),
+      ),
+    );
+  }
+
+  _onDetailsMentor(String idUser) {
+    log.info(idUser);
+
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => BlocProvider(
+          builder: (context) => MentorBloc(MentorService()),
+          child: MentorDetails(
+            idUser: idUser,
+          ),
+        ),
       ),
     );
   }
@@ -130,15 +147,15 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   body: TabBarView(
                     children: [
                       BlocProvider(
-                        builder: (context) => BisnisKreatifBloc(BisnisKreatifService()),
+                        builder: (context) =>
+                            BisnisKreatifBloc(BisnisKreatifService()),
                         child: BisnisKreatifListView(
-                          callback: () {
-
-                          },
+                          callback: () {},
                         ),
                       ),
                       BlocProvider(
-                        builder: (context) => BisnisKreatifBloc(BisnisKreatifService()),
+                        builder: (context) =>
+                            BisnisKreatifBloc(BisnisKreatifService()),
                         child: KeterampilanKreatifListView(),
                       ),
                     ],
@@ -265,8 +282,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               textAlign: TextAlign.left, style: AppTheme.title),
         ),
         MentorListView(
-          callback: () {
-            moveTo();
+          callback: (String idUser) {
+            _onDetailsMentor(idUser);
           },
         ),
       ],
@@ -292,9 +309,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     );
   }
 
-  void moveTo() {
-
-  }
+  void moveTo() {}
 
   Widget buttonCategory(CategoryType categoryTypeData, bool isSelected) {
     var txt = '';
@@ -345,9 +360,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
 class ContestTabHeader extends SliverPersistentHeaderDelegate {
   final Widget searchUI;
-  ContestTabHeader(
-    this.searchUI,
-  );
+  ContestTabHeader(this.searchUI);
+
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
