@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:online_university/src/bloc/course_bloc/course_bloc.dart';
 import 'package:online_university/src/config/localStorage.dart';
+import 'package:online_university/src/services/courseService.dart';
 import 'package:online_university/src/utils/appTheme.dart';
 import 'package:online_university/src/views/component/log.dart';
 import 'package:online_university/src/views/login_page/login.dart';
+import 'package:online_university/src/views/profile_page/owned_course_screen.dart';
 import 'package:online_university/src/views/profile_page/profileList.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -45,6 +49,19 @@ class _ProfilePageState extends State<ProfilePage> {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => ProfileListPage(),
+      ),
+    );
+  }
+
+  _onNavigationOwnedCourse() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => BlocProvider(
+          builder: (context) => CourseBloc(CourseService()),
+          child: OwnedCourseScreen(
+            callback: () {},
+          ),
+        ),
       ),
     );
   }
@@ -358,8 +375,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 color: AppTheme.dark_grey,
               ),
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
                 child: ListTile(
                   title: Text("Course Tersimpan", style: AppTheme.title),
                   subtitle: Text(
@@ -372,7 +388,9 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   trailing: IconButton(
                     icon: Icon(Icons.navigate_next),
-                    onPressed: () {},
+                    onPressed: () {
+                      _onNavigationOwnedCourse();
+                    },
                     color: AppTheme.nearlyWhite,
                   ),
                 ),

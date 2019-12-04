@@ -1,16 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
+import 'package:online_university/src/config/localStorage.dart';
 import 'package:online_university/src/config/url.dart';
 import 'package:online_university/src/models/courseDetailsModel.dart';
 import 'package:online_university/src/models/courseModel.dart';
 import 'package:online_university/src/models/mentorModel.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_logger/simple_logger.dart';
 
 class CourseService {
-
-  Map<String, String> headers = {
-    'Authorization': 'Basic b25saW5lLXVuaXZlcnNpdHk6MTIzNDU='
-  };
 
   Client client = new Client();
   final log = SimpleLogger();
@@ -50,6 +48,14 @@ class CourseService {
   }
 
   Future<List<CourseModel>> getCourseOwned() async {
+
+    SharedPreferences _pref = await SharedPreferences.getInstance();
+    var token = _pref.getString(LocalStorage.ACCESS_TOKEN_KEY);
+
+    Map<String, String> headers = {
+      'Authorization': 'Bearer $token',
+    };
+
     try {
       final response = await client.get(UriApi.getListCourseOwned, headers: headers);
       log.info("Course Owned { status : ${response.statusCode} }");
