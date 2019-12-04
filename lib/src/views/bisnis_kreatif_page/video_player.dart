@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
+import 'package:custom_chewie/custom_chewie.dart';
 
 class VideoPlayerScreen extends StatefulWidget {
   final String url;
@@ -23,16 +24,20 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: _playerController.value.initialized
-          ? AspectRatio(
-              aspectRatio: _playerController.value.aspectRatio,
-              child: VideoPlayer(_playerController),
-            )
-          : Center(
-        child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation(Colors.white),
-          strokeWidth: 4,
-        ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          SizedBox(
+            height: MediaQuery.of(context).padding.top,
+          ),
+          Chewie(
+            _playerController,
+            aspectRatio: 3 / 2,
+            autoPlay: false,
+            looping: true,
+          ),
+        ],
       ),
     );
   }

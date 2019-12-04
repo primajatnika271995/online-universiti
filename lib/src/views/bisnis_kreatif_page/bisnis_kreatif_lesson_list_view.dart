@@ -17,8 +17,20 @@ class BisnisKreatifLessonListView extends StatefulWidget {
 }
 
 class _BisnisKreatifLessonListViewState extends State<BisnisKreatifLessonListView> with TickerProviderStateMixin {
-
   AnimationController animationController;
+
+  @override
+  // TODO: implement context
+  BuildContext get context => super.context;
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    // ignore: close_sinks
+    final materiBloc = BlocProvider.of<MateriBloc>(context);
+    materiBloc.add(FetchMateriCourse(widget.idCourse));
+    super.didChangeDependencies();
+  }
 
   @override
   void initState() {
@@ -35,10 +47,6 @@ class _BisnisKreatifLessonListViewState extends State<BisnisKreatifLessonListVie
 
   @override
   Widget build(BuildContext context) {
-
-    final materiBloc = BlocProvider.of<MateriBloc>(context);
-    materiBloc.add(FetchMateriCourse(widget.idCourse));
-
     return Container(
       child: BlocBuilder<MateriBloc, MateriState>(
         builder: (context, state) {

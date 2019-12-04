@@ -71,6 +71,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.2"
+  custom_chewie:
+    dependency: "direct main"
+    description:
+      name: custom_chewie
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.7.0"
   equatable:
     dependency: "direct main"
     description:
@@ -83,6 +90,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_android_pip:
+    dependency: transitive
+    description:
+      name: flutter_android_pip
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.2"
   flutter_bloc:
     dependency: "direct main"
     description:
@@ -158,6 +172,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.7"
+  open_iconic_flutter:
+    dependency: transitive
+    description:
+      name: open_iconic_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.0"
   path:
     dependency: transitive
     description:
@@ -276,19 +297,12 @@ packages:
     source: hosted
     version: "2.0.8"
   video_player:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: video_player
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.10.3+3"
-  webview_flutter:
-    dependency: transitive
-    description:
-      name: webview_flutter
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.16"
+    version: "0.6.5"
   xml:
     dependency: transitive
     description:
@@ -303,13 +317,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.0"
-  youtube_player_flutter:
-    dependency: "direct main"
-    description:
-      name: youtube_player_flutter
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "6.0.3+2"
 sdks:
-  dart: ">=2.5.0 <3.0.0"
-  flutter: ">=1.9.1+hotfix.5 <2.0.0"
+  dart: ">=2.4.0 <3.0.0"
+  flutter: ">=1.6.7 <2.0.0"

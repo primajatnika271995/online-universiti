@@ -34,11 +34,20 @@ class _BisnisKreatifDetailsState extends State<BisnisKreatifDetails> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  // TODO: implement context
+  BuildContext get context => super.context;
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
     // ignore: close_sinks
     final courseBloc = BlocProvider.of<CourseBloc>(context);
     courseBloc.add(FetchCourseDetails(widget.idCourse));
+    super.didChangeDependencies();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return DefaultTabController(
       length: _tabLength,
       child: BlocBuilder<CourseBloc, CourseState>(
