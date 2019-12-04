@@ -24,6 +24,19 @@ class _KeterampilanKreatifListViewState
   AnimationController animationController;
 
   @override
+  // TODO: implement context
+  BuildContext get context => super.context;
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    // ignore: close_sinks
+    final keterampilanKreatifBloc = BlocProvider.of<BisnisKreatifBloc>(context);
+    keterampilanKreatifBloc.add(FetchBisnisKreatif("keterampilan-kreatif"));
+    super.didChangeDependencies();
+  }
+
+  @override
   void initState() {
     animationController = AnimationController(
         duration: Duration(milliseconds: 2000), vsync: this);
@@ -38,10 +51,6 @@ class _KeterampilanKreatifListViewState
 
   @override
   Widget build(BuildContext context) {
-    // ignore: close_sinks
-    final keterampilanKreatifBloc = BlocProvider.of<BisnisKreatifBloc>(context);
-    keterampilanKreatifBloc.add(FetchBisnisKreatif("keterampilan-kreatif"));
-
     return Container(
       child: BlocBuilder<BisnisKreatifBloc, BisnisKreatifState>(
         builder: (context, state) {

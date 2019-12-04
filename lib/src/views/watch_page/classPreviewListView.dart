@@ -26,6 +26,19 @@ class _ClassPreviewListViewState extends State<ClassPreviewListView>
   AnimationController animationController;
 
   @override
+  // TODO: implement context
+  BuildContext get context => super.context;
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    // ignore: close_sinks
+    final keterampilanKreatifBloc = BlocProvider.of<BisnisKreatifBloc>(context);
+    keterampilanKreatifBloc.add(FetchBisnisKreatif("keterampilan-kreatif"));
+    super.didChangeDependencies();
+  }
+
+  @override
   void initState() {
     animationController = AnimationController(
         duration: Duration(milliseconds: 2000), vsync: this);
@@ -45,10 +58,6 @@ class _ClassPreviewListViewState extends State<ClassPreviewListView>
 
   @override
   Widget build(BuildContext context) {
-    // ignore: close_sinks
-    final keterampilanKreatifBloc = BlocProvider.of<BisnisKreatifBloc>(context);
-    keterampilanKreatifBloc.add(FetchBisnisKreatif("keterampilan-kreatif"));
-
     return Padding(
       padding: const EdgeInsets.only(top: 5, bottom: 16),
       child: Container(

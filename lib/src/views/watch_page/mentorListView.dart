@@ -22,6 +22,19 @@ class _MentorListViewState extends State<MentorListView>
   AnimationController animationController;
 
   @override
+  // TODO: implement context
+  BuildContext get context => super.context;
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    // ignore: close_sinks
+    final mentorBloc = BlocProvider.of<MentorBloc>(context);
+    mentorBloc.add(FetchMentor());
+    super.didChangeDependencies();
+  }
+
+  @override
   void initState() {
     animationController = AnimationController(
         duration: Duration(milliseconds: 2000), vsync: this);
@@ -36,10 +49,6 @@ class _MentorListViewState extends State<MentorListView>
 
   @override
   Widget build(BuildContext context) {
-    // ignore: close_sinks
-    final mentorBloc = BlocProvider.of<MentorBloc>(context);
-    mentorBloc.add(FetchMentor());
-
     return Padding(
       padding: const EdgeInsets.only(top: 5, bottom: 16),
       child: Container(

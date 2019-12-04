@@ -25,6 +25,19 @@ class _BisnisKreatifListViewState extends State<BisnisKreatifListView>
   AnimationController animationController;
 
   @override
+  // TODO: implement context
+  BuildContext get context => super.context;
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    // ignore: close_sinks
+    final bisnisKreatifBloc = BlocProvider.of<BisnisKreatifBloc>(context);
+    bisnisKreatifBloc.add(FetchBisnisKreatif("bisnis-kreatif"));
+    super.didChangeDependencies();
+  }
+
+  @override
   void initState() {
     animationController = AnimationController(
         duration: Duration(milliseconds: 2000), vsync: this);
@@ -39,10 +52,6 @@ class _BisnisKreatifListViewState extends State<BisnisKreatifListView>
 
   @override
   Widget build(BuildContext context) {
-    // ignore: close_sinks
-    final bisnisKreatifBloc = BlocProvider.of<BisnisKreatifBloc>(context);
-    bisnisKreatifBloc.add(FetchBisnisKreatif("bisnis-kreatif"));
-
     return Container(
       child: BlocBuilder<BisnisKreatifBloc, BisnisKreatifState>(
         builder: (context, state) {
