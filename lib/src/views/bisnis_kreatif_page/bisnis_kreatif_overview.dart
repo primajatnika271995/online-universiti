@@ -4,8 +4,9 @@ import 'package:online_university/src/utils/appTheme.dart';
 import 'package:online_university/src/views/component/currencyFormatted.dart';
 
 class BisnisKreatifOverview extends StatelessWidget {
-  CourseDetailsModel value;
-  BisnisKreatifOverview({this.value});
+  final Function callback;
+  final CourseDetailsModel value;
+  BisnisKreatifOverview({Key key, this.value, this.callback}): super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -140,7 +141,9 @@ class BisnisKreatifOverview extends StatelessWidget {
             children: <Widget>[
               Text(formattedCoursePrice(value.coursePrice), style: AppTheme.title),
               RaisedButton(
-                onPressed: () {},
+                onPressed: () {
+                  callback();
+                },
                 color: Colors.red,
                 child: Text("CHOOSE", style: AppTheme.chooseBtn),
               ),

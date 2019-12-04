@@ -15,7 +15,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
   @override
   void initState() {
-    _playerController = VideoPlayerController.network(widget.url)
+    _playerController = VideoPlayerController.network("https://res.cloudinary.com/jejaring-uploader/video/upload/v1575441896/Opening_Ari_Moreno_Music_School_sosoew.mp4")
       ..initialize().then((_) {});
     super.initState();
   }

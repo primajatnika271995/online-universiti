@@ -4,6 +4,7 @@ import 'package:online_university/src/bloc/course_bloc/course_bloc.dart';
 import 'package:online_university/src/bloc/course_bloc/course_event.dart';
 import 'package:online_university/src/bloc/course_bloc/course_state.dart';
 import 'package:online_university/src/bloc/materi_bloc/materi_bloc.dart';
+import 'package:online_university/src/models/courseDetailsModel.dart';
 import 'package:online_university/src/services/materiService.dart';
 import 'package:online_university/src/utils/appTheme.dart';
 import 'package:online_university/src/views/bisnis_kreatif_page/bisnis_kreatif_lesson_list_view.dart';
@@ -11,6 +12,7 @@ import 'package:online_university/src/views/bisnis_kreatif_page/bisnis_kreatif_o
 import 'package:online_university/src/views/bisnis_kreatif_page/video_player.dart';
 import 'package:online_university/src/views/component/log.dart';
 import 'package:online_university/src/views/home.dart';
+import 'package:online_university/src/views/payment_page/payment_screen.dart';
 
 class BisnisKreatifDetails extends StatefulWidget {
   final String idCourse;
@@ -29,6 +31,17 @@ class _BisnisKreatifDetailsState extends State<BisnisKreatifDetails> {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => VideoPlayerScreen(url: url),
+      ),
+    );
+  }
+
+  _onCheckoutCourse(CourseDetailsModel state) {
+    log.info("Checkout !");
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => PaymentScreen(
+          value: state,
+        ),
       ),
     );
   }
@@ -160,7 +173,11 @@ class _BisnisKreatifDetailsState extends State<BisnisKreatifDetails> {
                             child: TabBarView(
                               children: [
                                 BisnisKreatifOverview(
-                                    value: state.getDetailsCourse),
+                                  value: state.getDetailsCourse,
+                                  callback: () {
+                                    _onCheckoutCourse(state.getDetailsCourse);
+                                  },
+                                ),
                                 BlocProvider(
                                   builder: (context) =>
                                       MateriBloc(MateriService()),

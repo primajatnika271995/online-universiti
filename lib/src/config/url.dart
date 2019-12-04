@@ -24,4 +24,7 @@ class UriApi {
 
   // Get Course Owned
   static const String getListCourseOwned = _authUri + "/api/courses/list/owned";
+
+  // CheckoutCourse
+  static const String checkOutCourse = _authUri + "/api/purchasing/checkout";
 }
