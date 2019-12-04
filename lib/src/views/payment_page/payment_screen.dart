@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:online_university/src/models/courseDetailsModel.dart';
+import 'package:online_university/src/services/checkoutService.dart';
 import 'package:online_university/src/utils/appTheme.dart';
 import 'package:online_university/src/views/component/currencyFormatted.dart';
+import 'package:online_university/src/views/component/log.dart';
 
 class PaymentScreen extends StatefulWidget {
   final Function callback;
@@ -14,6 +16,20 @@ class PaymentScreen extends StatefulWidget {
 }
 
 class _PaymentScreenState extends State<PaymentScreen> {
+
+  _onPaymentSend() {
+    var data = Checkout(
+      idCourse: widget.value.idCourse,
+      paymentTotal: widget.value.coursePrice.toString(),
+      paymentMethode: "transfer-bank-mandiri",
+    );
+
+    CheckoutService checkoutService = new CheckoutService();
+    checkoutService.checkoutCourse(data).then((response) {
+      log.info(response.statusCode);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -243,7 +259,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
     return Container(
       width: MediaQuery.of(context).size.width,
       child: RaisedButton(
-        onPressed: () {},
+        onPressed: () {
+          _onPaymentSend();
+        },
         color: AppTheme.blue_stone,
         child: Text("CHECK OUT", style: AppTheme.title),
       ),
