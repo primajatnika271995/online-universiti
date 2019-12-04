@@ -3,9 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_university/src/bloc/course_bloc/course_bloc.dart';
 import 'package:online_university/src/bloc/course_bloc/course_event.dart';
 import 'package:online_university/src/bloc/course_bloc/course_state.dart';
+import 'package:online_university/src/models/courseDetailsModel.dart';
 import 'package:online_university/src/models/courseModel.dart';
 import 'package:online_university/src/utils/appTheme.dart';
 import 'package:online_university/src/views/component/currencyFormatted.dart';
+import 'package:online_university/src/views/component/log.dart';
+import 'package:online_university/src/views/payment_page/payment_screen.dart';
 
 class MentorLessonListView extends StatefulWidget {
   final String idMentor;
@@ -20,6 +23,17 @@ class MentorLessonListView extends StatefulWidget {
 class _MentorLessonListViewState extends State<MentorLessonListView>
     with TickerProviderStateMixin {
   AnimationController animationController;
+
+  _onCheckoutCourse(CourseDetailsModel state) {
+    log.info("Checkout !");
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => PaymentScreen(
+          value: state,
+        ),
+      ),
+    );
+  }
 
   @override
   void initState() {
@@ -191,7 +205,10 @@ class CategoryView extends StatelessWidget {
           children: <Widget>[
             Text(formattedCoursePrice(data.coursePrice), style: AppTheme.title),
             RaisedButton(
-              onPressed: () {},
+              onPressed: () {
+                callback();
+//                _onCheckoutCourse(state.getDetailsCourse);
+              },
               color: Colors.red,
               child: Text("CHOOSE", style: AppTheme.chooseBtn),
             ),

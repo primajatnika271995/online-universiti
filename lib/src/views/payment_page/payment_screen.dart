@@ -16,8 +16,14 @@ class PaymentScreen extends StatefulWidget {
 }
 
 class _PaymentScreenState extends State<PaymentScreen> {
+  bool _loading = false;
+  bool _success = false;
 
   _onPaymentSend() {
+    setState(() {
+      _loading = !_loading;
+    });
+
     var data = Checkout(
       idCourse: widget.value.idCourse,
       paymentTotal: widget.value.coursePrice.toString(),
@@ -26,7 +32,14 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
     CheckoutService checkoutService = new CheckoutService();
     checkoutService.checkoutCourse(data).then((response) {
-      log.info(response.statusCode);
+      if (response.statusCode == 201) {
+        setState(() {
+          _success = !_success;
+          _loading = !_loading;
+        });
+      } else {
+        _loading = !_loading;
+      }
     });
   }
 
@@ -72,7 +85,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 18),
-                      child: paymentBtn(),
+                      child: _loading ? loadingReplace() : paymentBtn(),
                     ),
                   ],
                 ),
@@ -259,11 +272,26 @@ class _PaymentScreenState extends State<PaymentScreen> {
     return Container(
       width: MediaQuery.of(context).size.width,
       child: RaisedButton(
-        onPressed: () {
-          _onPaymentSend();
-        },
-        color: AppTheme.blue_stone,
-        child: Text("CHECK OUT", style: AppTheme.title),
+        onPressed: _success ? () {} : _onPaymentSend,
+        color: _success ? AppTheme.screamin_green : AppTheme.blue_stone,
+        child: Text(
+          _success ? "Payment Done" : "CHECK OUT",
+          style: AppTheme.title,
+        ),
+      ),
+    );
+  }
+
+  Widget loadingReplace() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: SizedBox(
+        width: 20,
+        height: 20,
+        child: CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation(AppTheme.blue_stone),
+          strokeWidth: 4,
+        ),
       ),
     );
   }
