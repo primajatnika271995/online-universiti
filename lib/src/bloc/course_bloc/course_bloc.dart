@@ -39,5 +39,17 @@ class CourseBloc extends Bloc<CourseEvent, CourseState> {
         yield CourseIsNotLoaded();
       }
     }
+
+    if (event is FetchCourseOwned) {
+      yield CourseIsLoading();
+
+      try {
+        List<CourseModel> value = await courseService.getCourseOwned();
+        yield CourseIsLoaded(value);
+      } catch(err) {
+        log.warning(err.toString());
+        yield CourseIsNotLoaded();
+      }
+    }
   }
 }

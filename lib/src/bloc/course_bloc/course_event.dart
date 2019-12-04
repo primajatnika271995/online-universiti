@@ -26,6 +26,10 @@ class FetchCourseDetails extends CourseEvent {
   List<Object> get props => [idCourse];
 }
 
+class FetchCourseOwned extends CourseEvent {
+
+}
+
 class ResetCourse extends CourseEvent {
 
 }
