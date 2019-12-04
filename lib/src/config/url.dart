@@ -21,4 +21,7 @@ class UriApi {
 
   // Get Materi by ID Course
   static const String getListMateriCourse = _authUri + "/api/public/courses/materi/list";
+
+  // Get Course Owned
+  static const String getListCourseOwned = _authUri + "/api/courses/list/owned";
 }

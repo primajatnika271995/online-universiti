@@ -49,4 +49,18 @@ class CourseService {
     return null;
   }
 
+  Future<List<CourseModel>> getCourseOwned() async {
+    try {
+      final response = await client.get(UriApi.getListCourseOwned, headers: headers);
+      log.info("Course Owned { status : ${response.statusCode} }");
+
+      if (response.statusCode == 200) {
+        return compute(courseModelFromJson, response.body);
+      }
+    } catch(err) {
+      log.warning(err.toString());
+    }
+    return null;
+  }
+
 }
