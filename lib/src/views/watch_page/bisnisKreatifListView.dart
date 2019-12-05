@@ -6,7 +6,6 @@ import 'package:online_university/src/bloc/bisnis_kreatif_bloc/bisnis_kreatif_ev
 import 'package:online_university/src/bloc/bisnis_kreatif_bloc/bisnis_kreatif_state.dart';
 import 'package:online_university/src/bloc/course_bloc/course_bloc.dart';
 import 'package:online_university/src/models/bisnisKreatifModel.dart';
-import 'package:online_university/src/models/classPreviews.dart';
 import 'package:online_university/src/services/courseService.dart';
 import 'package:online_university/src/utils/appTheme.dart';
 import 'package:online_university/src/views/bisnis_kreatif_page/bisnis_kreatif_details.dart';

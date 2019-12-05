@@ -37,6 +37,10 @@ class _ProfilePageState extends State<ProfilePage> {
     return false;
   }
 
+  _onNavigationNotif() {
+    Navigator.of(context).pushNamed('/transaction-history');
+  }
+
   _onNavigationLogin() {
     Navigator.of(context).push(
       MaterialPageRoute(
@@ -148,6 +152,29 @@ class _ProfilePageState extends State<ProfilePage> {
                 color: AppTheme.nearlyWhite,
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(right: 0),
+            child: Container(
+              width: AppBar().preferredSize.height - 8,
+              height: AppBar().preferredSize.height - 8,
+              color: Colors.white,
+              child: Material(
+                color: Colors.black,
+                child: InkWell(
+                  borderRadius:
+                      new BorderRadius.circular(AppBar().preferredSize.height),
+                  child: Icon(
+                    Icons.notifications,
+                    size: 25,
+                    color: AppTheme.nearlyWhite,
+                  ),
+                  onTap: () {
+                    _onNavigationNotif();
+                  },
+                ),
               ),
             ),
           ),

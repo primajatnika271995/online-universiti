@@ -3,9 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_university/src/bloc/mentor_bloc/mentorEvent.dart';
 import 'package:online_university/src/bloc/mentor_bloc/mentorBloc.dart';
 import 'package:online_university/src/bloc/mentor_bloc/mentorState.dart';
-import 'package:online_university/src/models/classPreviews.dart';
-import 'package:online_university/src/models/mentor.dart';
-import 'package:online_university/src/models/courseModel.dart';
 import 'package:online_university/src/models/mentorModel.dart';
 import 'package:online_university/src/utils/appTheme.dart';
 
@@ -68,9 +65,9 @@ class _MentorListViewState extends State<MentorListView>
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   var value = state.getListMentor[index];
-                  var count = ClassPreviews.categoryList.length > 10
+                  var count = state.getListMentor.length > 10
                       ? 10
-                      : ClassPreviews.categoryList.length;
+                      : state.getListMentor.length;
                   var animation = Tween(begin: 0.0, end: 1.0).animate(
                       CurvedAnimation(
                           parent: animationController,

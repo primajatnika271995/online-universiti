@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:online_university/src/views/component/bottomNavigation.dart';
 import 'package:online_university/src/views/home.dart';
 import 'package:online_university/src/views/introduction_page/introduction.dart';
+import 'package:online_university/src/views/payment_page/transaksi_screen.dart';
 
 void app() {
   runApp(
@@ -12,6 +13,7 @@ void app() {
       routes: {
         '/': (context) => BottomNavigationDrawer(),
         '/introduction': (context) => IntroductionPage(),
+        '/transaction-history': (context) => TransaksiScreen(),
       },
     ),
   );

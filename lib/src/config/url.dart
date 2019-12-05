@@ -27,4 +27,7 @@ class UriApi {
 
   // CheckoutCourse
   static const String checkOutCourse = _authUri + "/api/purchasing/checkout";
+
+  // Transaction History
+  static const String getTransactionHistory = _authUri + "/api/purchasing/detail/status";
 }
