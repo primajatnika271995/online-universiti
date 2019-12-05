@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_university/src/bloc/transaction_bloc/transaction_bloc.dart';
+import 'package:online_university/src/services/transactionService.dart';
 import 'package:online_university/src/utils/appTheme.dart';
+import 'package:online_university/src/views/payment_page/waiting_payment_list_view.dart';
 
 class TransaksiScreen extends StatefulWidget {
   @override
@@ -11,6 +15,66 @@ class _TransaksiScreenState extends State<TransaksiScreen> {
   Future<bool> getData() async {
     await Future.delayed(const Duration(milliseconds: 0));
     return true;
+  }
+
+  _onNavigationWaitingPayment() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => BlocProvider(
+          builder: (context) => TransactionBloc(TransactionService()),
+          child: WaitingPaymentScreen(
+            callback: () {},
+            status: "waiting-payment",
+            title: "Waiting Payment",
+          ),
+        ),
+      ),
+    );
+  }
+
+  _onNavigationWaitingConfirmation() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => BlocProvider(
+          builder: (context) => TransactionBloc(TransactionService()),
+          child: WaitingPaymentScreen(
+            callback: () {},
+            status: "waiting-confirmation",
+            title: "Waiting Confirmation",
+          ),
+        ),
+      ),
+    );
+  }
+
+  _onNavigationPaymentCompleted() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => BlocProvider(
+          builder: (context) => TransactionBloc(TransactionService()),
+          child: WaitingPaymentScreen(
+            callback: () {},
+            status: "completed",
+            title: "Payment Completed",
+          ),
+        ),
+      ),
+    );
+  }
+
+  _onNavigationPaymentCanceled() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => BlocProvider(
+          builder: (context) => TransactionBloc(TransactionService()),
+          child: WaitingPaymentScreen(
+            callback: () {},
+            status: "canceled",
+            title: "Payment Canceled",
+          ),
+        ),
+      ),
+    );
   }
 
   @override
@@ -119,7 +183,9 @@ class _TransaksiScreenState extends State<TransaksiScreen> {
       width: MediaQuery.of(context).size.width,
       color: Colors.black,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          _onNavigationWaitingPayment();
+        },
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 15,
@@ -143,7 +209,9 @@ class _TransaksiScreenState extends State<TransaksiScreen> {
       width: MediaQuery.of(context).size.width,
       color: Colors.black,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          _onNavigationWaitingConfirmation();
+        },
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 15,
@@ -167,7 +235,9 @@ class _TransaksiScreenState extends State<TransaksiScreen> {
       width: MediaQuery.of(context).size.width,
       color: Colors.black,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          _onNavigationPaymentCompleted();
+        },
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 15,
@@ -191,7 +261,9 @@ class _TransaksiScreenState extends State<TransaksiScreen> {
       width: MediaQuery.of(context).size.width,
       color: Colors.black,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          _onNavigationPaymentCanceled();
+        },
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 15,

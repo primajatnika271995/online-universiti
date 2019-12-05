@@ -19,7 +19,7 @@ class TransactionService {
     };
 
     var params = {
-      'status-payment': status,
+      'status': status,
     };
 
     try {
