@@ -91,6 +91,14 @@ class AppTheme {
     color: white,
   );
 
+  static const TextStyle promoTitle = TextStyle( // h6 -> title
+    fontFamily: fontName,
+    fontWeight: FontWeight.bold,
+    fontSize: 16,
+    letterSpacing: 0.18,
+    color: dark_grey,
+  );
+
   static const TextStyle subtitle = TextStyle( // subtitle2 -> subtitle
     fontFamily: fontName,
     fontWeight: FontWeight.w400,

@@ -34,6 +34,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   final int _tabLength = 2;
 
+  bool _isHidden = false;
+
   @override
   void initState() {
     animationController = AnimationController(
@@ -53,6 +55,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       _profileData.imgUrl =
           _preferences.getString(LocalStorage.PROFILE_IMG_KEY);
       _auth.token = _preferences.getString(LocalStorage.ACCESS_TOKEN_KEY);
+    });
+  }
+
+  void hiddenPromo() {
+    setState(() {
+      _isHidden = !_isHidden;
     });
   }
 
@@ -112,7 +120,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           (BuildContext context, int index) {
                             return Column(
                               children: <Widget>[
-                                searchBar(),
+                                _isHidden ? SizedBox() : promoContent(),
                                 BlocProvider(
                                   builder: (context) =>
                                       MentorBloc(MentorService()),
@@ -271,6 +279,60 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             child: SizedBox(),
           )
         ],
+      ),
+    );
+  }
+
+  Widget promoContent() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 8, left: 18, right: 18),
+      child: Container(
+        height: 150,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          color: AppTheme.dark_grey,
+          image: DecorationImage(
+            image: NetworkImage("https://i0.wp.com/www.couponsnewegg.com/wp-content/uploads/2019/03/udemy-100-off-practical-music-theory-101-for-guitar.jpg?resize=750%2C405&ssl=1"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: InkWell(
+                onTap: () {
+                  hiddenPromo();
+                },
+                borderRadius: BorderRadius.circular(100),
+                child: Icon(
+                  Icons.cancel,
+                  color: AppTheme.dark_grey,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: InkWell(
+                onTap: () {},
+                borderRadius: BorderRadius.circular(100),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: AppTheme.dark_grey,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(3.0),
+                    child: Text("Discount 70%", style: AppTheme.title),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

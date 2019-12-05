@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:online_university/src/utils/appTheme.dart';
 import 'package:online_university/src/views/home.dart';
 import 'package:online_university/src/views/mentor_page/mentor_screen.dart';
-import 'package:online_university/src/views/my_classes_page/myclasses.dart';
 import 'package:online_university/src/views/profile_page/profile.dart';
 import 'package:online_university/src/views/search_page/search_screen.dart';
 
