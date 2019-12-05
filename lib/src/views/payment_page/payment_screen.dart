@@ -57,6 +57,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
             Expanded(
               child: Container(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Padding(
                       padding:
@@ -83,6 +84,15 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         ),
                       ),
                     ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 18),
+                      child: Text("Course Material Consists of :",
+                          style: AppTheme.title),
+                    ),
+                    courseDocument(),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 18),
                       child: _loading ? loadingReplace() : paymentBtn(),
@@ -198,13 +208,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
             ),
           ),
         ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: <Widget>[
-            Text(formattedCoursePrice(widget.value.coursePrice),
-                style: AppTheme.profileSetting),
-          ],
-        ),
       ],
     );
   }
@@ -265,6 +268,130 @@ class _PaymentScreenState extends State<PaymentScreen> {
           ),
         ),
       ],
+    );
+  }
+
+  Widget courseDocument() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 18),
+      child: Wrap(
+        spacing: 10,
+        children: <Widget>[
+          RaisedButton.icon(
+            onPressed: () {},
+            icon: Icon(Icons.videocam, color: AppTheme.nearlyWhite),
+            label: Text(
+              "Video (3)",
+              style: TextStyle(color: AppTheme.nearlyWhite),
+            ),
+            color: AppTheme.dark_grey,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
+          ),
+          RaisedButton.icon(
+            onPressed: () {},
+            icon: Icon(Icons.attach_file, color: AppTheme.nearlyWhite),
+            label: Text(
+              "PDF/Document (1)",
+              style: TextStyle(color: AppTheme.nearlyWhite),
+            ),
+            color: AppTheme.dark_grey,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
+          ),
+          RaisedButton.icon(
+            onPressed: () {},
+            icon: Icon(Icons.settings_backup_restore,
+                color: AppTheme.nearlyWhite),
+            label: Text(
+              "Examination (1)",
+              style: TextStyle(color: AppTheme.nearlyWhite),
+            ),
+            color: AppTheme.dark_grey,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
+          ),
+          RaisedButton.icon(
+            onPressed: () {},
+            icon: Icon(Icons.work, color: AppTheme.nearlyWhite),
+            label: Text(
+              "Certificate",
+              style: TextStyle(color: AppTheme.nearlyWhite),
+            ),
+            color: AppTheme.dark_grey,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget paymentMethod() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+      child: Center(
+        child: Wrap(
+          spacing: 10,
+          children: <Widget>[
+            Container(
+              width: 100,
+              decoration: BoxDecoration(
+                color: AppTheme.dark_grey,
+                borderRadius: BorderRadius.circular(5),
+              ),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                child: Column(
+                  children: <Widget>[
+                    Image.network(
+                        "https://upload.wikimedia.org/wikipedia/id/thumb/5/55/BNI_logo.svg/1280px-BNI_logo.svg.png"),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              width: 100,
+              decoration: BoxDecoration(
+                color: AppTheme.dark_grey,
+                borderRadius: BorderRadius.circular(5),
+              ),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                child: Column(
+                  children: <Widget>[
+                    Image.network(
+                        "https://upload.wikimedia.org/wikipedia/id/thumb/5/55/BNI_logo.svg/1280px-BNI_logo.svg.png"),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              width: 100,
+              decoration: BoxDecoration(
+                color: AppTheme.dark_grey,
+                borderRadius: BorderRadius.circular(5),
+              ),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                child: Column(
+                  children: <Widget>[
+                    Image.network(
+                        "https://upload.wikimedia.org/wikipedia/id/thumb/5/55/BNI_logo.svg/1280px-BNI_logo.svg.png"),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
