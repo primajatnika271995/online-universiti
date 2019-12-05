@@ -98,7 +98,7 @@ class _MentorDetailsState extends State<MentorDetails> {
                                                   style: AppTheme.courseTitle,
                                                 ),
                                               ),
-                                              takeTheClassBtn(),
+//                                              takeTheClassBtn(),
                                               watchTrailerBtn(),
                                             ],
                                           ),
@@ -185,7 +185,7 @@ class _MentorDetailsState extends State<MentorDetails> {
         width: MediaQuery.of(context).size.width,
         child: RaisedButton(
           onPressed: () {},
-          color: AppTheme.grey,
+          color: Colors.red,
           child: Text(
             "WATCH TRAILER",
             style: AppTheme.title,

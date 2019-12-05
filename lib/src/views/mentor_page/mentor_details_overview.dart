@@ -101,51 +101,111 @@ class MentorDetailsOverview extends StatelessWidget {
             ),
           ),
         ),
-        Container(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                SizedBox(
-                  height: 15,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Text("HOW TO ENROLL", style: AppTheme.subtitle),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                Text(
-                  "ALL-ACCESS PASS",
-                  style: AppTheme.title,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
-                  child: Text("Get unlimited access to all 60+ instruction - including ${value.name} - for IDR 2,628,450.00 / year.", style: AppTheme.subtitle),
-                ),
-              ],
-            ),
-          ),
-        ),
         SizedBox(
           height: 15,
         ),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          padding: const EdgeInsets.symmetric(horizontal: 18),
+          child: Wrap(
+            spacing: 10,
             children: <Widget>[
-              Text("IDR 2,628,450.00", style: AppTheme.title),
-              RaisedButton(
+              RaisedButton.icon(
                 onPressed: () {},
-                color: Colors.red,
-                child: Text("CHOOSE", style: AppTheme.chooseBtn),
+                icon: Icon(Icons.videocam, color: AppTheme.nearlyWhite),
+                label: Text(
+                  "Video (3)",
+                  style: TextStyle(color: AppTheme.nearlyWhite),
+                ),
+                color: AppTheme.dark_grey,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5),
+                ),
+              ),
+              RaisedButton.icon(
+                onPressed: () {},
+                icon: Icon(Icons.attach_file, color: AppTheme.nearlyWhite),
+                label: Text(
+                  "PDF/Document (1)",
+                  style: TextStyle(color: AppTheme.nearlyWhite),
+                ),
+                color: AppTheme.dark_grey,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5),
+                ),
+              ),
+              RaisedButton.icon(
+                onPressed: () {},
+                icon: Icon(Icons.settings_backup_restore,
+                    color: AppTheme.nearlyWhite),
+                label: Text(
+                  "Examination (1)",
+                  style: TextStyle(color: AppTheme.nearlyWhite),
+                ),
+                color: AppTheme.dark_grey,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5),
+                ),
+              ),
+              RaisedButton.icon(
+                onPressed: () {},
+                icon: Icon(Icons.work, color: AppTheme.nearlyWhite),
+                label: Text(
+                  "Certificate",
+                  style: TextStyle(color: AppTheme.nearlyWhite),
+                ),
+                color: AppTheme.dark_grey,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5),
+                ),
               ),
             ],
           ),
         ),
+//        Container(
+//          child: Padding(
+//            padding: const EdgeInsets.symmetric(horizontal: 20),
+//            child: Column(
+//              crossAxisAlignment: CrossAxisAlignment.start,
+//              children: <Widget>[
+//                SizedBox(
+//                  height: 15,
+//                ),
+//                Padding(
+//                  padding: const EdgeInsets.symmetric(vertical: 10),
+//                  child: Text("HOW TO ENROLL", style: AppTheme.subtitle),
+//                ),
+//                SizedBox(
+//                  height: 15,
+//                ),
+//                Text(
+//                  "ALL-ACCESS PASS",
+//                  style: AppTheme.title,
+//                ),
+//                Padding(
+//                  padding: const EdgeInsets.symmetric(vertical: 5),
+//                  child: Text("Get unlimited access to all 60+ instruction - including ${value.name} - for IDR 2,628,450.00 / year.", style: AppTheme.subtitle),
+//                ),
+//              ],
+//            ),
+//          ),
+//        ),
+//        SizedBox(
+//          height: 15,
+//        ),
+//        Padding(
+//          padding: EdgeInsets.symmetric(horizontal: 20),
+//          child: Row(
+//            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//            children: <Widget>[
+//              Text("IDR 2,628,450.00", style: AppTheme.title),
+//              RaisedButton(
+//                onPressed: () {},
+//                color: Colors.red,
+//                child: Text("CHOOSE", style: AppTheme.chooseBtn),
+//              ),
+//            ],
+//          ),
+//        ),
       ],
     );
   }
