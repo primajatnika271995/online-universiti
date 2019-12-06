@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:video_player/video_player.dart';
 import 'package:custom_chewie/custom_chewie.dart';
 
@@ -15,7 +16,8 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
   @override
   void initState() {
-    _playerController = VideoPlayerController.network("https://res.cloudinary.com/jejaring-uploader/video/upload/v1575537938/Compressed_st8jbf.mp4")
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.landscapeLeft]);
+    _playerController = VideoPlayerController.network(widget.url)
       ..initialize().then((_) {});
     super.initState();
   }

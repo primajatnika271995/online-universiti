@@ -42,6 +42,8 @@ class MentorService {
 
       if (response.statusCode == 200)
         return compute(mentorModelFromJson, response.body);
+      else
+        return null;
 
     } catch(err) {
       log.warning(err.toString());
