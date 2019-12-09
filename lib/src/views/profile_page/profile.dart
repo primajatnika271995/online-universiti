@@ -155,51 +155,79 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.only(right: 0),
-            child: Container(
-              width: AppBar().preferredSize.height - 8,
-              height: AppBar().preferredSize.height - 8,
-              color: Colors.white,
-              child: Material(
-                color: Colors.black,
-                child: InkWell(
-                  borderRadius:
-                      new BorderRadius.circular(AppBar().preferredSize.height),
-                  child: Icon(
-                    Icons.notifications,
-                    size: 25,
-                    color: AppTheme.nearlyWhite,
-                  ),
-                  onTap: () {
-                    _onNavigationNotif();
-                  },
-                ),
-              ),
-            ),
+          FutureBuilder(
+            future: getData(),
+            builder: (BuildContext context, snapshot) {
+              switch (snapshot.connectionState) {
+                case ConnectionState.waiting:
+                  return Center(child: CircularProgressIndicator());
+                  break;
+                default:
+                  if (snapshot.data)
+                    return Padding(
+                      padding: EdgeInsets.only(right: 0),
+                      child: Container(
+                        width: AppBar().preferredSize.height - 8,
+                        height: AppBar().preferredSize.height - 8,
+                        color: Colors.white,
+                        child: Material(
+                          color: Colors.black,
+                          child: InkWell(
+                            borderRadius:
+                            new BorderRadius.circular(AppBar().preferredSize.height),
+                            child: Icon(
+                              Icons.notifications,
+                              size: 25,
+                              color: AppTheme.nearlyWhite,
+                            ),
+                            onTap: () {
+                              _onNavigationNotif();
+                            },
+                          ),
+                        ),
+                      ),
+                    );
+                  else
+                    return SizedBox();
+              }
+            },
           ),
-          Padding(
-            padding: EdgeInsets.only(right: 8),
-            child: Container(
-              width: AppBar().preferredSize.height - 8,
-              height: AppBar().preferredSize.height - 8,
-              color: Colors.white,
-              child: Material(
-                color: Colors.black,
-                child: InkWell(
-                  borderRadius:
-                      new BorderRadius.circular(AppBar().preferredSize.height),
-                  child: Icon(
-                    Icons.settings,
-                    size: 25,
-                    color: AppTheme.nearlyWhite,
-                  ),
-                  onTap: () {
-                    _onNavigationSetting();
-                  },
-                ),
-              ),
-            ),
+          FutureBuilder(
+            future: getData(),
+            builder: (BuildContext context, snapshot) {
+              switch (snapshot.connectionState) {
+                case ConnectionState.waiting:
+                  return Center(child: CircularProgressIndicator());
+                  break;
+                default:
+                  if (snapshot.data)
+                    return Padding(
+                      padding: EdgeInsets.only(right: 8),
+                      child: Container(
+                        width: AppBar().preferredSize.height - 8,
+                        height: AppBar().preferredSize.height - 8,
+                        color: Colors.white,
+                        child: Material(
+                          color: Colors.black,
+                          child: InkWell(
+                            borderRadius:
+                            new BorderRadius.circular(AppBar().preferredSize.height),
+                            child: Icon(
+                              Icons.settings,
+                              size: 25,
+                              color: AppTheme.nearlyWhite,
+                            ),
+                            onTap: () {
+                              _onNavigationSetting();
+                            },
+                          ),
+                        ),
+                      ),
+                    );
+                  else
+                    return SizedBox();
+              }
+            },
           ),
         ],
       ),
