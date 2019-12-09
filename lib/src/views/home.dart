@@ -29,7 +29,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   ScrollController _scrollController = new ScrollController();
 
-  CategoryType categoryType = CategoryType.bisnisKreatif;
   ProfileData _profileData = new ProfileData();
   Auth _auth = new Auth();
 
@@ -375,52 +374,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       ],
     );
   }
-
-  Widget buttonCategory(CategoryType categoryTypeData, bool isSelected) {
-    var txt = '';
-    if (CategoryType.bisnisKreatif == categoryTypeData)
-      txt = 'Bisnis Kreatif';
-    else if (CategoryType.keterampilanKreatif == categoryTypeData)
-      txt = 'Keterampilan Kreatif';
-
-    return Expanded(
-      child: Container(
-        decoration: BoxDecoration(
-          color: isSelected ? AppTheme.blue_stone : AppTheme.nearlyWhite,
-          borderRadius: BorderRadius.all(Radius.circular(24.0)),
-          border: Border.all(color: AppTheme.blue_stone),
-        ),
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            splashColor: Colors.white24,
-            borderRadius: BorderRadius.all(Radius.circular(24)),
-            onTap: () {
-              setState(() {
-                categoryType = categoryTypeData;
-              });
-            },
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 12, horizontal: 18),
-              child: Center(
-                child: Text(
-                  txt,
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 12,
-                      letterSpacing: 0.27,
-                      color: isSelected
-                          ? AppTheme.nearlyWhite
-                          : AppTheme.blue_stone),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
 }
 
 class ContestTabHeader extends SliverPersistentHeaderDelegate {
@@ -443,9 +396,4 @@ class ContestTabHeader extends SliverPersistentHeaderDelegate {
   bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) {
     return false;
   }
-}
-
-enum CategoryType {
-  bisnisKreatif,
-  keterampilanKreatif,
 }

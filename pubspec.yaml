@@ -28,6 +28,7 @@ dependencies:
   custom_chewie: ^0.7.0
   shared_preferences: ^0.5.4+6
   font_awesome_flutter: ^8.5.0
+  flappy_search_bar: ^1.4.1
   flutter_bloc: ^2.0.1
   equatable: ^1.0.1
   simple_logger: ^1.5.1+1

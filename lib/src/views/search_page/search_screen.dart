@@ -1,3 +1,5 @@
+import 'package:flappy_search_bar/flappy_search_bar.dart';
+import 'package:flappy_search_bar/search_bar_style.dart';
 import 'package:flutter/material.dart';
 import 'package:online_university/src/utils/appTheme.dart';
 import 'package:online_university/src/utils/hexConverter.dart';
@@ -8,117 +10,50 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  ScrollController _scrollController = new ScrollController();
+
+  Future<List<Post>> search(String search) async {
+    await Future.delayed(Duration(seconds: 2));
+    return List.generate(search.length, (int index) {
+      return Post(
+        "Title : $search $index",
+        "Description :$search $index",
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.black,
-      child: Scaffold(
-        backgroundColor: Colors.black,
-        body: Column(
-          children: <Widget>[
-            SizedBox(
-              height: MediaQuery.of(context).padding.top,
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: SearchBar(
+            onSearch: search,
+            hintStyle: AppTheme.subtitle,
+            hintText: "Search Course ...",
+            textStyle: AppTheme.subtitle,
+            searchBarStyle: SearchBarStyle(
+              backgroundColor: AppTheme.nearlyWhite,
+              borderRadius: BorderRadius.circular(5),
             ),
-            Expanded(
-              child: NestedScrollView(
-                controller: _scrollController,
-                headerSliverBuilder:
-                    (BuildContext context, bool innerBoxIsScrolled) {
-                  return <Widget>[
-                    SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                        (BuildContext context, int index) {
-                          return Column(
-                            children: <Widget>[
-                              searchBar(),
-                            ],
-                          );
-                        },
-                        childCount: 1,
-                      ),
-                    ),
-                  ];
-                },
-                body: Container(),
-              ),
-            ),
-          ],
+            cancellationText: Text("cancel", style: AppTheme.subtitle),
+            onItemFound: (Post post, int index) {
+              return ListTile(
+                title: Text(post.title, style: AppTheme.title),
+                subtitle: Text(post.description, style: AppTheme.subtitle),
+              );
+            },
+          ),
         ),
       ),
     );
   }
+}
 
-  Widget searchBar() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 8.0, left: 18),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            width: MediaQuery.of(context).size.width * 0.91,
-            height: 64,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 8, bottom: 8),
-              child: Container(
-                decoration: new BoxDecoration(
-                  color: HexColor('#F8FAFB'),
-                  borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(13.0),
-                    bottomLeft: Radius.circular(13.0),
-                    topLeft: Radius.circular(13.0),
-                    topRight: Radius.circular(13.0),
-                  ),
-                ),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: new Container(
-                        padding: EdgeInsets.only(left: 16, right: 16),
-                        child: new TextFormField(
-                          style: TextStyle(
-                            fontFamily: 'WorkSans',
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                            color: AppTheme.blue_stone,
-                          ),
-                          keyboardType: TextInputType.text,
-                          decoration: new InputDecoration(
-                            labelText: 'Search for course',
-                            border: InputBorder.none,
-                            helperStyle: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                              color: HexColor('#B9BABC'),
-                            ),
-                            labelStyle: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 16,
-                              letterSpacing: 0.2,
-                              color: HexColor('#B9BABC'),
-                            ),
-                          ),
-                          onEditingComplete: () {},
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 60,
-                      height: 60,
-                      child: Icon(Icons.search, color: HexColor('#B9BABC')),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Expanded(
-            child: SizedBox(),
-          )
-        ],
-      ),
-    );
-  }
+class Post {
+  final String title;
+  final String description;
+
+  Post(this.title, this.description);
 }
