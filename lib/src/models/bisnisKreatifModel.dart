@@ -11,11 +11,11 @@ String bisnisKreatifModelToJson(List<BisnisKreatifModel> data) => json.encode(Li
 class BisnisKreatifModel {
   String idCourse;
   String courseTitle;
-  int coursePrice;
+  dynamic coursePrice;
   String mentorName;
   String mentorTitle;
   String mentorProfileUrl;
-  String rating;
+  dynamic rating;
   String bannerCourseUrl;
   String bannerTypeFile;
   String idCategoryCourse;

@@ -12,16 +12,18 @@ class CourseDetailsModel {
   String idCourse;
   String courseTitle;
   String courseDescription;
-  int coursePrice;
+  dynamic coursePrice;
   dynamic coursePriceDiscount;
   int totalMateri;
   String mentorName;
   String mentorTitle;
   String mentorProfileUrl;
-  double rating;
+  dynamic rating;
   String bannerCourseUrl;
   String bannerTypeFile;
   dynamic bannerFormatFile;
+  dynamic urlPlaceholder;
+  dynamic titlePlaceholder;
 
   CourseDetailsModel({
     this.idCourse,
@@ -37,6 +39,8 @@ class CourseDetailsModel {
     this.bannerCourseUrl,
     this.bannerTypeFile,
     this.bannerFormatFile,
+    this.urlPlaceholder,
+    this.titlePlaceholder,
   });
 
   factory CourseDetailsModel.fromJson(Map<String, dynamic> json) => CourseDetailsModel(
@@ -53,6 +57,8 @@ class CourseDetailsModel {
     bannerCourseUrl: json["bannerCourseUrl"] == null ? null : json["bannerCourseUrl"],
     bannerTypeFile: json["bannerTypeFile"] == null ? null : json["bannerTypeFile"],
     bannerFormatFile: json["bannerFormatFile"],
+    urlPlaceholder: json["urlPlaceholder"],
+    titlePlaceholder: json["titlePlaceholder"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -69,5 +75,7 @@ class CourseDetailsModel {
     "bannerCourseUrl": bannerCourseUrl == null ? null : bannerCourseUrl,
     "bannerTypeFile": bannerTypeFile == null ? null : bannerTypeFile,
     "bannerFormatFile": bannerFormatFile,
+    "urlPlaceholder": urlPlaceholder,
+    "titlePlaceholder": titlePlaceholder,
   };
 }

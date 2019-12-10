@@ -82,7 +82,7 @@ class _BisnisKreatifLessonListViewState extends State<BisnisKreatifLessonListVie
                     data: value,
                     animationController: animationController,
                     callback: () {
-                      widget.callback(value.listContentMateri[0].url);
+                      widget.callback(value.urlContent);
                     },
                   );
                 },
@@ -152,7 +152,7 @@ class CategoryView extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.all(Radius.circular(0)),
       child: Image.network(
-        data.listContentMateri[0].urlThumbnail,
+        data.urlThumbnail,
         fit: BoxFit.cover,
         width: 130,
         height: 90,
@@ -172,9 +172,9 @@ class CategoryView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(data.materiTitle, style: AppTheme.title),
+                    Text(data.title, style: AppTheme.title),
                     Text(
-                      data.idCourses,
+                      data.idCourse,
                       style: AppTheme.subtitle,
                     ),
                   ],

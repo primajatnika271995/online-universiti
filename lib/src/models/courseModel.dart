@@ -15,7 +15,7 @@ class CourseModel {
   String mentorName;
   String mentorTitle;
   String mentorProfileUrl;
-  String rating;
+  dynamic rating;
   String bannerCourseUrl;
   String bannerTypeFile;
   String idCategoryCourse;
