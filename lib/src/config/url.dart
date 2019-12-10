@@ -1,7 +1,7 @@
 class UriApi {
   UriApi._();
 
-  static const String _authUri = "http://192.168.1.39:8080/online-university-auth-server";
+  static const String _authUri = "http://116.206.196.170/online-university-auth-server";
 
   // Login Api
   static const String loginUri = _authUri + "/oauth/token";
