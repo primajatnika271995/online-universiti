@@ -228,7 +228,9 @@ class _BisnisKreatifDetailsState extends State<BisnisKreatifDetails> {
       child: Container(
         width: MediaQuery.of(context).size.width,
         child: RaisedButton(
-          onPressed: () {},
+          onPressed: () {
+            _onViewVideo("https://res.cloudinary.com/jejaring-uploader/video/upload/v1575972190/into_bqxh3e.mp4");
+          },
           color: AppTheme.grey,
           child: Text(
             "WATCH TRAILER",

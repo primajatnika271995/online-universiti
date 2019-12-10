@@ -6,6 +6,8 @@ import 'package:online_university/src/bloc/mentor_bloc/mentorEvent.dart';
 import 'package:online_university/src/bloc/mentor_bloc/mentorState.dart';
 import 'package:online_university/src/services/courseService.dart';
 import 'package:online_university/src/utils/appTheme.dart';
+import 'package:online_university/src/views/bisnis_kreatif_page/video_player.dart';
+import 'package:online_university/src/views/component/log.dart';
 import 'package:online_university/src/views/home.dart';
 import 'package:online_university/src/views/mentor_page/mentor_details_overview.dart';
 import 'package:online_university/src/views/mentor_page/mentor_lesson_list_view.dart';
@@ -21,6 +23,15 @@ class MentorDetails extends StatefulWidget {
 class _MentorDetailsState extends State<MentorDetails> {
   ScrollController _scrollController = new ScrollController();
   final int _tabLength = 2;
+
+  _onViewVideo(String url) {
+    log.info(url);
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => VideoPlayerScreen(url: url),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -184,7 +195,9 @@ class _MentorDetailsState extends State<MentorDetails> {
       child: Container(
         width: MediaQuery.of(context).size.width,
         child: RaisedButton(
-          onPressed: () {},
+          onPressed: () {
+            _onViewVideo("https://res.cloudinary.com/jejaring-uploader/video/upload/v1575975066/teaser-ori_sevlga.mp4");
+          },
           color: Colors.red,
           child: Text(
             "WATCH TRAILER",
