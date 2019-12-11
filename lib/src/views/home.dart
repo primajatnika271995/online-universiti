@@ -151,6 +151,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               ],
                               indicatorColor: Colors.redAccent,
                               labelStyle: AppTheme.title,
+                              isScrollable: true,
+                              labelPadding: EdgeInsets.symmetric(horizontal: 30),
                             ),
                           ),
                         ),
