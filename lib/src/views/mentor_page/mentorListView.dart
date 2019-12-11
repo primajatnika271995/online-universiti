@@ -63,9 +63,9 @@ class _MentorClassListViewState extends State<MentorClassListView>
               physics: NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 var value = state.getListMentor[index];
-                var count = PopularClass.listPopularClass.length > 10
+                var count = state.getListMentor.length > 10
                     ? 10
-                    : PopularClass.listPopularClass.length;
+                    : state.getListMentor.length;
                 var animation = Tween(begin: 0.0, end: 1.0).animate(
                     CurvedAnimation(
                         parent: animationController,

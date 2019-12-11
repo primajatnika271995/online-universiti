@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:online_university/src/models/mentorModel.dart';
 import 'package:online_university/src/utils/appTheme.dart';
+import 'package:online_university/src/views/mentor_page/mentor_what_your_learn_list_view.dart';
 
 class MentorDetailsOverview extends StatelessWidget {
   MentorModel value;
@@ -41,13 +42,13 @@ class MentorDetailsOverview extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 3),
+                  padding: const EdgeInsets.only(top: 6, bottom: 3),
                   child: Row(
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: Icon(
-                          Icons.ondemand_video,
+                          Icons.video_library,
                           color: AppTheme.nearlyWhite,
                           size: 25,
                         ),
@@ -161,51 +162,23 @@ class MentorDetailsOverview extends StatelessWidget {
             ),
           ),
         ),
-//        Container(
-//          child: Padding(
-//            padding: const EdgeInsets.symmetric(horizontal: 20),
-//            child: Column(
-//              crossAxisAlignment: CrossAxisAlignment.start,
-//              children: <Widget>[
-//                SizedBox(
-//                  height: 15,
-//                ),
-//                Padding(
-//                  padding: const EdgeInsets.symmetric(vertical: 10),
-//                  child: Text("HOW TO ENROLL", style: AppTheme.subtitle),
-//                ),
-//                SizedBox(
-//                  height: 15,
-//                ),
-//                Text(
-//                  "ALL-ACCESS PASS",
-//                  style: AppTheme.title,
-//                ),
-//                Padding(
-//                  padding: const EdgeInsets.symmetric(vertical: 5),
-//                  child: Text("Get unlimited access to all 60+ instruction - including ${value.name} - for IDR 2,628,450.00 / year.", style: AppTheme.subtitle),
-//                ),
-//              ],
-//            ),
-//          ),
-//        ),
-//        SizedBox(
-//          height: 15,
-//        ),
-//        Padding(
-//          padding: EdgeInsets.symmetric(horizontal: 20),
-//          child: Row(
-//            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//            children: <Widget>[
-//              Text("IDR 2,628,450.00", style: AppTheme.title),
-//              RaisedButton(
-//                onPressed: () {},
-//                color: Colors.red,
-//                child: Text("CHOOSE", style: AppTheme.chooseBtn),
-//              ),
-//            ],
-//          ),
-//        ),
+        Container(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top: 15, bottom: 5),
+                  child: Text("WHAT YOU\'LL LEARN", style: AppTheme.subtitle),
+                ),
+              ],
+            ),
+          ),
+        ),
+        MentorWhatYourLearn(
+          callback: () {},
+        ),
       ],
     );
   }

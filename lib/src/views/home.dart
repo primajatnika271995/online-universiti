@@ -42,7 +42,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     animationController = AnimationController(
         duration: Duration(microseconds: 2000), vsync: this);
     _onData();
-    freeTrialPopup(context);
     super.initState();
   }
 
@@ -52,6 +51,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       _profileData.imgUrl =
           _preferences.getString(LocalStorage.PROFILE_IMG_KEY);
       _auth.token = _preferences.getString(LocalStorage.ACCESS_TOKEN_KEY);
+
+      if (_auth.token == null || _auth.token.isEmpty) {
+        freeTrialPopup(context);
+      }
+
     });
   }
 
