@@ -152,7 +152,7 @@ class CategoryView extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.all(Radius.circular(0)),
       child: Image.network(
-        data.urlThumbnail,
+        data.urlThumbnail == null  ? "" : data.urlThumbnail,
         fit: BoxFit.cover,
         width: 130,
         height: 90,
@@ -172,9 +172,9 @@ class CategoryView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(data.title, style: AppTheme.title),
+                    Text("${data.title}", style: AppTheme.title),
                     Text(
-                      data.idCourse,
+                      "${data.idCourse}",
                       style: AppTheme.subtitle,
                     ),
                   ],

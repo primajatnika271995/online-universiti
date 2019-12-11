@@ -11,11 +11,11 @@ String transactionModelToJson(List<TransactionModel> data) => json.encode(List<d
 class TransactionModel {
   String idCourse;
   String courseTitle;
-  int coursePrice;
+  dynamic coursePrice;
   String mentorName;
   String mentorTitle;
   String mentorProfileUrl;
-  String rating;
+  double rating;
   String bannerCourseUrl;
   String bannerTypeFile;
   String idCategoryCourse;

@@ -101,64 +101,64 @@ class MentorDetailsOverview extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(
-          height: 15,
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18),
-          child: Wrap(
-            spacing: 10,
-            children: <Widget>[
-              RaisedButton.icon(
-                onPressed: () {},
-                icon: Icon(Icons.videocam, color: AppTheme.nearlyWhite),
-                label: Text(
-                  "Video (3)",
-                  style: TextStyle(color: AppTheme.nearlyWhite),
+        Container(
+          color: AppTheme.dark_grey,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 5),
+            child: Wrap(
+              spacing: 10,
+              children: <Widget>[
+                RaisedButton.icon(
+                  onPressed: () {},
+                  icon: Icon(Icons.videocam, color: AppTheme.dark_grey),
+                  label: Text(
+                    "Video (3)",
+                    style: TextStyle(color: AppTheme.dark_grey),
+                  ),
+                  color: AppTheme.nearlyWhite,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
                 ),
-                color: AppTheme.dark_grey,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5),
+                RaisedButton.icon(
+                  onPressed: () {},
+                  icon: Icon(Icons.attach_file, color: AppTheme.dark_grey),
+                  label: Text(
+                    "PDF/Document (1)",
+                    style: TextStyle(color: AppTheme.dark_grey),
+                  ),
+                  color: AppTheme.nearlyWhite,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
                 ),
-              ),
-              RaisedButton.icon(
-                onPressed: () {},
-                icon: Icon(Icons.attach_file, color: AppTheme.nearlyWhite),
-                label: Text(
-                  "PDF/Document (1)",
-                  style: TextStyle(color: AppTheme.nearlyWhite),
+                RaisedButton.icon(
+                  onPressed: () {},
+                  icon: Icon(Icons.settings_backup_restore,
+                      color: AppTheme.dark_grey),
+                  label: Text(
+                    "Examination (1)",
+                    style: TextStyle(color: AppTheme.dark_grey),
+                  ),
+                  color: AppTheme.nearlyWhite,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
                 ),
-                color: AppTheme.dark_grey,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5),
+                RaisedButton.icon(
+                  onPressed: () {},
+                  icon: Icon(Icons.work, color: AppTheme.dark_grey),
+                  label: Text(
+                    "Certificate",
+                    style: TextStyle(color: AppTheme.dark_grey),
+                  ),
+                  color: AppTheme.nearlyWhite,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
                 ),
-              ),
-              RaisedButton.icon(
-                onPressed: () {},
-                icon: Icon(Icons.settings_backup_restore,
-                    color: AppTheme.nearlyWhite),
-                label: Text(
-                  "Examination (1)",
-                  style: TextStyle(color: AppTheme.nearlyWhite),
-                ),
-                color: AppTheme.dark_grey,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5),
-                ),
-              ),
-              RaisedButton.icon(
-                onPressed: () {},
-                icon: Icon(Icons.work, color: AppTheme.nearlyWhite),
-                label: Text(
-                  "Certificate",
-                  style: TextStyle(color: AppTheme.nearlyWhite),
-                ),
-                color: AppTheme.dark_grey,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
 //        Container(
