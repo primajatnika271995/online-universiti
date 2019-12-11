@@ -6,6 +6,7 @@ import 'package:online_university/src/bloc/mentor_bloc/mentorEvent.dart';
 import 'package:online_university/src/bloc/mentor_bloc/mentorState.dart';
 import 'package:online_university/src/services/courseService.dart';
 import 'package:online_university/src/utils/appTheme.dart';
+import 'package:online_university/src/views/bisnis_kreatif_page/bisnis_kreatif_details.dart';
 import 'package:online_university/src/views/bisnis_kreatif_page/video_player.dart';
 import 'package:online_university/src/views/component/log.dart';
 import 'package:online_university/src/views/home.dart';
@@ -29,6 +30,19 @@ class _MentorDetailsState extends State<MentorDetails> {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => VideoPlayerScreen(url: url),
+      ),
+    );
+  }
+
+  _onViewCourseDetails(String idCourse) {
+    log.info(idCourse);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => BlocProvider(
+          builder: (context) => CourseBloc(CourseService()),
+          child: BisnisKreatifDetails(idCourse: idCourse),
+        ),
       ),
     );
   }
@@ -154,6 +168,9 @@ class _MentorDetailsState extends State<MentorDetails> {
                                       CourseBloc(CourseService()),
                                   child: MentorLessonListView(
                                     idMentor: state.getMentor.idUserProfile,
+                                    callback: (String idCourse) {
+                                      _onViewCourseDetails(idCourse);
+                                    },
                                   ),
                                 ),
                               ],
@@ -196,7 +213,8 @@ class _MentorDetailsState extends State<MentorDetails> {
         width: MediaQuery.of(context).size.width,
         child: RaisedButton(
           onPressed: () {
-            _onViewVideo("https://res.cloudinary.com/jejaring-uploader/video/upload/v1575975066/teaser-ori_sevlga.mp4");
+            _onViewVideo(
+                "https://res.cloudinary.com/jejaring-uploader/video/upload/v1575975066/teaser-ori_sevlga.mp4");
           },
           color: Colors.red,
           child: Text(

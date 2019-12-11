@@ -89,7 +89,7 @@ class _MentorLessonListViewState extends State<MentorLessonListView>
                     data: value,
                     animationController: animationController,
                     callback: () {
-                      widget.callback();
+                      widget.callback(value.idCourse);
                     },
                   );
                 },
