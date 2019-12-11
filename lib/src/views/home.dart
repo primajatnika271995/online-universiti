@@ -8,6 +8,7 @@ import 'package:online_university/src/utils/appTheme.dart';
 import 'package:online_university/src/utils/hexConverter.dart';
 import 'package:online_university/src/config/localStorage.dart';
 import 'package:online_university/src/views/component/currencyFormatted.dart';
+import 'package:online_university/src/views/component/free_trial_popup.dart';
 import 'package:online_university/src/views/component/log.dart';
 import 'package:online_university/src/views/login_page/login.dart';
 import 'package:online_university/src/views/mentor_page/mentor_details.dart';
@@ -41,12 +42,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     animationController = AnimationController(
         duration: Duration(microseconds: 2000), vsync: this);
     _onData();
+    freeTrialPopup(context);
     super.initState();
-  }
-
-  Future<bool> renderData() async {
-    await Future.delayed(const Duration(milliseconds: 0));
-    return true;
   }
 
   void _onData() async {

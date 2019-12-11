@@ -91,6 +91,14 @@ class AppTheme {
     color: white,
   );
 
+  static const TextStyle popupTitle = TextStyle( // h6 -> title
+    fontFamily: fontName,
+    fontWeight: FontWeight.bold,
+    fontSize: 18,
+    letterSpacing: 0.18,
+    color: blue_stone,
+  );
+
   static const TextStyle promoTitle = TextStyle( // h6 -> title
     fontFamily: fontName,
     fontWeight: FontWeight.bold,
