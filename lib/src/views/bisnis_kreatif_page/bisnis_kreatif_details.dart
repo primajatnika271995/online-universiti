@@ -27,7 +27,6 @@ class _BisnisKreatifDetailsState extends State<BisnisKreatifDetails> {
   final int _tabLength = 2;
 
   _onViewVideo(String url) {
-    log.info(url);
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => VideoPlayerScreen(url: url),
