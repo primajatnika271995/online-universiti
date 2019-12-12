@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:online_university/src/models/mentorModel.dart';
-import 'package:online_university/src/utils/appTheme.dart';
+import 'package:online_university/src/models/mentor_model.dart';
+import 'package:online_university/src/utils/app_theme.dart';
 import 'package:online_university/src/views/mentor_page/mentor_what_your_learn_list_view.dart';
 
 class MentorDetailsOverview extends StatelessWidget {

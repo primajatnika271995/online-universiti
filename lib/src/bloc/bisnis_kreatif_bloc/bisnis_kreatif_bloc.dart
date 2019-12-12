@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:online_university/src/bloc/bisnis_kreatif_bloc/bisnis_kreatif_event.dart';
 import 'package:online_university/src/bloc/bisnis_kreatif_bloc/bisnis_kreatif_state.dart';
-import 'package:online_university/src/models/bisnisKreatifModel.dart';
-import 'package:online_university/src/services/bisnisKreatifService.dart';
+import 'package:online_university/src/models/bisnis_kreatif_model.dart';
+import 'package:online_university/src/services/bisnis_kreatif_service.dart';
 import 'package:online_university/src/views/component/log.dart';
 
 class BisnisKreatifBloc extends Bloc<BisnisKreatifEvent, BisnisKreatifState> {

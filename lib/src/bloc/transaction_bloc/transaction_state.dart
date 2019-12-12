@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:online_university/src/models/transactionModel.dart';
+import 'package:online_university/src/models/transaction_model.dart';
 
 class TransactionState extends Equatable {
   @override

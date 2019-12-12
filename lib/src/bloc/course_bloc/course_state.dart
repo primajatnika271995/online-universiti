@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:online_university/src/models/courseDetailsModel.dart';
-import 'package:online_university/src/models/courseModel.dart';
+import 'package:online_university/src/models/course_details_model.dart';
+import 'package:online_university/src/models/course_model.dart';
 
 class CourseState extends Equatable {
   @override

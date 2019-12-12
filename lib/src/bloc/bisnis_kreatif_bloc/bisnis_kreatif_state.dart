@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:online_university/src/models/bisnisKreatifModel.dart';
+import 'package:online_university/src/models/bisnis_kreatif_model.dart';
 
 class BisnisKreatifState extends Equatable {
   @override

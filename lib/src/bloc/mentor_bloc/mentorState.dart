@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:online_university/src/models/courseModel.dart';
-import 'package:online_university/src/models/mentorModel.dart';
+import 'package:online_university/src/models/course_model.dart';
+import 'package:online_university/src/models/mentor_model.dart';
 
 class MentorState extends Equatable {
   @override

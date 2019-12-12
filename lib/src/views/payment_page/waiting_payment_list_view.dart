@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_university/src/bloc/transaction_bloc/transaction_bloc.dart';
 import 'package:online_university/src/bloc/transaction_bloc/transaction_event.dart';
 import 'package:online_university/src/bloc/transaction_bloc/transaction_state.dart';
-import 'package:online_university/src/models/transactionModel.dart';
-import 'package:online_university/src/utils/appTheme.dart';
-import 'package:online_university/src/views/component/currencyFormatted.dart';
+import 'package:online_university/src/models/transaction_model.dart';
+import 'package:online_university/src/utils/app_theme.dart';
+import 'package:online_university/src/views/component/currency_formatted.dart';
 
 class WaitingPaymentScreen extends StatefulWidget {
   final Function callback;

@@ -4,9 +4,9 @@ import 'package:equatable/equatable.dart';
 import 'package:bloc/bloc.dart';
 import 'package:online_university/src/bloc/mentor_bloc/mentorEvent.dart';
 import 'package:online_university/src/bloc/mentor_bloc/mentorState.dart';
-import 'package:online_university/src/models/courseModel.dart';
-import 'package:online_university/src/models/mentorModel.dart';
-import 'package:online_university/src/services/mentorService.dart';
+import 'package:online_university/src/models/course_model.dart';
+import 'package:online_university/src/models/mentor_model.dart';
+import 'package:online_university/src/services/mentor_service.dart';
 import 'package:online_university/src/views/component/log.dart';
 
 class MentorBloc extends Bloc<MentorEvent, MentorState> {

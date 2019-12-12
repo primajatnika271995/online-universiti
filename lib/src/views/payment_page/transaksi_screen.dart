@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_university/src/bloc/transaction_bloc/transaction_bloc.dart';
-import 'package:online_university/src/services/transactionService.dart';
-import 'package:online_university/src/utils/appTheme.dart';
+import 'package:online_university/src/services/transaction_service.dart';
+import 'package:online_university/src/utils/app_theme.dart';
 import 'package:online_university/src/views/payment_page/waiting_payment_list_view.dart';
 
 class TransaksiScreen extends StatefulWidget {

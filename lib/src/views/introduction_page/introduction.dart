@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:online_university/src/config/localStorage.dart';
-import 'package:online_university/src/utils/appTheme.dart';
+import 'package:online_university/src/config/local_storage.dart';
+import 'package:online_university/src/utils/app_theme.dart';
 import 'package:online_university/src/views/component/log.dart';
-import 'package:online_university/src/views/introduction_page/pageViewIntro.dart';
+import 'package:online_university/src/views/introduction_page/page_view_intro.dart';
 import 'package:online_university/src/views/login_page/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

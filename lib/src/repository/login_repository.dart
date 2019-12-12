@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:online_university/src/models/authenticated.dart';
-import 'package:online_university/src/services/loginService.dart';
+import 'package:online_university/src/services/login_service.dart';
 
 class LoginRepository {
   final serviceApi =  LoginService();

@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:online_university/src/models/courseDetailsModel.dart';
-import 'package:online_university/src/services/checkoutService.dart';
-import 'package:online_university/src/utils/appTheme.dart';
-import 'package:online_university/src/views/component/currencyFormatted.dart';
+import 'package:online_university/src/models/course_details_model.dart';
+import 'package:online_university/src/services/checkout_service.dart';
+import 'package:online_university/src/utils/app_theme.dart';
+import 'package:online_university/src/views/component/currency_formatted.dart';
 import 'package:online_university/src/views/component/log.dart';
 
 class PaymentScreen extends StatefulWidget {

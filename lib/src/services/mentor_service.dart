@@ -3,7 +3,7 @@ import 'dart:core';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' show Client;
 import 'package:online_university/src/config/url.dart';
-import 'package:online_university/src/models/mentorModel.dart';
+import 'package:online_university/src/models/mentor_model.dart';
 import 'package:simple_logger/simple_logger.dart';
 
 class MentorService {

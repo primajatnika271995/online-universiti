@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_university/src/bloc/mentor_bloc/mentorBloc.dart';
 import 'package:online_university/src/bloc/mentor_bloc/mentorEvent.dart';
 import 'package:online_university/src/bloc/mentor_bloc/mentorState.dart';
-import 'package:online_university/src/models/courseModel.dart';
-import 'package:online_university/src/models/mentorModel.dart';
-import 'package:online_university/src/models/popularClass.dart';
-import 'package:online_university/src/utils/appTheme.dart';
+import 'package:online_university/src/models/course_model.dart';
+import 'package:online_university/src/models/mentor_model.dart';
+import 'package:online_university/src/models/popular_class.dart';
+import 'package:online_university/src/utils/app_theme.dart';
 
 class MentorClassListView extends StatefulWidget {
   final Function callback;

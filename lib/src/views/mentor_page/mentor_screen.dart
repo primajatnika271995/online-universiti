@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_university/src/bloc/mentor_bloc/mentorBloc.dart';
-import 'package:online_university/src/services/mentorService.dart';
-import 'package:online_university/src/utils/appTheme.dart';
+import 'package:online_university/src/services/mentor_service.dart';
+import 'package:online_university/src/utils/app_theme.dart';
 import 'package:online_university/src/views/component/log.dart';
 import 'package:online_university/src/views/mentor_page/mentorListView.dart';
 import 'package:online_university/src/views/mentor_page/mentor_details.dart';
-import 'package:online_university/src/views/watch_page/mentorListView.dart';
+import 'package:online_university/src/views/watch_page/mentor_list_view.dart';
 
 class MentorPage extends StatefulWidget {
   @override

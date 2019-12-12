@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:online_university/src/utils/appTheme.dart';
-import 'package:online_university/src/views/component/dotsIndicator.dart';
+import 'package:online_university/src/utils/app_theme.dart';
+import 'package:online_university/src/views/component/dots_indicator.dart';
 
 class PageViewIntro extends StatelessWidget {
   final _pageViewCtrl = new PageController();

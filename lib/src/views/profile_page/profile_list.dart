@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:online_university/src/utils/appTheme.dart';
+import 'package:online_university/src/utils/app_theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileListPage extends StatefulWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:online_university/src/config/localStorage.dart';
+import 'package:online_university/src/config/local_storage.dart';
 import 'package:online_university/src/models/authenticated.dart';
-import 'package:online_university/src/repository/loginRepository.dart';
+import 'package:online_university/src/repository/login_repository.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:shared_preferences/shared_preferences.dart';

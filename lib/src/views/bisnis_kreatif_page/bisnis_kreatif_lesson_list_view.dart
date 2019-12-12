@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_university/src/bloc/materi_bloc/materi_bloc.dart';
 import 'package:online_university/src/bloc/materi_bloc/materi_event.dart';
 import 'package:online_university/src/bloc/materi_bloc/materi_state.dart';
-import 'package:online_university/src/models/materiModel.dart';
-import 'package:online_university/src/utils/appTheme.dart';
+import 'package:online_university/src/models/materi_model.dart';
+import 'package:online_university/src/utils/app_theme.dart';
 
 class BisnisKreatifLessonListView extends StatefulWidget {
   final idCourse;

@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:online_university/src/models/materiModel.dart';
+import 'package:online_university/src/models/materi_model.dart';
 
 class MateriState extends Equatable {
   @override

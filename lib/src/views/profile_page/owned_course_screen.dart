@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_university/src/bloc/course_bloc/course_bloc.dart';
 import 'package:online_university/src/bloc/course_bloc/course_event.dart';
 import 'package:online_university/src/bloc/course_bloc/course_state.dart';
-import 'package:online_university/src/models/courseModel.dart';
-import 'package:online_university/src/services/courseService.dart';
-import 'package:online_university/src/utils/appTheme.dart';
+import 'package:online_university/src/models/course_model.dart';
+import 'package:online_university/src/services/course_service.dart';
+import 'package:online_university/src/utils/app_theme.dart';
 import 'package:online_university/src/views/bisnis_kreatif_page/bisnis_kreatif_details.dart';
-import 'package:online_university/src/views/component/currencyFormatted.dart';
+import 'package:online_university/src/views/component/currency_formatted.dart';
 
 class OwnedCourseScreen extends StatefulWidget {
   final Function callback;

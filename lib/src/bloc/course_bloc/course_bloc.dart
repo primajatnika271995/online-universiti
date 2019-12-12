@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:online_university/src/bloc/course_bloc/course_event.dart';
 import 'package:online_university/src/bloc/course_bloc/course_state.dart';
-import 'package:online_university/src/models/courseDetailsModel.dart';
-import 'package:online_university/src/models/courseModel.dart';
-import 'package:online_university/src/services/courseService.dart';
+import 'package:online_university/src/models/course_details_model.dart';
+import 'package:online_university/src/models/course_model.dart';
+import 'package:online_university/src/services/course_service.dart';
 import 'package:online_university/src/views/component/log.dart';
 
 class CourseBloc extends Bloc<CourseEvent, CourseState> {

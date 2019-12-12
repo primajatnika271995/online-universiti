@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
-import 'package:online_university/src/config/localStorage.dart';
+import 'package:online_university/src/config/local_storage.dart';
 import 'package:online_university/src/config/url.dart';
-import 'package:online_university/src/models/courseDetailsModel.dart';
-import 'package:online_university/src/models/courseModel.dart';
-import 'package:online_university/src/models/mentorModel.dart';
+import 'package:online_university/src/models/course_details_model.dart';
+import 'package:online_university/src/models/course_model.dart';
+import 'package:online_university/src/models/mentor_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_logger/simple_logger.dart';
 

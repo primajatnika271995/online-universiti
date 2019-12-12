@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:online_university/src/bloc/bisnis_kreatif_bloc/bisnis_kreatif_bloc.dart';
 import 'package:online_university/src/bloc/bisnis_kreatif_bloc/bisnis_kreatif_event.dart';
 import 'package:online_university/src/bloc/bisnis_kreatif_bloc/bisnis_kreatif_state.dart';
 import 'package:online_university/src/bloc/course_bloc/course_bloc.dart';
-import 'package:online_university/src/models/bisnisKreatifModel.dart';
-import 'package:online_university/src/services/courseService.dart';
-import 'package:online_university/src/utils/appTheme.dart';
+import 'package:online_university/src/models/bisnis_kreatif_model.dart';
+import 'package:online_university/src/services/course_service.dart';
+import 'package:online_university/src/utils/app_theme.dart';
 import 'package:online_university/src/views/bisnis_kreatif_page/bisnis_kreatif_details.dart';
-import 'package:online_university/src/views/component/currencyFormatted.dart';
+import 'package:online_university/src/views/component/currency_formatted.dart';
 
-class KeterampilanKreatifListView extends StatefulWidget {
+class BisnisKreatifListView extends StatefulWidget {
   final Function callback;
-  KeterampilanKreatifListView({Key key, this.callback}) : super(key: key);
+  BisnisKreatifListView({Key key, this.callback}) : super(key: key);
 
   @override
-  _KeterampilanKreatifListViewState createState() =>
-      _KeterampilanKreatifListViewState();
+  _BisnisKreatifListViewState createState() => _BisnisKreatifListViewState();
 }
 
-class _KeterampilanKreatifListViewState
-    extends State<KeterampilanKreatifListView> with TickerProviderStateMixin {
+class _BisnisKreatifListViewState extends State<BisnisKreatifListView>
+    with TickerProviderStateMixin {
   AnimationController animationController;
 
   @override
@@ -31,8 +31,8 @@ class _KeterampilanKreatifListViewState
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     // ignore: close_sinks
-    final keterampilanKreatifBloc = BlocProvider.of<BisnisKreatifBloc>(context);
-    keterampilanKreatifBloc.add(FetchBisnisKreatif("keterampilan-kreatif"));
+    final bisnisKreatifBloc = BlocProvider.of<BisnisKreatifBloc>(context);
+    bisnisKreatifBloc.add(FetchBisnisKreatif("bisnis-kreatif"));
     super.didChangeDependencies();
   }
 
@@ -65,24 +65,8 @@ class _KeterampilanKreatifListViewState
             );
           } else if (state is BisnisKreatifIsLoaded) {
             return Padding(
-              padding: EdgeInsets.only(bottom: 5, top: 5),
-              child: ListView.separated(
-                separatorBuilder: (context, position) {
-                  return Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16),
-                    child: new SizedBox(
-                      height: 10.0,
-                      child: new Center(
-                        child: new Container(
-                          margin: new EdgeInsetsDirectional.only(
-                              start: 1.0, end: 1.0),
-                          height: 1.0,
-                          color: AppTheme.nearlyWhite,
-                        ),
-                      ),
-                    ),
-                  );
-                },
+              padding: EdgeInsets.only(bottom: 16),
+              child: ListView.builder(
                 itemCount: state.getListBisnisKreatif.length,
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) {
@@ -102,7 +86,7 @@ class _KeterampilanKreatifListViewState
                     data: value,
                     animationController: animationController,
                     callback: () {
-                      widget.callback();
+                      widget.callback(value.idCourse);
                     },
                   );
                 },
@@ -238,7 +222,8 @@ class CategoryView extends StatelessWidget {
                           ],
                         ),
                         Expanded(
-                          child: Text(formattedCoursePrice(data.coursePrice),
+                          child: Text(
+                            formattedCoursePrice(data.coursePrice),
                             style: AppTheme.title,
                             textAlign: TextAlign.right,
                           ),

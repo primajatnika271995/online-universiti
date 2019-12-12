@@ -3,8 +3,8 @@ import 'dart:math';
 import 'package:bloc/bloc.dart';
 import 'package:online_university/src/bloc/materi_bloc/materi_event.dart';
 import 'package:online_university/src/bloc/materi_bloc/materi_state.dart';
-import 'package:online_university/src/models/materiModel.dart';
-import 'package:online_university/src/services/materiService.dart';
+import 'package:online_university/src/models/materi_model.dart';
+import 'package:online_university/src/services/materi_service.dart';
 import 'package:online_university/src/views/component/log.dart';
 
 class MateriBloc extends Bloc<MateriEvent, MateriState> {

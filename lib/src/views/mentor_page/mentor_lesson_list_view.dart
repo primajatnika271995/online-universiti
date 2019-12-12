@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_university/src/bloc/course_bloc/course_bloc.dart';
 import 'package:online_university/src/bloc/course_bloc/course_event.dart';
 import 'package:online_university/src/bloc/course_bloc/course_state.dart';
-import 'package:online_university/src/models/courseDetailsModel.dart';
-import 'package:online_university/src/models/courseModel.dart';
-import 'package:online_university/src/utils/appTheme.dart';
-import 'package:online_university/src/views/component/currencyFormatted.dart';
+import 'package:online_university/src/models/course_details_model.dart';
+import 'package:online_university/src/models/course_model.dart';
+import 'package:online_university/src/utils/app_theme.dart';
+import 'package:online_university/src/views/component/currency_formatted.dart';
 import 'package:online_university/src/views/component/log.dart';
 import 'package:online_university/src/views/payment_page/payment_screen.dart';
 

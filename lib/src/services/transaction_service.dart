@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
-import 'package:online_university/src/config/localStorage.dart';
+import 'package:online_university/src/config/local_storage.dart';
 import 'package:online_university/src/config/url.dart';
-import 'package:online_university/src/models/transactionModel.dart';
+import 'package:online_university/src/models/transaction_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_logger/simple_logger.dart';
 

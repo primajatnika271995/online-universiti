@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:online_university/src/models/popularClass.dart';
-import 'package:online_university/src/utils/appTheme.dart';
+import 'package:online_university/src/models/popular_class.dart';
+import 'package:online_university/src/utils/app_theme.dart';
 
 class MentorWhatYourLearn extends StatefulWidget {
   final Function callback;

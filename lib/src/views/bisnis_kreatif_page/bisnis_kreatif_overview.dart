@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:online_university/src/models/courseDetailsModel.dart';
-import 'package:online_university/src/utils/appTheme.dart';
-import 'package:online_university/src/views/component/currencyFormatted.dart';
+import 'package:online_university/src/models/course_details_model.dart';
+import 'package:online_university/src/utils/app_theme.dart';
+import 'package:online_university/src/views/component/currency_formatted.dart';
 
 class BisnisKreatifOverview extends StatelessWidget {
   final Function callback;

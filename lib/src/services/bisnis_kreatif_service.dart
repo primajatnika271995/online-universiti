@@ -1,10 +1,11 @@
 import 'package:flutter/foundation.dart';
-import 'package:http/http.dart';
+import 'package:http/http.dart' show Client;
 import 'package:online_university/src/config/url.dart';
-import 'package:online_university/src/models/materiModel.dart';
+import 'package:online_university/src/models/bisnis_kreatif_model.dart';
 import 'package:simple_logger/simple_logger.dart';
 
-class MateriService {
+class BisnisKreatifService {
+
   Map<String, String> headers = {
     'Authorization': 'Basic b25saW5lLXVuaXZlcnNpdHk6MTIzNDU='
   };
@@ -12,23 +13,26 @@ class MateriService {
   Client client = new Client();
   final log = SimpleLogger();
 
-  Future<List<MateriModel>> getListMateri(String idCourse) async {
+  Future<List<BisnisKreatifModel>> getListBisnisKreatif(String nameCourse) async {
 
     var params = {
-      "idCourse": idCourse,
+      "categoryCourseId": nameCourse
     };
 
     try {
-      Uri uri = Uri.parse(UriApi.getListMateriCourse);
+      Uri uri = Uri.parse(UriApi.getListDataTabs);
       final uriParams = uri.replace(queryParameters: params);
       final response = await client.get(uriParams);
-      log.info("Materi by ID Mentor { status : ${response.statusCode} } ");
+
+      log.info("List Course Tabs { status: ${response.statusCode} }");
 
       if (response.statusCode == 200)
-        return compute(materiModelFromJson, response.body);
+        return compute(bisnisKreatifModelFromJson, response.body);
+
     } catch(err) {
       log.warning(err.toString());
     }
+
     return null;
   }
 }

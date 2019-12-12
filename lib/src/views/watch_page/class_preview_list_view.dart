@@ -4,9 +4,9 @@ import 'package:online_university/src/bloc/bisnis_kreatif_bloc/bisnis_kreatif_bl
 import 'package:online_university/src/bloc/bisnis_kreatif_bloc/bisnis_kreatif_event.dart';
 import 'package:online_university/src/bloc/bisnis_kreatif_bloc/bisnis_kreatif_state.dart';
 import 'package:online_university/src/bloc/course_bloc/course_bloc.dart';
-import 'package:online_university/src/models/bisnisKreatifModel.dart';
-import 'package:online_university/src/services/courseService.dart';
-import 'package:online_university/src/utils/appTheme.dart';
+import 'package:online_university/src/models/bisnis_kreatif_model.dart';
+import 'package:online_university/src/services/course_service.dart';
+import 'package:online_university/src/utils/app_theme.dart';
 import 'package:online_university/src/views/bisnis_kreatif_page/bisnis_kreatif_details.dart';
 import 'package:online_university/src/views/component/log.dart';
 

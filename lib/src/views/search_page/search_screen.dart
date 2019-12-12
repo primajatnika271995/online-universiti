@@ -1,8 +1,8 @@
 import 'package:flappy_search_bar/flappy_search_bar.dart';
 import 'package:flappy_search_bar/search_bar_style.dart';
 import 'package:flutter/material.dart';
-import 'package:online_university/src/utils/appTheme.dart';
-import 'package:online_university/src/utils/hexConverter.dart';
+import 'package:online_university/src/utils/app_theme.dart';
+import 'package:online_university/src/utils/hex_converter.dart';
 
 class SearchScreen extends StatefulWidget {
   @override

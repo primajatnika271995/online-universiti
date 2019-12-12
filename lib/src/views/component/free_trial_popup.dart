@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:online_university/src/utils/appTheme.dart';
+import 'package:online_university/src/utils/app_theme.dart';
 
 void freeTrialPopup(BuildContext context) {
   WidgetsBinding.instance.addPostFrameCallback((_) async {
