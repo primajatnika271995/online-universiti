@@ -24,6 +24,7 @@ class MentorDetailsOverview extends StatelessWidget {
               Text(
                 value.aboutMe,
                 style: AppTheme.caption,
+                textAlign: TextAlign.justify,
               ),
               SizedBox(
                 height: 15,

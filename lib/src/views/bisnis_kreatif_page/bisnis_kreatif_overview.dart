@@ -6,7 +6,7 @@ import 'package:online_university/src/views/component/currencyFormatted.dart';
 class BisnisKreatifOverview extends StatelessWidget {
   final Function callback;
   final CourseDetailsModel value;
-  BisnisKreatifOverview({Key key, this.value, this.callback}): super(key: key);
+  BisnisKreatifOverview({Key key, this.value, this.callback}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +25,7 @@ class BisnisKreatifOverview extends StatelessWidget {
               Text(
                 value.courseDescription,
                 style: AppTheme.caption,
+                textAlign: TextAlign.justify,
               ),
               SizedBox(
                 height: 15,
@@ -43,13 +44,13 @@ class BisnisKreatifOverview extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 3),
+                  padding: const EdgeInsets.only(top: 5, bottom: 3),
                   child: Row(
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: Icon(
-                          Icons.ondemand_video,
+                          Icons.video_library,
                           color: AppTheme.nearlyWhite,
                           size: 25,
                         ),
@@ -125,7 +126,10 @@ class BisnisKreatifOverview extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5),
-                  child: Text("Get unlimited access to all 60+ instruction - including ${value.mentorName} - for IDR ${value.coursePrice} / year.", style: AppTheme.subtitle),
+                  child: Text(
+                    "Get unlimited access to all 60+ instruction - including ${value.mentorName} - for ${formattedCoursePrice(value.coursePrice)} / year.",
+                    style: AppTheme.subtitle,
+                  ),
                 ),
               ],
             ),
@@ -139,7 +143,8 @@ class BisnisKreatifOverview extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text(formattedCoursePrice(value.coursePrice), style: AppTheme.title),
+              Text(formattedCoursePrice(value.coursePrice),
+                  style: AppTheme.title),
               RaisedButton(
                 onPressed: () {
                   callback();

@@ -156,7 +156,7 @@ class _BisnisKreatifDetailsState extends State<BisnisKreatifDetails> {
                                       child: TabBar(
                                         tabs: <Tab>[
                                           Tab(text: "OVERVIEW"),
-                                          Tab(text: "LESSONS"),
+                                          Tab(text: "CLASS"),
                                         ],
                                         indicatorColor: Colors.red,
                                         labelStyle: AppTheme.title,

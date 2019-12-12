@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:online_university/src/models/courseDetailsModel.dart';
 import 'package:online_university/src/services/checkoutService.dart';
 import 'package:online_university/src/utils/appTheme.dart';
@@ -15,9 +16,26 @@ class PaymentScreen extends StatefulWidget {
   _PaymentScreenState createState() => _PaymentScreenState();
 }
 
-class _PaymentScreenState extends State<PaymentScreen> {
+class _PaymentScreenState extends State<PaymentScreen>
+    with TickerProviderStateMixin {
+  TabController _tabController;
+
   bool _loading = false;
   bool _success = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _tabController = new TabController(length: 2, vsync: this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _tabController?.dispose();
+    super.dispose();
+  }
 
   _onPaymentSend() {
     setState(() {
@@ -41,6 +59,54 @@ class _PaymentScreenState extends State<PaymentScreen> {
         _loading = !_loading;
       }
     });
+  }
+
+  _onViewBottomSheet() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (BuildContext ctx) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            tabContainer(),
+            Container(
+              height: MediaQuery.of(context).size.height / 3.4,
+              child: TabBarView(
+                controller: _tabController,
+                children: <Widget>[
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      creditCardNumber(),
+                      expireDateNumber(),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 20, horizontal: 10),
+                        child: paymentBtn(),
+                      ),
+                    ],
+                  ),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 20, horizontal: 10),
+                      child: paymentBtn(),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        );
+      },
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(3),
+          topRight: Radius.circular(3),
+        ),
+      ),
+    );
   }
 
   @override
@@ -178,6 +244,24 @@ class _PaymentScreenState extends State<PaymentScreen> {
           ),
         ],
       ),
+    );
+  }
+
+  Widget tabContainer() {
+    return TabBar(
+      controller: _tabController,
+      labelStyle: AppTheme.title,
+      labelColor: AppTheme.nearlyBlack,
+      tabs: [
+        Tab(
+          icon: Icon(Icons.credit_card),
+          text: 'Credit Card',
+        ),
+        Tab(
+          icon: Icon(Icons.nature_people),
+          text: 'Bank Transfer',
+        ),
+      ],
     );
   }
 
@@ -331,6 +415,109 @@ class _PaymentScreenState extends State<PaymentScreen> {
     );
   }
 
+  Widget creditCardNumber() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 10, right: 10, top: 20),
+      child: TextField(
+        decoration: InputDecoration(
+          hintText: "Credit Card Number",
+          hintStyle: TextStyle(color: AppTheme.nearlyBlack),
+          contentPadding: EdgeInsets.only(left: 20, top: 12, bottom: 12),
+          suffixIcon:
+              Icon(FontAwesomeIcons.ccMastercard, color: AppTheme.nearlyBlack),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: AppTheme.nearlyBlack),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: AppTheme.nearlyBlack),
+          ),
+        ),
+        style: TextStyle(color: AppTheme.nearlyBlack),
+        keyboardType: TextInputType.number,
+      ),
+    );
+  }
+
+  Widget expireDateNumber() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          new Expanded(
+            child: new TextField(
+              decoration: const InputDecoration(
+                hintText: 'CVV',
+                hintStyle: TextStyle(color: AppTheme.nearlyBlack),
+                contentPadding: EdgeInsets.only(left: 20, top: 12, bottom: 12),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: AppTheme.nearlyBlack),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: AppTheme.nearlyBlack),
+                ),
+              ),
+              keyboardType: TextInputType.number,
+            ),
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          new Expanded(
+            child: new TextField(
+              decoration: const InputDecoration(
+                hintText: 'Month',
+                hintStyle: TextStyle(color: AppTheme.nearlyBlack),
+                contentPadding: EdgeInsets.only(left: 20, top: 12, bottom: 12),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: AppTheme.nearlyBlack),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: AppTheme.nearlyBlack),
+                ),
+              ),
+              keyboardType: TextInputType.number,
+            ),
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          new Expanded(
+            child: new TextField(
+              decoration: const InputDecoration(
+                hintText: 'Year',
+                hintStyle: TextStyle(color: AppTheme.nearlyBlack),
+                contentPadding: EdgeInsets.only(left: 20, top: 12, bottom: 12),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: AppTheme.nearlyBlack),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: AppTheme.nearlyBlack),
+                ),
+              ),
+              keyboardType: TextInputType.number,
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget changeMethodeBtn() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      child: RaisedButton(
+        onPressed: _success ? () {} : _onViewBottomSheet,
+        color: _success ? AppTheme.screamin_green : AppTheme.blue_stone,
+        child: Text(
+          _success ? "Payment Success" : "CEK PAYMENT",
+          style: AppTheme.title,
+        ),
+      ),
+    );
+  }
+
   Widget paymentBtn() {
     return Container(
       width: MediaQuery.of(context).size.width,
@@ -338,7 +525,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         onPressed: _success ? () {} : _onPaymentSend,
         color: _success ? AppTheme.screamin_green : AppTheme.blue_stone,
         child: Text(
-          _success ? "Payment Done" : "CHECK OUT",
+          _success ? "Payment Success" : "CHECK OUT",
           style: AppTheme.title,
         ),
       ),
