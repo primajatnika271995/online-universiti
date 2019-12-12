@@ -20,11 +20,14 @@ class MentorModel {
   String userType;
   String coachTitle;
   String profession;
-  String mottoTagline;
+  dynamic mottoTagline;
   String aboutMe;
   String imageUrl;
+  String imageUrlThumbnail;
   dynamic gender;
   dynamic dateOfBirth;
+  String urlPlaceholder;
+  String urlPlaceholderThumbnail;
 
   MentorModel({
     this.idUserDetails,
@@ -40,8 +43,11 @@ class MentorModel {
     this.mottoTagline,
     this.aboutMe,
     this.imageUrl,
+    this.imageUrlThumbnail,
     this.gender,
     this.dateOfBirth,
+    this.urlPlaceholder,
+    this.urlPlaceholderThumbnail,
   });
 
   factory MentorModel.fromJson(Map<String, dynamic> json) => MentorModel(
@@ -55,11 +61,14 @@ class MentorModel {
     userType: json["userType"] == null ? null : json["userType"],
     coachTitle: json["coachTitle"] == null ? null : json["coachTitle"],
     profession: json["profession"] == null ? null : json["profession"],
-    mottoTagline: json["mottoTagline"] == null ? null : json["mottoTagline"],
+    mottoTagline: json["mottoTagline"],
     aboutMe: json["aboutMe"] == null ? null : json["aboutMe"],
     imageUrl: json["imageUrl"] == null ? null : json["imageUrl"],
+    imageUrlThumbnail: json["imageUrlThumbnail"] == null ? null : json["imageUrlThumbnail"],
     gender: json["gender"],
     dateOfBirth: json["dateOfBirth"],
+    urlPlaceholder: json["urlPlaceholder"] == null ? null : json["urlPlaceholder"],
+    urlPlaceholderThumbnail: json["urlPlaceholderThumbnail"] == null ? null : json["urlPlaceholderThumbnail"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -73,10 +82,13 @@ class MentorModel {
     "userType": userType == null ? null : userType,
     "coachTitle": coachTitle == null ? null : coachTitle,
     "profession": profession == null ? null : profession,
-    "mottoTagline": mottoTagline == null ? null : mottoTagline,
+    "mottoTagline": mottoTagline,
     "aboutMe": aboutMe == null ? null : aboutMe,
     "imageUrl": imageUrl == null ? null : imageUrl,
+    "imageUrlThumbnail": imageUrlThumbnail == null ? null : imageUrlThumbnail,
     "gender": gender,
     "dateOfBirth": dateOfBirth,
+    "urlPlaceholder": urlPlaceholder == null ? null : urlPlaceholder,
+    "urlPlaceholderThumbnail": urlPlaceholderThumbnail == null ? null : urlPlaceholderThumbnail,
   };
 }
