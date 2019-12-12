@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_university/src/bloc/mentor_bloc/mentorBloc.dart';
+import 'package:online_university/src/bloc/mentor_bloc/mentor_bloc.dart';
 import 'package:online_university/src/services/mentor_service.dart';
 import 'package:online_university/src/utils/app_theme.dart';
 import 'package:online_university/src/views/component/log.dart';

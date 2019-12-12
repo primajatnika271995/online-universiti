@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:equatable/equatable.dart';
 import 'package:bloc/bloc.dart';
-import 'package:online_university/src/bloc/mentor_bloc/mentorEvent.dart';
-import 'package:online_university/src/bloc/mentor_bloc/mentorState.dart';
+import 'package:online_university/src/bloc/mentor_bloc/mentor_event.dart';
+import 'package:online_university/src/bloc/mentor_bloc/mentor_state.dart';
 import 'package:online_university/src/models/course_model.dart';
 import 'package:online_university/src/models/mentor_model.dart';
 import 'package:online_university/src/services/mentor_service.dart';

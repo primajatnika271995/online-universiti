@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_university/src/bloc/mentor_bloc/mentorBloc.dart';
-import 'package:online_university/src/bloc/mentor_bloc/mentorEvent.dart';
-import 'package:online_university/src/bloc/mentor_bloc/mentorState.dart';
+import 'package:online_university/src/bloc/mentor_bloc/mentor_bloc.dart';
+import 'package:online_university/src/bloc/mentor_bloc/mentor_event.dart';
+import 'package:online_university/src/bloc/mentor_bloc/mentor_state.dart';
 import 'package:online_university/src/models/course_model.dart';
 import 'package:online_university/src/models/mentor_model.dart';
 import 'package:online_university/src/models/popular_class.dart';
