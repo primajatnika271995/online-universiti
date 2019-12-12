@@ -7,6 +7,7 @@ import 'package:online_university/src/bloc/mentor_bloc/mentorState.dart';
 import 'package:online_university/src/services/courseService.dart';
 import 'package:online_university/src/utils/appTheme.dart';
 import 'package:online_university/src/views/bisnis_kreatif_page/bisnis_kreatif_details.dart';
+import 'package:online_university/src/views/bisnis_kreatif_page/teaser_video_player.dart';
 import 'package:online_university/src/views/bisnis_kreatif_page/video_player.dart';
 import 'package:online_university/src/views/component/log.dart';
 import 'package:online_university/src/views/home.dart';
@@ -25,11 +26,11 @@ class _MentorDetailsState extends State<MentorDetails> {
   ScrollController _scrollController = new ScrollController();
   final int _tabLength = 2;
 
-  _onViewVideo(String url) {
+  _onViewVideo(String url, String thumb) {
     log.info(url);
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => VideoPlayerScreen(url: url),
+        builder: (context) => TeaserVideoPlayer(url: url, thumbnails: thumb),
       ),
     );
   }
@@ -124,7 +125,11 @@ class _MentorDetailsState extends State<MentorDetails> {
                                                 ),
                                               ),
 //                                              takeTheClassBtn(),
-                                              watchTrailerBtn(),
+                                              watchTrailerBtn(
+                                                state.getMentor.urlPlaceholder,
+                                                state.getMentor
+                                                    .urlPlaceholderThumbnail,
+                                              ),
                                             ],
                                           ),
                                         ),
@@ -206,19 +211,20 @@ class _MentorDetailsState extends State<MentorDetails> {
     );
   }
 
-  Widget watchTrailerBtn() {
+  Widget watchTrailerBtn(String teaserUrl, String thumbUrl) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Container(
         width: MediaQuery.of(context).size.width,
         child: RaisedButton(
-          onPressed: () {
-            _onViewVideo(
-                "https://res.cloudinary.com/jejaring-uploader/video/upload/v1575975066/teaser-ori_sevlga.mp4");
-          },
-          color: Colors.red,
+          onPressed: teaserUrl == null
+              ? null
+              : () {
+                  _onViewVideo(teaserUrl, thumbUrl);
+                },
+          color: teaserUrl == null ? Colors.grey : Colors.red,
           child: Text(
-            "WATCH TRAILER",
+            teaserUrl == null ? "NO TRAILER" : "WATCH TRAILER",
             style: AppTheme.title,
           ),
         ),
