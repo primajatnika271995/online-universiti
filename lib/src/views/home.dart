@@ -47,9 +47,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     _profileData.imgUrl = await SharedPreferencesHelper.getProfileImg();
     _auth.token = await SharedPreferencesHelper.getAccessToken();
 
-    if (_auth.token == null || _auth.token.isEmpty) {
-      freeTrialPopup(context);
-    }
+//    if (_auth.token == null || _auth.token.isEmpty) {
+//      freeTrialPopup(context);
+//    }
 
     setState(() {});
   }
