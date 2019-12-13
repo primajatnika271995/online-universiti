@@ -6,9 +6,7 @@ import 'package:online_university/src/services/bisnis_kreatif_service.dart';
 import 'package:online_university/src/services/mentor_service.dart';
 import 'package:online_university/src/utils/app_theme.dart';
 import 'package:online_university/src/utils/hex_converter.dart';
-import 'package:online_university/src/config/local_storage.dart';
 import 'package:online_university/src/utils/shared_preferences_helper.dart';
-import 'package:online_university/src/views/component/currency_formatted.dart';
 import 'package:online_university/src/views/component/free_trial_popup.dart';
 import 'package:online_university/src/views/component/log.dart';
 import 'package:online_university/src/views/login_page/login.dart';
@@ -27,7 +25,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   AnimationController animationController;
-  SharedPreferences _preferences;
 
   ScrollController _scrollController = new ScrollController();
 

@@ -55,7 +55,7 @@ class MentorDetailsOverview extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "32 Lessons",
+                        "3 Lessons",
                         style: AppTheme.caption,
                       ),
                     ],
@@ -177,9 +177,9 @@ class MentorDetailsOverview extends StatelessWidget {
             ),
           ),
         ),
-        MentorWhatYourLearn(
-          callback: () {},
-        ),
+//        MentorWhatYourLearn(
+//          callback: () {},
+//        ),
       ],
     );
   }
