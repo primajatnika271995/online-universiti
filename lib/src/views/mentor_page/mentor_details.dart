@@ -26,6 +26,19 @@ class _MentorDetailsState extends State<MentorDetails> {
   ScrollController _scrollController = new ScrollController();
   final int _tabLength = 2;
 
+  @override
+  // TODO: implement context
+  BuildContext get context => super.context;
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    // ignore: close_sinks
+    final mentorBloc = BlocProvider.of<MentorBloc>(context);
+    mentorBloc.add(FetchMentorByID(widget.idUser));
+    super.didChangeDependencies();
+  }
+
   _onViewVideo(String url, String thumb) {
     log.info(url);
     Navigator.of(context).push(
@@ -50,10 +63,6 @@ class _MentorDetailsState extends State<MentorDetails> {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: close_sinks
-    final mentorBloc = BlocProvider.of<MentorBloc>(context);
-    mentorBloc.add(FetchMentorByID(widget.idUser));
-
     return DefaultTabController(
       length: _tabLength,
       child: BlocBuilder<MentorBloc, MentorState>(
