@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:online_university/src/config/local_storage.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_university/src/bloc/login_bloc/login_bloc.dart';
+import 'package:online_university/src/bloc/login_bloc/login_event.dart';
+import 'package:online_university/src/bloc/login_bloc/login_state.dart';
 import 'package:online_university/src/utils/app_theme.dart';
-import 'package:online_university/src/bloc/loginBloc.dart';
-import 'package:online_university/src/views/component/log.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -15,93 +14,78 @@ class _LoginPageState extends State<LoginPage> {
   final usernameCtrl = TextEditingController();
   final passwordCtrl = TextEditingController();
 
-  bool _loading = false;
-
-  Future<bool> getData() async {
-    await Future.delayed(const Duration(milliseconds: 0));
-    return true;
-  }
-
-  void _onLoginButton() async {
-    _onToggleLoading();
-    await loginBloc.login(context, usernameCtrl.text, passwordCtrl.text);
-    _onToggleLoading();
-  }
-
-  _onToggleLoading() {
-    setState(() {
-      _loading = !_loading;
-    });
+  _onNavigation() {
+    Navigator.of(context).pushReplacementNamed('/');
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: FutureBuilder(
-        future: getData(),
-        builder: (BuildContext context, snaphsot) {
-          if (!snaphsot.hasData)
-            return SizedBox();
-          else
-            return Padding(
-              padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  appBar(),
-                  Expanded(
-                    child: FutureBuilder(
-                      future: getData(),
-                      builder: (BuildContext context, snapshot) {
-                        if (!snaphsot.hasData)
-                          return SizedBox();
-                        else
-                          return SingleChildScrollView(
-                            child: Container(
-                              child: FutureBuilder(
-                                future: getData(),
-                                builder: (BuildContext context, snapshot) {
-                                  if (!snaphsot.hasData)
-                                    return SizedBox();
-                                  else
-                                    return Container(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: <Widget>[
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          emailField(),
-                                          passwordField(),
-                                          _loading
-                                              ? loadingReplace()
-                                              : signInBtn(),
-                                          forgotBtn(),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 20),
-                                            child: Text(
-                                              "Need help? Contact our Support team!",
-                                              style: AppTheme.subtitle,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                },
-                              ),
-                            ),
-                          );
-                      },
-                    ),
-                  ),
-                ],
+      body: BlocListener<LoginBloc, LoginState>(
+        listener: (context, state) {
+          if (state is LoginSuccess) {
+            _onNavigation();
+          }
+          if (state is LoginFailed) {
+            Scaffold.of(context).showSnackBar(
+              SnackBar(
+                content: Text("Username or Password Incorect!"),
+                backgroundColor: AppTheme.blue_stone,
               ),
             );
+          }
         },
+        child: Padding(
+          padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              appBar(),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Container(
+                    child: Container(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          SizedBox(
+                            height: 10,
+                          ),
+                          emailField(),
+                          passwordField(),
+                          BlocBuilder<LoginBloc, LoginState>(
+                            builder: (context, state) {
+                              if (state is LoginInitial) {
+                                return signInBtn();
+                              }
+                              if (state is LoginLoading) {
+                                return loadingReplace();
+                              }
+                              if (state is LoginFailed) {
+                                return signInBtn();
+                              }
+                              return Text("s");
+                            },
+                          ),
+                          forgotBtn(),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            child: Text(
+                              "Need help? Contact our Support team!",
+                              style: AppTheme.subtitle,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -156,7 +140,9 @@ class _LoginPageState extends State<LoginPage> {
         width: MediaQuery.of(context).size.width,
         child: RaisedButton(
           onPressed: () {
-            _onLoginButton();
+            // ignore: close_sinks
+            final loginBloc = BlocProvider.of<LoginBloc>(context);
+            loginBloc.add(FetchLogin(usernameCtrl.text, passwordCtrl.text));
           },
           color: AppTheme.blue_stone,
           child: Text(

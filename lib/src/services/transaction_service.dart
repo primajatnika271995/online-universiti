@@ -1,9 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
-import 'package:online_university/src/config/local_storage.dart';
 import 'package:online_university/src/config/url.dart';
 import 'package:online_university/src/models/transaction_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:online_university/src/utils/shared_preferences_helper.dart';
 import 'package:simple_logger/simple_logger.dart';
 
 class TransactionService {
@@ -11,8 +10,7 @@ class TransactionService {
   final log = SimpleLogger();
 
   Future<List<TransactionModel>> getTransaction(String status) async {
-    SharedPreferences _pref = await SharedPreferences.getInstance();
-    var token = _pref.getString(LocalStorage.ACCESS_TOKEN_KEY);
+    var token = await SharedPreferencesHelper.getAccessToken();
 
     Map<String, String> headers = {
       'Authorization': 'Bearer $token',

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:online_university/src/config/local_storage.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_university/src/bloc/login_bloc/login_bloc.dart';
+import 'package:online_university/src/services/login_service.dart';
 import 'package:online_university/src/utils/app_theme.dart';
-import 'package:online_university/src/views/component/log.dart';
+import 'package:online_university/src/utils/shared_preferences_helper.dart';
 import 'package:online_university/src/views/introduction_page/page_view_intro.dart';
 import 'package:online_university/src/views/login_page/login.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class IntroductionPage extends StatefulWidget {
   @override
@@ -14,26 +15,28 @@ class IntroductionPage extends StatefulWidget {
 class _IntroductionPageState extends State<IntroductionPage> {
 
   void _checkAuth() async {
-    SharedPreferences _pref = await SharedPreferences.getInstance();
-    bool _isAuth = _pref.getBool(LocalStorage.SKIP_INTRO);
+    bool _isAuth = await SharedPreferencesHelper.getSkipIntro();
 
-    log.info(_isAuth);
+    if (_isAuth == null) {
+      _isAuth = false;
+    }
 
     if (_isAuth)
       Navigator.of(context).pushReplacementNamed('/');
   }
 
   _onNavigationHome() async {
-    SharedPreferences _pref = await SharedPreferences.getInstance();
-    _pref.setBool(LocalStorage.SKIP_INTRO, true);
-
+    await SharedPreferencesHelper.setSkipIntro(true);
     Navigator.of(context).pushReplacementNamed('/');
   }
 
   _onNavigationLogin() {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => LoginPage(),
+        builder: (context) => BlocProvider(
+          builder: (context) => LoginBloc(LoginService()),
+          child: LoginPage(),
+        ),
       ),
     );
   }

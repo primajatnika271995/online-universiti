@@ -1,9 +1,8 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
-import 'package:online_university/src/config/local_storage.dart';
 import 'package:online_university/src/config/url.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:online_university/src/utils/shared_preferences_helper.dart';
 import 'package:simple_logger/simple_logger.dart';
 
 class CheckoutService {
@@ -11,8 +10,7 @@ class CheckoutService {
   final log = SimpleLogger();
 
   Future<Response> checkoutCourse(Checkout value) async {
-    SharedPreferences _pref = await SharedPreferences.getInstance();
-    var token = _pref.getString(LocalStorage.ACCESS_TOKEN_KEY);
+    var token = await SharedPreferencesHelper.getAccessToken();
 
     Map<String, String> headers = {
       'Authorization': 'Bearer $token',

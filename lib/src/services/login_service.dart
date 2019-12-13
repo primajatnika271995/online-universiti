@@ -14,7 +14,7 @@ class LoginService {
   Client client = new Client();
   final log = SimpleLogger();
 
-  Future<Authenticated> login(BuildContext context, String username, String password) async {
+  Future<Authenticated> login(String username, String password) async {
     var params = {
       "username": username,
       "password": password,

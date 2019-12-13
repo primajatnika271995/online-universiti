@@ -3,9 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:online_university/src/bloc/course_bloc/course_bloc.dart';
+import 'package:online_university/src/bloc/login_bloc/login_bloc.dart';
 import 'package:online_university/src/config/local_storage.dart';
 import 'package:online_university/src/services/course_service.dart';
+import 'package:online_university/src/services/login_service.dart';
 import 'package:online_university/src/utils/app_theme.dart';
+import 'package:online_university/src/utils/shared_preferences_helper.dart';
 import 'package:online_university/src/views/component/log.dart';
 import 'package:online_university/src/views/login_page/login.dart';
 import 'package:online_university/src/views/profile_page/owned_course_screen.dart';
@@ -22,14 +25,12 @@ class _ProfilePageState extends State<ProfilePage> {
   ProfileData _profileData = new ProfileData();
 
   Future<bool> getData() async {
-    _preferences = await SharedPreferences.getInstance();
-    var isAuth = _preferences.getString(LocalStorage.ACCESS_TOKEN_KEY);
+    var isAuth = await SharedPreferencesHelper.getAccessToken();
 
     if (isAuth != null) {
-      _profileData.name = _preferences.getString(LocalStorage.NAME_KEY);
-      _profileData.email = _preferences.getString(LocalStorage.EMAIL_KEY);
-      _profileData.imgUrl =
-          _preferences.getString(LocalStorage.PROFILE_IMG_KEY);
+      _profileData.name = await SharedPreferencesHelper.getName();
+      _profileData.email = await SharedPreferencesHelper.getEmail();
+      _profileData.imgUrl = await SharedPreferencesHelper.getProfileImg();
 
       return true;
     }
@@ -44,7 +45,10 @@ class _ProfilePageState extends State<ProfilePage> {
   _onNavigationLogin() {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => LoginPage(),
+        builder: (context) => BlocProvider(
+          builder: (context) => LoginBloc(LoginService()),
+          child: LoginPage(),
+        ),
       ),
     );
   }

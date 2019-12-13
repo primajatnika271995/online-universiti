@@ -7,6 +7,7 @@ import 'package:online_university/src/services/mentor_service.dart';
 import 'package:online_university/src/utils/app_theme.dart';
 import 'package:online_university/src/utils/hex_converter.dart';
 import 'package:online_university/src/config/local_storage.dart';
+import 'package:online_university/src/utils/shared_preferences_helper.dart';
 import 'package:online_university/src/views/component/currency_formatted.dart';
 import 'package:online_university/src/views/component/free_trial_popup.dart';
 import 'package:online_university/src/views/component/log.dart';
@@ -46,17 +47,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   }
 
   void _onData() async {
-    _preferences = await SharedPreferences.getInstance();
-    setState(() {
-      _profileData.imgUrl =
-          _preferences.getString(LocalStorage.PROFILE_IMG_KEY);
-      _auth.token = _preferences.getString(LocalStorage.ACCESS_TOKEN_KEY);
+    _profileData.imgUrl = await SharedPreferencesHelper.getProfileImg();
+    _auth.token = await SharedPreferencesHelper.getAccessToken();
 
-      if (_auth.token == null || _auth.token.isEmpty) {
-        freeTrialPopup(context);
-      }
+    if (_auth.token == null || _auth.token.isEmpty) {
+      freeTrialPopup(context);
+    }
 
-    });
+    setState(() {});
   }
 
   void hiddenPromo() {
