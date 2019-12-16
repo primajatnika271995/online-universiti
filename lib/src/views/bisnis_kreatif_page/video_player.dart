@@ -38,6 +38,13 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> with TickerProvid
     super.initState();
   }
 
+  _onPlayVideo(String url) {
+    setState(() {
+      _playerController = VideoPlayerController.network(url)
+        ..initialize().then((_) {});
+    });
+  }
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -68,6 +75,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> with TickerProvid
               SizedBox(
                 height: MediaQuery.of(context).padding.top,
               ),
+              appBar(),
               mainVideo(),
               Expanded(
                 child: NestedScrollView(
@@ -108,7 +116,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> with TickerProvid
                           child: VideoPlayerListCourse(
                             idCourse: state.getDetailsCourse.idCourse,
                             callback: (String url) {
-//                                      _onViewVideo(url);
+                              _onPlayVideo(url);
                             },
                           ),
                         );
@@ -131,6 +139,26 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> with TickerProvid
       aspectRatio: 3 / 2,
       autoPlay: false,
       looping: true,
+
+    );
+  }
+
+  Widget appBar() {
+    return Padding(
+      padding: EdgeInsets.only(top: 8.0),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: Center(
+              child: Container(
+                height: 40,
+                width: 200,
+                child: Image.asset("assets/images/logo.png"),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 

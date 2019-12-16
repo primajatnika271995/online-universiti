@@ -10,6 +10,7 @@ import 'package:online_university/src/services/materi_service.dart';
 import 'package:online_university/src/utils/app_theme.dart';
 import 'package:online_university/src/views/bisnis_kreatif_page/bisnis_kreatif_lesson_list_view.dart';
 import 'package:online_university/src/views/bisnis_kreatif_page/bisnis_kreatif_overview.dart';
+import 'package:online_university/src/views/bisnis_kreatif_page/teaser_video_player.dart';
 import 'package:online_university/src/views/bisnis_kreatif_page/video_player.dart';
 import 'package:online_university/src/views/component/log.dart';
 import 'package:online_university/src/views/home.dart';
@@ -40,6 +41,15 @@ class _BisnisKreatifDetailsState extends State<BisnisKreatifDetails> {
             mentor: mentorName,
           ),
         ),
+      ),
+    );
+  }
+
+  _onViewVideoTeaser(String url, String thumb) {
+    log.info(url);
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => TeaserVideoPlayer(url: url, thumbnails: thumb),
       ),
     );
   }
@@ -145,7 +155,11 @@ class _BisnisKreatifDetailsState extends State<BisnisKreatifDetails> {
                                                 ),
                                               ),
                                               takeTheClassBtn(),
-                                              watchTrailerBtn(),
+                                              watchTrailerBtn(
+                                                state.getDetailsCourse
+                                                    .urlPlaceholder,
+                                                null,
+                                              )
                                             ],
                                           ),
                                         ),
@@ -235,15 +249,14 @@ class _BisnisKreatifDetailsState extends State<BisnisKreatifDetails> {
     );
   }
 
-  Widget watchTrailerBtn() {
+  Widget watchTrailerBtn(String teaserUrl, String thumbUrl) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Container(
         width: MediaQuery.of(context).size.width,
         child: RaisedButton(
           onPressed: () {
-//            _onViewVideo(
-//                "https://res.cloudinary.com/jejaring-uploader/video/upload/v1575972190/into_bqxh3e.mp4");
+            _onViewVideoTeaser(teaserUrl, thumbUrl);
           },
           color: AppTheme.grey,
           child: Text(
