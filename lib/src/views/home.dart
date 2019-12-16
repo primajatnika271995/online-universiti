@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_university/src/bloc/bisnis_kreatif_bloc/bisnis_kreatif_bloc.dart';
+import 'package:online_university/src/bloc/login_bloc/login_bloc.dart';
 import 'package:online_university/src/bloc/mentor_bloc/mentor_bloc.dart';
 import 'package:online_university/src/services/bisnis_kreatif_service.dart';
+import 'package:online_university/src/services/login_service.dart';
 import 'package:online_university/src/services/mentor_service.dart';
 import 'package:online_university/src/utils/app_theme.dart';
 import 'package:online_university/src/utils/hex_converter.dart';
@@ -65,7 +67,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   _onNavigationLogin() {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => LoginPage(),
+        builder: (context) => BlocProvider(
+          builder: (context) => LoginBloc(LoginService()),
+          child: LoginPage(),
+        ),
       ),
     );
   }

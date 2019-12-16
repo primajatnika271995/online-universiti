@@ -172,7 +172,7 @@ class AppTheme {
     color: blue_stone,
   );
 
-  static const TextStyle courseTitle = TextStyle( //eadline
+  static const TextStyle courseTitle = TextStyle( // deadline
     fontFamily: fontName,
     fontSize: 20,
     letterSpacing: 0.27,

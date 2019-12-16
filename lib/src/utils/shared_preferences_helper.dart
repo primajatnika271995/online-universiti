@@ -1,23 +1,85 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesHelper {
+  static SharedPreferencesHelper _instance;
+  static SharedPreferences _sharedPreferences;
 
-  ///
-  /// Instantiation of the SharedPreferences library
-  ///
-  static final String _kSkipIntro = "intro";
-  static final String _kAccessToken = "token";
-  static final String _kEmail = "email";
-  static final String _kName = "name";
-  static final String _kProfileImg = "profileImg";
+  static const String kSkipIntro = "intro";
+  static const String kAccessToken = "accessToken";
+  static const String kRefreshToken = "refreshToken";
+  static const String kEmail = "email";
+  static const String kName = "name";
+  static const String kProfileImg = "profileImg";
 
-  /// ------------------------------------------------------------
+  static Future<SharedPreferencesHelper> getInstance() async {
+    if (_instance == null) {
+      _instance = SharedPreferencesHelper();
+    }
+    if (_sharedPreferences == null) {
+      _sharedPreferences = await SharedPreferences.getInstance();
+    }
+    return _instance;
+  }
+
+  Future<bool> putBool(String key, bool value) {
+    return _sharedPreferences.setBool(key, value);
+  }
+
+  bool getBool(String key) {
+    return _sharedPreferences.getBool(key);
+  }
+
+  Future<bool> putDouble(String key, double value) {
+    return _sharedPreferences.setDouble(key, value);
+  }
+
+  double getDouble(String key) {
+    return _sharedPreferences.getDouble(key);
+  }
+
+  Future<bool> putInt(String key, int value) {
+    return _sharedPreferences.setInt(key, value);
+  }
+
+  int getInt(String key) {
+    return _sharedPreferences.getInt(key);
+  }
+
+  Future<bool> putString(String key, String value) {
+    return _sharedPreferences.setString(key, value);
+  }
+
+  String getString(String key) {
+    return _sharedPreferences.getString(key);
+  }
+
+  Future<bool> putStringList(String key, List<String> value) {
+    return _sharedPreferences.setStringList(key, value);
+  }
+
+  List<String> getStringList(String key) {
+    return _sharedPreferences.getStringList(key);
+  }
+
+  bool isKeyExists(String key) {
+    return _sharedPreferences.containsKey(key);
+  }
+
+  Future<bool> clearKey(String key) {
+    return _sharedPreferences.remove(key);
+  }
+
+  Future<bool> clearAll() {
+    return _sharedPreferences.clear();
+  }
+
+  // ------------------------------------------------------------
   /// Method that returns the skip introduction, 'false' if not set
   /// ------------------------------------------------------------
   static Future<bool> getSkipIntro() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    return prefs.getBool(_kSkipIntro) ?? false;
+    return prefs.getBool(kSkipIntro) ?? false;
   }
 
   /// ----------------------------------------------------------
@@ -26,7 +88,7 @@ class SharedPreferencesHelper {
   static Future<bool> setSkipIntro(bool value) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    return prefs.setBool(_kSkipIntro, value);
+    return prefs.setBool(kSkipIntro, value);
   }
 
   /// ------------------------------------------------------------
@@ -35,7 +97,7 @@ class SharedPreferencesHelper {
   static Future<String> getAccessToken() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    return prefs.getString(_kAccessToken) ?? null;
+    return prefs.getString(kAccessToken) ?? null;
   }
 
   /// ----------------------------------------------------------
@@ -44,7 +106,7 @@ class SharedPreferencesHelper {
   static Future<bool> setAccessToken(String value) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    return prefs.setString(_kAccessToken, value);
+    return prefs.setString(kAccessToken, value);
   }
 
   /// ------------------------------------------------------------
@@ -53,7 +115,7 @@ class SharedPreferencesHelper {
   static Future<String> getEmail() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    return prefs.getString(_kEmail) ?? null;
+    return prefs.getString(kEmail) ?? null;
   }
 
   /// ----------------------------------------------------------
@@ -62,7 +124,7 @@ class SharedPreferencesHelper {
   static Future<bool> setEmail(String value) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    return prefs.setString(_kEmail, value);
+    return prefs.setString(kEmail, value);
   }
 
   /// ------------------------------------------------------------
@@ -71,7 +133,7 @@ class SharedPreferencesHelper {
   static Future<String> getName() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    return prefs.getString(_kName) ?? null;
+    return prefs.getString(kName) ?? null;
   }
 
   /// ----------------------------------------------------------
@@ -80,7 +142,7 @@ class SharedPreferencesHelper {
   static Future<bool> setName(String value) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    return prefs.setString(_kName, value);
+    return prefs.setString(kName, value);
   }
 
   /// ------------------------------------------------------------
@@ -89,7 +151,7 @@ class SharedPreferencesHelper {
   static Future<String> getProfileImg() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    return prefs.getString(_kProfileImg) ?? null;
+    return prefs.getString(kProfileImg) ?? null;
   }
 
   /// ----------------------------------------------------------
@@ -98,6 +160,7 @@ class SharedPreferencesHelper {
   static Future<bool> setProfileImg(String value) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    return prefs.setString(_kProfileImg, value);
+    return prefs.setString(kProfileImg, value);
   }
+
 }

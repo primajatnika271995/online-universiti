@@ -1,18 +1,21 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' show Client;
 import 'package:online_university/src/config/url.dart';
 import 'package:online_university/src/models/authenticated.dart';
-import 'package:simple_logger/simple_logger.dart';
+import 'package:online_university/src/utils/dio_logging_interceptors.dart';
+import 'package:online_university/src/views/component/log.dart';
 
 class LoginService {
+  final Dio _dio = new Dio();
+  final clientId = 'online-university';
+  final clientSecret = '12345';
 
-  Map<String, String> headers = {
-    'Authorization': 'Basic b25saW5lLXVuaXZlcnNpdHk6MTIzNDU='
-  };
-  
-  Client client = new Client();
-  final log = SimpleLogger();
+  LoginService() {
+    _dio.options.baseUrl = UriApi.dioAuthUri;
+    _dio.interceptors.add(DioLoggingInterceptors(_dio));
+  }
 
   Future<Authenticated> login(String username, String password) async {
     var params = {
@@ -22,18 +25,21 @@ class LoginService {
     };
 
     try {
-      final response = await client.post(UriApi.loginUri, headers: headers, body: params);
+      final response = await _dio.post(
+        UriApi.loginUri,
+        data: FormData.fromMap(params),
+        options: Options(
+          headers: {
+            'Authorization':
+                'Basic ${base64Encode(utf8.encode('$clientId:$clientSecret'))}'
+          },
+        ),
+      );
       log.info(response.statusCode);
-
-      if (response.statusCode == 200)
-        return compute(authenticatedFromJson, response.body);
-      else if (response.statusCode == 400)
-        log.info(response.body);
+      return compute(authenticatedFromJson, json.encode(response.data));
     } catch (error) {
       log.warning(error.toString());
     }
-
     return null;
   }
-
 }

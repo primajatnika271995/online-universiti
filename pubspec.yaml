@@ -23,17 +23,49 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
+
+  # Intl Package
   intl: ^0.16.0
+
+  # A powerful Http client for Dart, which supports Interceptors, FormData, Request Cancellation,
+  # File Downloading, Timeout etc.
+  dio: ^3.0.7
+
+  # Simple direct Service Locator that allows to decouple the interface from a concrete implementation
+  # and to access the concrete implementation from everywhere in your App
+  get_it: ^3.0.3
+
+  # Generate App Icon
   flutter_launcher_icons: ^0.7.4
+
+  # For play Youtube Video
   youtube_player_flutter: ^6.0.3+2
+
+  # For Video Player
   custom_chewie: ^0.7.0
+
+  # Flutter plugin for reading and writing
   shared_preferences: ^0.5.4+6
+
+  # The Font Awesome Icon pack
   font_awesome_flutter: ^8.5.0
+
+  # The Search Bar Plugin
   flappy_search_bar: ^1.4.1
+
+  # Flutter widgets that make it easy to implement the BLoC design pattern.
   flutter_bloc: ^2.0.1
+
+  # For Simple Serialize
   equatable: ^1.0.1
+
+  # Logging Data
   simple_logger: ^1.5.1+1
+
+  #
   rxdart: ^0.22.0
+
+  # Http like Dio
   http: ^0.12.0+2
 
 dev_dependencies:
@@ -43,7 +75,7 @@ dev_dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/images/logo_min.png"
+  image_path: "assets/images/ic_launcher.png"
 
 
 # For information on the generic Dart part of this file, see the
