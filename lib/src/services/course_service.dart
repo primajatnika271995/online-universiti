@@ -11,16 +11,16 @@ import 'package:online_university/src/utils/shared_preferences_helper.dart';
 import 'package:simple_logger/simple_logger.dart';
 
 class CourseService {
-
   final Dio _dio = new Dio();
+  final clientId = 'online-university';
+  final clientSecret = '12345';
+
+  final log = SimpleLogger();
 
   CourseService() {
     _dio.options.baseUrl = UriApi.dioAuthUri;
     _dio.interceptors.add(DioLoggingInterceptors(_dio));
   }
-
-  Client client = new Client();
-  final log = SimpleLogger();
 
   Future<List<CourseModel>> getCourseByIdMentor(String idMentor) async {
     var params = {
@@ -28,13 +28,11 @@ class CourseService {
     };
 
     try {
-      Uri uri = Uri.parse(UriApi.getListCourseByIDMentor);
-      final uriParams = uri.replace(queryParameters: params);
-      final response = await client.get(uriParams);
+      final response = await _dio.get(UriApi.getListCourseByIDMentor, queryParameters: params);
       log.info("Course by ID Mentor { status : ${response.statusCode} }");
 
       if (response.statusCode == 200) {
-        return compute(courseModelFromJson, response.body);
+        return compute(courseModelFromJson, json.encode(response.data));
       }
     } catch(err) {
       log.warning(err.toString());
@@ -57,18 +55,12 @@ class CourseService {
   }
 
   Future<List<CourseModel>> getCourseOwned() async {
-    var token = await SharedPreferencesHelper.getAccessToken();
-
-    Map<String, String> headers = {
-      'Authorization': 'Bearer $token',
-    };
-
     try {
-      final response = await client.get(UriApi.getListCourseOwned, headers: headers);
+      final response = await _dio.get(UriApi.getListCourseOwned,);
       log.info("Course Owned { status : ${response.statusCode} }");
 
       if (response.statusCode == 200) {
-        return compute(courseModelFromJson, response.body);
+        return compute(courseModelFromJson, json.encode(response.data));
       }
     } catch(err) {
       log.warning(err.toString());

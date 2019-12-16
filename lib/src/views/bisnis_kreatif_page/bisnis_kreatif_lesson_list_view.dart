@@ -10,13 +10,16 @@ class BisnisKreatifLessonListView extends StatefulWidget {
   final idCourse;
   final Function callback;
 
-  BisnisKreatifLessonListView({Key key, this.idCourse, this.callback}): super(key: key);
+  BisnisKreatifLessonListView({Key key, this.idCourse, this.callback})
+      : super(key: key);
 
   @override
-  _BisnisKreatifLessonListViewState createState() => _BisnisKreatifLessonListViewState();
+  _BisnisKreatifLessonListViewState createState() =>
+      _BisnisKreatifLessonListViewState();
 }
 
-class _BisnisKreatifLessonListViewState extends State<BisnisKreatifLessonListView> with TickerProviderStateMixin {
+class _BisnisKreatifLessonListViewState
+    extends State<BisnisKreatifLessonListView> with TickerProviderStateMixin {
   AnimationController animationController;
 
   @override
@@ -105,10 +108,10 @@ class CategoryView extends StatelessWidget {
 
   const CategoryView(
       {Key key,
-        this.data,
-        this.animationController,
-        this.animation,
-        this.callback})
+      this.data,
+      this.animationController,
+      this.animation,
+      this.callback})
       : super(key: key);
 
   @override
@@ -151,12 +154,14 @@ class CategoryView extends StatelessWidget {
   Widget imageContent() {
     return ClipRRect(
       borderRadius: BorderRadius.all(Radius.circular(0)),
-      child: Image.network(
-        data.urlThumbnail == null  ? "" : data.urlThumbnail,
-        fit: BoxFit.cover,
-        width: 130,
-        height: 90,
-      ),
+      child: data.lockContent
+          ? Icon(Icons.lock, color: Colors.white)
+          : Image.network(
+              data.urlThumbnail == null ? "" : data.urlThumbnail,
+              fit: BoxFit.cover,
+              width: 130,
+              height: 90,
+            ),
     );
   }
 

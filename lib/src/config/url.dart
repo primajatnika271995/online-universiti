@@ -18,13 +18,13 @@ class UriApi {
   static const String getDetailsCourseTabs = "/api/public/courses/";
 
   // Get Data Course by ID Mentor
-  static const String getListCourseByIDMentor = _authUri + "/api/public/courses/list/by-mentor-profile";
+  static const String getListCourseByIDMentor = "/api/public/courses/list/by-mentor-profile";
 
   // Get Materi by ID Course
   static const String getListMateriCourse = _authUri + "/api/public/courses/materi/list";
 
   // Get Course Owned
-  static const String getListCourseOwned = _authUri + "/api/courses/list/owned";
+  static const String getListCourseOwned = "/api/courses/list/owned";
 
   // CheckoutCourse
   static const String checkOutCourse = _authUri + "/api/purchasing/checkout";

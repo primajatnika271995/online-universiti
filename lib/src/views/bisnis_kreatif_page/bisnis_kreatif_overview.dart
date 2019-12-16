@@ -143,14 +143,20 @@ class BisnisKreatifOverview extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text(formattedCoursePrice(value.coursePrice),
-                  style: AppTheme.title),
+              Text(
+                formattedCoursePrice(value.coursePrice),
+                style: AppTheme.title,
+              ),
               RaisedButton(
-                onPressed: () {
-                  callback();
-                },
+                onPressed: value.isOwned
+                    ? null
+                    : () {
+                        callback();
+                      },
                 color: Colors.red,
-                child: Text("CHOOSE", style: AppTheme.chooseBtn),
+                child: value.isOwned
+                    ? Text("PURCHASED", style: AppTheme.chooseBtn)
+                    : Text("CHOOSE", style: AppTheme.chooseBtn),
               ),
             ],
           ),
