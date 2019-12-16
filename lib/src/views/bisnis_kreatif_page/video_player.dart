@@ -27,8 +27,6 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> with TickerProvid
   VideoPlayerController _playerController;
   ScrollController _scrollController = new ScrollController();
 
-  InfoTabType infoType = InfoTabType.lectures;
-
   @override
   void initState() {
     SystemChrome.setPreferredOrientations(
@@ -94,7 +92,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> with TickerProvid
                       SliverPersistentHeader(
                         pinned: true,
                         floating: true,
-                        delegate: ContestTabHeader(fillterBar()),
+                        delegate: ContestTabHeader(resourceFile()),
                       ),
                     ];
                   },
@@ -136,7 +134,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> with TickerProvid
   Widget mainVideo() {
     return Chewie(
       _playerController,
-      aspectRatio: 3 / 2,
+//      aspectRatio: 3 / 2,
       autoPlay: false,
       looping: true,
 
@@ -217,105 +215,43 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> with TickerProvid
     );
   }
 
-  Widget fillterBar() {
-    return Stack(
-      children: <Widget>[
-        Positioned(
-          top: 0,
-          left: 0,
-          right: 0,
-          child: Container(
-            height: 24,
-            decoration: BoxDecoration(
-              color: Colors.black,
-              boxShadow: <BoxShadow>[
-                BoxShadow(
-                    color: Colors.grey.withOpacity(0.2),
-                    offset: Offset(0, -2),
-                    blurRadius: 8.0),
-              ],
-            ),
-          ),
-        ),
-        Container(
-          color: Colors.black,
-          child: Padding(
-            padding:
-            const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 4),
-            child: Row(
-              children: <Widget>[
-                buttonCategory(
-                    InfoTabType.lectures, infoType == InfoTabType.lectures),
-                SizedBox(
-                  width: 16,
-                ),
-                buttonCategory(
-                    InfoTabType.more, infoType == InfoTabType.more),
-              ],
-            ),
-          ),
-        ),
-        Positioned(
-          top: 0,
-          left: 0,
-          right: 0,
-          child: Divider(
-            height: 1,
-          ),
-        )
-      ],
-    );
-  }
-
-  Widget buttonCategory(InfoTabType infoTabType, bool isSelected) {
-    var txt = '';
-    if (InfoTabType.lectures == infoTabType)
-      txt = 'Lectures';
-    else if (InfoTabType.more == infoTabType)
-      txt = 'More';
-
-    return Expanded(
-      child: Container(
-        decoration: BoxDecoration(
-          color: isSelected ? AppTheme.blue_stone : AppTheme.nearlyWhite,
-          borderRadius: BorderRadius.all(Radius.circular(24.0)),
-          border: Border.all(color: AppTheme.blue_stone),
-        ),
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            splashColor: Colors.white24,
-            borderRadius: BorderRadius.all(Radius.circular(24)),
-            onTap: () {
-              setState(() {
-                infoType = infoTabType;
-              });
-            },
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 12, horizontal: 18),
-              child: Center(
-                child: Text(
-                  txt,
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 12,
-                      letterSpacing: 0.27,
-                      color: isSelected
-                          ? AppTheme.nearlyWhite
-                          : AppTheme.blue_stone),
-                ),
+  Widget resourceFile() {
+    return Container(
+      color: Colors.black,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 5),
+        child: Wrap(
+          spacing: 10,
+          children: <Widget>[
+            RaisedButton.icon(
+              onPressed: () {},
+              icon: Icon(Icons.attach_file, color: AppTheme.dark_grey),
+              label: Text(
+                "PDF/Document (1)",
+                style: TextStyle(color: AppTheme.dark_grey),
+              ),
+              color: AppTheme.nearlyWhite,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5),
               ),
             ),
-          ),
+            RaisedButton.icon(
+              onPressed: () {},
+              icon: Icon(Icons.work, color: AppTheme.dark_grey),
+              label: Text(
+                "Certificate",
+                style: TextStyle(color: AppTheme.dark_grey),
+              ),
+              color: AppTheme.nearlyWhite,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5),
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
 
-enum InfoTabType {
-  lectures,
-  more,
-}
 

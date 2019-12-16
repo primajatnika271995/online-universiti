@@ -35,6 +35,10 @@ dependencies:
   # and to access the concrete implementation from everywhere in your App
   get_it: ^3.0.3
 
+  # The launch method takes a string argument containing a URL.
+  # This URL can be formatted using a number of different URL schemes.
+  url_launcher: ^5.4.1
+
   # Generate App Icon
   flutter_launcher_icons: ^0.7.4
 
