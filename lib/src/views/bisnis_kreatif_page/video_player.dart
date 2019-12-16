@@ -9,6 +9,7 @@ import 'package:online_university/src/services/materi_service.dart';
 import 'package:online_university/src/utils/app_theme.dart';
 import 'package:online_university/src/views/bisnis_kreatif_page/video_player_list_course.dart';
 import 'package:online_university/src/views/home.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:video_player/video_player.dart';
 import 'package:custom_chewie/custom_chewie.dart';
 
@@ -41,6 +42,15 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> with TickerProvid
       _playerController = VideoPlayerController.network(url)
         ..initialize().then((_) {});
     });
+  }
+
+  _onViewDocument() async {
+    const url = "https://drive.google.com/file/d/1cw4IrkaBnzJr2Qm5InLlT6_yDKO0ora5/view";
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Couldn\'t open Document';
+    }
   }
 
   @override
@@ -224,7 +234,9 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> with TickerProvid
           spacing: 10,
           children: <Widget>[
             RaisedButton.icon(
-              onPressed: () {},
+              onPressed: () {
+                _onViewDocument();
+              },
               icon: Icon(Icons.attach_file, color: AppTheme.dark_grey),
               label: Text(
                 "PDF/Document (1)",
