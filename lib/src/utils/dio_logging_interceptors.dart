@@ -24,12 +24,12 @@ class DioLoggingInterceptors extends InterceptorsWrapper {
     }
     log.info("--> END ${options.method != null ? options.method.toUpperCase() : 'METHOD'}");
 
-    if (options.headers.containsKey('requiresToken')) {
-      options.headers.remove('requiresToken');
+    String accessToken = await SharedPreferencesHelper.getAccessToken();
 
-      String accessToken = await SharedPreferencesHelper.getAccessToken();
+    if (accessToken != null) {
       options.headers.addAll({'Authorization': 'Bearer $accessToken'});
     }
+
     // TODO: implement onRequest
     return options;
   }

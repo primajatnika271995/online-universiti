@@ -1,12 +1,23 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
 import 'package:online_university/src/config/url.dart';
 import 'package:online_university/src/models/course_details_model.dart';
 import 'package:online_university/src/models/course_model.dart';
+import 'package:online_university/src/utils/dio_logging_interceptors.dart';
 import 'package:online_university/src/utils/shared_preferences_helper.dart';
 import 'package:simple_logger/simple_logger.dart';
 
 class CourseService {
+
+  final Dio _dio = new Dio();
+
+  CourseService() {
+    _dio.options.baseUrl = UriApi.dioAuthUri;
+    _dio.interceptors.add(DioLoggingInterceptors(_dio));
+  }
 
   Client client = new Client();
   final log = SimpleLogger();
@@ -33,11 +44,11 @@ class CourseService {
 
   Future<CourseDetailsModel> getCourseDetailTabs(String idCourse) async {
     try {
-      final response = await client.get(UriApi.getDetailsCourseTabs + idCourse);
+      final response = await _dio.get(UriApi.getDetailsCourseTabs + idCourse);
       log.info("Course Details { status : ${response.statusCode} } ");
 
       if (response.statusCode == 200) {
-        return compute(courseDetailsModelFromJson, response.body);
+        return compute(courseDetailsModelFromJson, json.encode(response.data));
       }
     } catch(err) {
       log.warning(err.toString());

@@ -24,6 +24,7 @@ class CourseDetailsModel {
   dynamic bannerFormatFile;
   dynamic urlPlaceholder;
   dynamic titlePlaceholder;
+  bool isOwned;
 
   CourseDetailsModel({
     this.idCourse,
@@ -41,6 +42,7 @@ class CourseDetailsModel {
     this.bannerFormatFile,
     this.urlPlaceholder,
     this.titlePlaceholder,
+    this.isOwned,
   });
 
   factory CourseDetailsModel.fromJson(Map<String, dynamic> json) => CourseDetailsModel(
@@ -59,6 +61,7 @@ class CourseDetailsModel {
     bannerFormatFile: json["bannerFormatFile"],
     urlPlaceholder: json["urlPlaceholder"],
     titlePlaceholder: json["titlePlaceholder"],
+    isOwned: json["isOwned"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -77,5 +80,6 @@ class CourseDetailsModel {
     "bannerFormatFile": bannerFormatFile,
     "urlPlaceholder": urlPlaceholder,
     "titlePlaceholder": titlePlaceholder,
+    "isOwned": isOwned,
   };
 }
