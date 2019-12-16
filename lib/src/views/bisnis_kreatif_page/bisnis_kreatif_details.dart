@@ -5,6 +5,7 @@ import 'package:online_university/src/bloc/course_bloc/course_event.dart';
 import 'package:online_university/src/bloc/course_bloc/course_state.dart';
 import 'package:online_university/src/bloc/materi_bloc/materi_bloc.dart';
 import 'package:online_university/src/models/course_details_model.dart';
+import 'package:online_university/src/services/course_service.dart';
 import 'package:online_university/src/services/materi_service.dart';
 import 'package:online_university/src/utils/app_theme.dart';
 import 'package:online_university/src/views/bisnis_kreatif_page/bisnis_kreatif_lesson_list_view.dart';
@@ -26,10 +27,19 @@ class _BisnisKreatifDetailsState extends State<BisnisKreatifDetails> {
   ScrollController _scrollController = new ScrollController();
   final int _tabLength = 2;
 
-  _onViewVideo(String url) {
-    Navigator.of(context).push(
+  _onViewVideo(String url, String titleCourse, String mentorName) {
+    Navigator.push(
+      context,
       MaterialPageRoute(
-        builder: (context) => VideoPlayerScreen(url: url),
+        builder: (context) => BlocProvider(
+          builder: (context) => CourseBloc(CourseService()),
+          child: VideoPlayerScreen(
+            url: url,
+            idCourse: widget.idCourse,
+            title: titleCourse,
+            mentor: mentorName,
+          ),
+        ),
       ),
     );
   }
@@ -183,7 +193,11 @@ class _BisnisKreatifDetailsState extends State<BisnisKreatifDetails> {
                                   child: BisnisKreatifLessonListView(
                                     idCourse: state.getDetailsCourse.idCourse,
                                     callback: (String url) {
-                                      _onViewVideo(url);
+                                      _onViewVideo(
+                                        url,
+                                        state.getDetailsCourse.courseTitle,
+                                        state.getDetailsCourse.mentorName,
+                                      );
                                     },
                                   ),
                                 ),
@@ -228,7 +242,8 @@ class _BisnisKreatifDetailsState extends State<BisnisKreatifDetails> {
         width: MediaQuery.of(context).size.width,
         child: RaisedButton(
           onPressed: () {
-            _onViewVideo("https://res.cloudinary.com/jejaring-uploader/video/upload/v1575972190/into_bqxh3e.mp4");
+//            _onViewVideo(
+//                "https://res.cloudinary.com/jejaring-uploader/video/upload/v1575972190/into_bqxh3e.mp4");
           },
           color: AppTheme.grey,
           child: Text(

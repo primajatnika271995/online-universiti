@@ -26,9 +26,8 @@ class DioLoggingInterceptors extends InterceptorsWrapper {
 
     if (options.headers.containsKey('requiresToken')) {
       options.headers.remove('requiresToken');
-      log.info('accessToken: ${_sharedPreferencesHelper.getString(SharedPreferencesHelper.kAccessToken)}');
 
-      String accessToken = _sharedPreferencesHelper.getString(SharedPreferencesHelper.kAccessToken);
+      String accessToken = await SharedPreferencesHelper.getAccessToken();
       options.headers.addAll({'Authorization': 'Bearer $accessToken'});
     }
     // TODO: implement onRequest
@@ -49,13 +48,13 @@ class DioLoggingInterceptors extends InterceptorsWrapper {
   }
 
   @override
-  Future onError(DioError err) {
+  Future onError(DioError err) async {
     log.info("<-- ${err.message} ${(err.response?.request != null ? (err.response.request.baseUrl + err.response.request.path) : 'URL')}");
     log.info("${err.response != null ? err.response.data : 'Unknown Error'}");
     log.info("<-- End Error");
 
     int responseCode = err.response.statusCode;
-    String oldAccessToken = _sharedPreferencesHelper.getString(SharedPreferencesHelper.kAccessToken);
+    String oldAccessToken = await SharedPreferencesHelper.getAccessToken();
     if (oldAccessToken != null && responseCode == 401 && _sharedPreferencesHelper != null) {
       _dio.interceptors.requestLock.lock();
       _dio.interceptors.responseLock.lock();

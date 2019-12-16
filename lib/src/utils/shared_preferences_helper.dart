@@ -21,57 +21,6 @@ class SharedPreferencesHelper {
     return _instance;
   }
 
-  Future<bool> putBool(String key, bool value) {
-    return _sharedPreferences.setBool(key, value);
-  }
-
-  bool getBool(String key) {
-    return _sharedPreferences.getBool(key);
-  }
-
-  Future<bool> putDouble(String key, double value) {
-    return _sharedPreferences.setDouble(key, value);
-  }
-
-  double getDouble(String key) {
-    return _sharedPreferences.getDouble(key);
-  }
-
-  Future<bool> putInt(String key, int value) {
-    return _sharedPreferences.setInt(key, value);
-  }
-
-  int getInt(String key) {
-    return _sharedPreferences.getInt(key);
-  }
-
-  Future<bool> putString(String key, String value) {
-    return _sharedPreferences.setString(key, value);
-  }
-
-  String getString(String key) {
-    return _sharedPreferences.getString(key);
-  }
-
-  Future<bool> putStringList(String key, List<String> value) {
-    return _sharedPreferences.setStringList(key, value);
-  }
-
-  List<String> getStringList(String key) {
-    return _sharedPreferences.getStringList(key);
-  }
-
-  bool isKeyExists(String key) {
-    return _sharedPreferences.containsKey(key);
-  }
-
-  Future<bool> clearKey(String key) {
-    return _sharedPreferences.remove(key);
-  }
-
-  Future<bool> clearAll() {
-    return _sharedPreferences.clear();
-  }
 
   // ------------------------------------------------------------
   /// Method that returns the skip introduction, 'false' if not set
