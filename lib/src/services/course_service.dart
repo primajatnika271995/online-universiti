@@ -2,12 +2,10 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:http/http.dart';
 import 'package:online_university/src/config/url.dart';
 import 'package:online_university/src/models/course_details_model.dart';
 import 'package:online_university/src/models/course_model.dart';
 import 'package:online_university/src/utils/dio_logging_interceptors.dart';
-import 'package:online_university/src/utils/shared_preferences_helper.dart';
 import 'package:simple_logger/simple_logger.dart';
 
 class CourseService {

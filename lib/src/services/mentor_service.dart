@@ -1,19 +1,24 @@
+import 'dart:convert';
 import 'dart:core';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:http/http.dart' show Client;
 import 'package:online_university/src/config/url.dart';
 import 'package:online_university/src/models/mentor_model.dart';
+import 'package:online_university/src/utils/dio_logging_interceptors.dart';
 import 'package:simple_logger/simple_logger.dart';
 
 class MentorService {
+  final Dio _dio = new Dio();
+  final clientId = 'online-university';
+  final clientSecret = '12345';
 
-  Map<String, String> headers = {
-    'Authorization': 'Basic b25saW5lLXVuaXZlcnNpdHk6MTIzNDU='
-  };
-
-  Client client = new Client();
   final log = SimpleLogger();
+
+  MentorService() {
+    _dio.options.baseUrl = UriApi.dioAuthUri;
+    _dio.interceptors.add(DioLoggingInterceptors(_dio));
+  }
 
   Future<MentorModel> getMentorByID(String idUser) async {
     var params = {
@@ -21,13 +26,11 @@ class MentorService {
     };
 
     try {
-      Uri uri = Uri.parse(UriApi.getMentorByID);
-      final uriParams = uri.replace(queryParameters: params);
-      final response = await client.get(uriParams);
+      final response = await _dio.get(UriApi.getMentorByID, queryParameters: params);
       log.info("Mentor by ID { status: ${response.statusCode} }");
 
       if (response.statusCode == 200)
-        return compute(mentorObjectModelFromJson, response.body);
+        return compute(mentorObjectModelFromJson, json.encode(response.data));
 
     }catch(err) {
       log.warning(err.toString());
@@ -37,14 +40,11 @@ class MentorService {
 
   Future<List<MentorModel>> getListMentor() async {
     try {
-      final response = await client.get(UriApi.getListMentorUri);
+      final response = await _dio.get(UriApi.getListMentorUri);
       log.info("List Mentor { status: ${response.statusCode} }");
 
       if (response.statusCode == 200)
-        return compute(mentorModelFromJson, response.body);
-      else
-        return null;
-
+        return compute(mentorModelFromJson, json.encode(response.data));
     } catch(err) {
       log.warning(err.toString());
     }

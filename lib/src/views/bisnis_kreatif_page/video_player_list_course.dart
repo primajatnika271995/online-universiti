@@ -132,7 +132,7 @@ class CategoryView extends StatelessWidget {
                 child: ListTile(
                   title: Text(data.title, style: AppTheme.title),
                   subtitle: Text("Video - 00:00 mins - Resources (1)", style: AppTheme.subtitle,),
-                  trailing: Icon(Icons.file_download, color: AppTheme.nearlyWhite,),
+                  trailing: Icon(Icons.videocam, color: AppTheme.nearlyWhite,),
                 ),
               ),
             ),
