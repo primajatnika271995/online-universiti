@@ -175,14 +175,16 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget loadingReplace() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 10),
-      child: SizedBox(
-        width: 20,
-        height: 20,
-        child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation(AppTheme.blue_stone),
-          strokeWidth: 4,
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 20),
+        child: SizedBox(
+          width: 20,
+          height: 20,
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation(AppTheme.blue_stone),
+            strokeWidth: 4,
+          ),
         ),
       ),
     );
