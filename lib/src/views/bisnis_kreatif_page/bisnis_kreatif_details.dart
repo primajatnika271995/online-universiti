@@ -102,6 +102,8 @@ class _BisnisKreatifDetailsState extends State<BisnisKreatifDetails> {
               ),
             );
           else if (state is CourseDetailsIsLoaded) {
+            var value = state.getDetailsCourse;
+
             return Stack(
               children: <Widget>[
                 Padding(
@@ -110,7 +112,7 @@ class _BisnisKreatifDetailsState extends State<BisnisKreatifDetails> {
                     height: 600,
                     color: AppTheme.blue_stone,
                     child: Image.network(
-                      state.getDetailsCourse.bannerCourseUrl,
+                      value.bannerCourseUrl,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -144,8 +146,7 @@ class _BisnisKreatifDetailsState extends State<BisnisKreatifDetails> {
                                           child: Column(
                                             children: <Widget>[
                                               Text(
-                                                state.getDetailsCourse
-                                                    .mentorName,
+                                                value.mentorName,
                                                 style: TextStyle(
                                                   color: AppTheme.nearlyWhite,
                                                   fontSize: 30,
@@ -153,19 +154,19 @@ class _BisnisKreatifDetailsState extends State<BisnisKreatifDetails> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsets.only(
-                                                    bottom: 20),
+                                                padding:
+                                                    EdgeInsets.only(bottom: 20),
                                                 child: Text(
-                                                  state.getDetailsCourse
-                                                      .courseTitle,
+                                                  value.courseTitle,
                                                   style: AppTheme.courseTitle,
                                                   textAlign: TextAlign.center,
                                                 ),
                                               ),
-                                              takeTheClassBtn(),
+                                              value.isOwned
+                                                  ? SizedBox()
+                                                  : takeTheClassBtn(),
                                               watchTrailerBtn(
-                                                state.getDetailsCourse
-                                                    .urlPlaceholder,
+                                                value.urlPlaceholder,
                                                 null,
                                               )
                                             ],
@@ -204,22 +205,19 @@ class _BisnisKreatifDetailsState extends State<BisnisKreatifDetails> {
                             child: TabBarView(
                               children: [
                                 BisnisKreatifOverview(
-                                  value: state.getDetailsCourse,
+                                  value: value,
                                   callback: () {
-                                    _onCheckoutCourse(state.getDetailsCourse);
+                                    _onCheckoutCourse(value);
                                   },
                                 ),
                                 BlocProvider(
                                   builder: (context) =>
                                       MateriBloc(MateriService()),
                                   child: BisnisKreatifLessonListView(
-                                    idCourse: state.getDetailsCourse.idCourse,
+                                    idCourse: value.idCourse,
                                     callback: (String url) {
-                                      _onViewVideo(
-                                        url,
-                                        state.getDetailsCourse.courseTitle,
-                                        state.getDetailsCourse.mentorName,
-                                      );
+                                      _onViewVideo(url, value.courseTitle,
+                                          value.mentorName);
                                     },
                                   ),
                                 ),
