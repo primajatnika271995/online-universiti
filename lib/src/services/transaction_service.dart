@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:online_university/src/config/url.dart';
 import 'package:online_university/src/models/transaction_model.dart';
+import 'package:online_university/src/utils/dio_logging_interceptors.dart';
 import 'package:online_university/src/utils/shared_preferences_helper.dart';
 import 'package:simple_logger/simple_logger.dart';
 
@@ -13,6 +14,11 @@ class TransactionService {
   final clientSecret = '12345';
 
   final log = SimpleLogger();
+
+  TransactionService() {
+    _dio.options.baseUrl = UriApi.dioAuthUri;
+    _dio.interceptors.add(DioLoggingInterceptors(_dio));
+  }
 
   Future<List<TransactionModel>> getTransaction(String status) async {
     var token = await SharedPreferencesHelper.getAccessToken();

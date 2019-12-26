@@ -5,6 +5,7 @@ import 'package:online_university/src/bloc/materi_bloc/materi_event.dart';
 import 'package:online_university/src/bloc/materi_bloc/materi_state.dart';
 import 'package:online_university/src/models/materi_model.dart';
 import 'package:online_university/src/utils/app_theme.dart';
+import 'package:online_university/src/views/component/log.dart';
 
 class BisnisKreatifLessonListView extends StatefulWidget {
   final idCourse;
@@ -130,7 +131,7 @@ class CategoryView extends StatelessWidget {
               child: InkWell(
                 splashColor: Colors.transparent,
                 onTap: () {
-                  callback();
+                  data.lockContent ? log.info("Lock Content") : callback();
                 },
                 child: Container(
                   decoration: BoxDecoration(
