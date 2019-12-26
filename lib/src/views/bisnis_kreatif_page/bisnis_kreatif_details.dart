@@ -8,6 +8,7 @@ import 'package:online_university/src/models/course_details_model.dart';
 import 'package:online_university/src/services/course_service.dart';
 import 'package:online_university/src/services/materi_service.dart';
 import 'package:online_university/src/utils/app_theme.dart';
+import 'package:online_university/src/utils/shared_preferences_helper.dart';
 import 'package:online_university/src/views/bisnis_kreatif_page/bisnis_kreatif_lesson_list_view.dart';
 import 'package:online_university/src/views/bisnis_kreatif_page/bisnis_kreatif_overview.dart';
 import 'package:online_university/src/views/bisnis_kreatif_page/teaser_video_player.dart';
@@ -27,6 +28,10 @@ class BisnisKreatifDetails extends StatefulWidget {
 class _BisnisKreatifDetailsState extends State<BisnisKreatifDetails> {
   ScrollController _scrollController = new ScrollController();
   final int _tabLength = 2;
+
+  Future _onCheckToken() async {
+    return await SharedPreferencesHelper.getAccessToken();
+  }
 
   _onViewVideo(String url, String titleCourse, String mentorName) {
     Navigator.push(
@@ -56,13 +61,16 @@ class _BisnisKreatifDetailsState extends State<BisnisKreatifDetails> {
 
   _onCheckoutCourse(CourseDetailsModel state) {
     log.info("Checkout !");
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => PaymentScreen(
-          value: state,
-        ),
-      ),
-    );
+
+    _onCheckToken().then((value) {
+      if (value != null && value.toString().isNotEmpty) {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => PaymentScreen(value: state),
+          ),
+        );
+      }
+    });
   }
 
   @override

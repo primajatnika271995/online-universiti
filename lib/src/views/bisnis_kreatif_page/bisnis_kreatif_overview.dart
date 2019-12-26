@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:online_university/src/models/course_details_model.dart';
 import 'package:online_university/src/utils/app_theme.dart';
 import 'package:online_university/src/views/component/currency_formatted.dart';
+import 'package:online_university/src/views/component/log.dart';
 
 class BisnisKreatifOverview extends StatelessWidget {
   final Function callback;
@@ -148,11 +149,9 @@ class BisnisKreatifOverview extends StatelessWidget {
                 style: AppTheme.title,
               ),
               RaisedButton(
-                onPressed: value.isOwned
-                    ? null
-                    : () {
-                        callback();
-                      },
+                onPressed: () {
+                 value.isOwned ? log.info("Owned") : callback();
+                },
                 color: Colors.red,
                 child: value.isOwned
                     ? Text("PURCHASED", style: AppTheme.chooseBtn)
