@@ -14,6 +14,7 @@ import 'package:online_university/src/views/component/log.dart';
 import 'package:online_university/src/views/login_page/login.dart';
 import 'package:online_university/src/views/mentor_page/mentor_details.dart';
 import 'package:online_university/src/views/profile_page/profile.dart';
+import 'package:online_university/src/views/watch_page/berita_list_view.dart';
 import 'package:online_university/src/views/watch_page/bisnis_kreatif_list_view.dart';
 import 'package:online_university/src/views/watch_page/class_preview_list_view.dart';
 import 'package:online_university/src/views/watch_page/keterampilan_kreatif_list_view.dart';
@@ -90,6 +91,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     );
   }
 
+  _onDetailsBerita(String idUser) {
+    log.info(idUser);
+  }
+
   @override
   void dispose() {
     animationController?.dispose();
@@ -122,6 +127,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             return Column(
                               children: <Widget>[
                                 _isHidden ? SizedBox() : promoContent(),
+                                listBerita(),
                                 BlocProvider(
                                   builder: (context) =>
                                       MentorBloc(MentorService()),
@@ -337,6 +343,25 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           ],
         ),
       ),
+    );
+  }
+
+  Widget listBerita() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.only(top: 15, left: 18, right: 16),
+          child: Text('LATEST NEWS',
+              textAlign: TextAlign.left, style: AppTheme.title),
+        ),
+        BeritaListView(
+          callback: (String idUser) {
+            _onDetailsBerita(idUser);
+          },
+        ),
+      ],
     );
   }
 
