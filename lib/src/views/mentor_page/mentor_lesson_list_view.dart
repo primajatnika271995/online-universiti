@@ -207,7 +207,6 @@ class CategoryView extends StatelessWidget {
             RaisedButton(
               onPressed: () {
                 callback();
-//                _onCheckoutCourse(state.getDetailsCourse);
               },
               color: Colors.red,
               child: Text("CHOOSE", style: AppTheme.chooseBtn),
