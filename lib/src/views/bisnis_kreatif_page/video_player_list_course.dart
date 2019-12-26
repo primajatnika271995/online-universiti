@@ -63,10 +63,12 @@ class _VideoPlayerListCourseState extends State<VideoPlayerListCourse> with Tick
             return Padding(
               padding: EdgeInsets.only(bottom: 16),
               child: ListView.builder(
-                itemCount: state.getListMateri.length,
+                itemCount: state.getListMateri.where((f) => !f.lockContent).toList().length,
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) {
-                  var value = state.getListMateri[index];
+                  var value = state.getListMateri.where((f) => !f.lockContent).toList();
+                  var vFilter = value[index];
+
                   var count = state.getListMateri.length > 10
                       ? 10
                       : state.getListMateri.length;
@@ -79,10 +81,10 @@ class _VideoPlayerListCourseState extends State<VideoPlayerListCourse> with Tick
 
                   return CategoryView(
                     animation: animation,
-                    data: value,
+                    data: vFilter,
                     animationController: animationController,
                     callback: () {
-                      widget.callback(value.urlContent);
+                      widget.callback(vFilter.urlContent);
                     },
                   );
                 },
